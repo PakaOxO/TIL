@@ -1,7 +1,6 @@
 # TIL (Today I Learned)
 
-##INDEX
-
+## INDEX
 HTML & CSS
 
 Javascript
