@@ -1,7 +1,5 @@
 ## **Character Physics**
 
----
-
 ### **Rigid Body**
 
 &nbsp;&nbsp; 유니티 캐릭터가 물리 시스템에 반응하기 위해 추가해야 하는 컴포넌트로 Rigid Body에 정의된 속성에 의해 유니티 물체는 중력 등과 같은 물리 시스템의 영향을 받을 수 있다.
@@ -9,7 +7,7 @@
 </br>
 
 <p align="center">
-    <img style="width: 60%" src="../images/rigidbody.png" alt="RigidBody_Component">
+    <img style="width: 240px" src="../images/rigidbody.png" alt="RigidBody_Component">
 </p></br>
 
 &nbsp;&nbsp; Rigid Body에 의해 유니티 물체가 물리 시스템의 영향을 받게 되었지만 해당 물체는 아직 물리적으로 실체를 가지는 것은 아니기 때문에 다른 물체와 충돌하지는 않는다. 씬에서 특정 물체가 물리적으로 존재감을 가지기 위해서는 Collider가 필요하다.
