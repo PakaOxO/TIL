@@ -4,21 +4,21 @@
 
 ## INDEX
 
-
 ### CS
-- 나 혼자 공부하는 컴퓨터 구조 & 운영체제
+
+- [나 혼자 공부하는 컴퓨터 구조 & 운영체제](CS/나혼공)
 
 ### Front-end
 
-- HTML & CSS
-- Javascript
-- React.js
-- Typescript
+- [HTML & CSS](HTML&CSS)
+- [Javascript](Javascript)
+- [React.js](ReactJS)
+- [Typescript](Typescript)
 
 ### Back-end
 
-- Java
+- [Java](Java)
 
 ### Game Engine
 
-- Unity
+- [Unity](Unity)
