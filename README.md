@@ -10,6 +10,8 @@
 
 - HTML & CSS
 - Javascript
+- React.js
+- Typescript
 
 ### Back-end
 
