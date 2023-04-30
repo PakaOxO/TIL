@@ -1,6 +1,6 @@
 ## 혼자 공부하는 컴퓨터 구조 + 운영체제
 
-<p style="width: 100%; align: center;">
+<p align="center">
   <img src="images/혼공컴운.jpg" style="width: 30%; margin: 0 auto;" />
 </p>
 
