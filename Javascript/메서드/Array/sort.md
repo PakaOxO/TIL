@@ -3,8 +3,10 @@
 ### 기본 표현식
 
 ```javascript
-arr.sort([compareFunction]);
+arr.sort(optional: [compareFunction]);
 ```
+
+<br>
 
 ### 특징
 
@@ -14,6 +16,8 @@ arr.sort([compareFunction]);
 - [compareFunction]은 옵션값으로, 생략되면 배열의 요소에 대해 <u>유니코드 포인트 값으로 변환</u>하여 오름차순으로 정렬합니다.
 - 때문에 일반적으로 사용자 지정 조건함수가 없다면 숫자 배열은 문자로 변환되어 정렬되기에 주의해야 합니다.
 - 사용자 지정함수의 두 파라미터에 대해 양수라면 뒤의 값이 뒤에 배치됩니다.
+
+<br>
 
 ```javascript
 arr.sort((a, b) => {
