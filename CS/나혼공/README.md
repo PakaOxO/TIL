@@ -43,7 +43,7 @@
 
 <br>
 
-### [5. CPU 성능 향상 기법]
+### [5. CPU 성능 향상 기법](./5.%20CPU%20%EC%84%B1%EB%8A%A5%20%ED%96%A5%EC%83%81%20%EA%B8%B0%EB%B2%95/)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[05.1 빠른 CPU를 위한 설계 기법](./5.%20CPU%20%EC%84%B1%EB%8A%A5%20%ED%96%A5%EC%83%81%20%EA%B8%B0%EB%B2%95//5.1%20%EB%B9%A0%EB%A5%B8%20CPU%EB%A5%BC%20%EC%9C%84%ED%95%9C%20%EC%84%A4%EA%B3%84%20%EA%B8%B0%EB%B2%95.md)
 
@@ -53,7 +53,7 @@
 
 <br>
 
-### [6. 메모리와 캐시 메모리]
+### [6. 메모리와 캐시 메모리](./6.%20%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%99%80%20%EC%BA%90%EC%8B%9C%20%EB%A9%94%EB%AA%A8%EB%A6%AC/)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[06.1 RAM의 특징과 종류](./6.%20%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%99%80%20%EC%BA%90%EC%8B%9C%20%EB%A9%94%EB%AA%A8%EB%A6%AC//6.1%20RAM%EC%9D%98%20%ED%8A%B9%EC%A7%95%EA%B3%BC%20%EC%A2%85%EB%A5%98.md)
 
@@ -63,7 +63,7 @@
 
 <br>
 
-### [7. 보조기억장치]
+### [7. 보조기억장치](./7.%20%EB%B3%B4%EC%A1%B0%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98/)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[07.1 다양한 보조기억장치](./7.%20%EB%B3%B4%EC%A1%B0%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98/7.1%20%EB%8B%A4%EC%96%91%ED%95%9C%20%EB%B3%B4%EC%A1%B0%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98.md)
 
