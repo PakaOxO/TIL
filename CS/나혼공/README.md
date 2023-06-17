@@ -70,3 +70,19 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[07.2 RAID의 정의와 종류](./7.%20%EB%B3%B4%EC%A1%B0%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98/7.2%20RAID%EC%9D%98%20%EC%A0%95%EC%9D%98%EC%99%80%20%EC%A2%85%EB%A5%98.md)
 
 <br>
+
+### [8. 입출력장치](./8.%20%EC%9E%85%EC%B6%9C%EB%A0%A5%EC%9E%A5%EC%B9%98/)
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br>
+
+### [9. 운영체제 시작하기](./9.%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[09.1 운영체제를 알아야 하는 이유](./9.%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/9.1%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EB%A5%BC%20%EC%95%8C%EC%95%84%EC%95%BC%20%ED%95%98%EB%8A%94%20%EC%9D%B4%EC%9C%A0.md)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[09.2 운영체제의 큰 그림](./9.%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/9.2%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%9D%98%20%ED%81%B0%20%EA%B7%B8%EB%A6%BC.md)
+
+<br>
