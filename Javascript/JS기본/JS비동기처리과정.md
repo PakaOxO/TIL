@@ -6,8 +6,8 @@
 
 ### Web API
 
-<figure align="center">
-  <img src="../images/js_engine.gif" style="width: 400px" />
+<figure align="center" style="width: 100%">
+  <img src="../images/js_engine.gif" style="width: 600px" />
 </figure>
 
 &nbsp;&nbsp;브라우저는 자바스크립트 런타임 환경으로 우리가 알고 있는 Javascript인 `ECMAScript`와 `이벤트 루프`, `콜백 큐`, `Web API` 등을 가지고 있습니다. 일반적인 자바스크립트 코드는 순차적으로 `호출 스택(Call Stack)`에 담아 처리됩니다.
@@ -78,8 +78,8 @@ console.log("End");
 
 <br>
 
-<figure align="center">
-  <img src="../images/taskqueue.gif" style="width: 400px" />
+<figure align="center" style="width: 100%">
+  <img src="../images/taskqueue.gif" style="width: 600px" />
 </figure>
 
 &nbsp;&nbsp;Task의 우선순위는 Microtask가 높게 가져갑니다. 호출 스택에 삽입된 setTimeout과 Promise는 각각 Macrotask, Microtask Queue에 삽입되는데 "End"가 출력되고 호출 스택이 비게 되면 이벤트 루프는 우선적으로 Microtask Queue 내부의 모든 콜백 함수들을 순차적으로 호출 스택으로 이동시킵니다.
