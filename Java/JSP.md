@@ -111,7 +111,7 @@
 Page(pageContext) < Request(request) < session(session) < application(application)
 
 <p align="center">
-    <img style="width: 70%" src="img/jspScope.png" alt="jspScope">
+    <img style="width: 70%" src="images/jspScope.png" alt="jspScope">
 </p><br/>
 <br/>
 
