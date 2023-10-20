@@ -16,7 +16,7 @@
 - [Javascript](Javascript)
 - [React.js](ReactJS)
 - [Typescript](Typescript)
-- [Vue.js](VueJS)
+- [Vue.js](VueJs)
 
 ### Back-end
 
