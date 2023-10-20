@@ -8,11 +8,11 @@
 
 ### CS
 
+- [정규표현식, Regex](CS/정규표현식/)
 - [나 혼자 공부하는 컴퓨터 구조 & 운영체제](CS/%ED%98%BC%EA%B3%B5%EC%BB%B4%EC%9A%B4/)
 
 ### Front-end
 
-- [HTML & CSS](HTML&CSS)
 - [Javascript](Javascript)
 - [React.js](ReactJS)
 - [Typescript](Typescript)
@@ -21,6 +21,7 @@
 ### Back-end
 
 - [Java](Java)
+- [Database](Database)
 
 ### Game Engine
 
