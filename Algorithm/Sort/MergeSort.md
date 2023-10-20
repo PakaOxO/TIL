@@ -4,82 +4,77 @@
 
 <br>
 
-### **Merge Sort Process**
+### Merge Sort Process
 
 1. 정렬할 배열 입력
+
 2. 입력 받은 배열을 반으로 나누어 가며 최소 단위의 배열이 될 때까지 나눈다(분할)
+
 3. 나누어진 2개의 부분 배열을 선택하여 정렬을 진행하며 병합(정복)
+
 4. 최종적으로 정렬된 배열 출력
 
 <br>
 
-### **병합정렬 구현 (Java)** &nbsp;[[전체코드]](code/MergeSort.java)
+> ❗ 두 부분 배열의 정렬은 포인터 두개를 활용하여 두 배열 중 더 작은 숫자를 임시배열에 먼저 삽입하는 방식으로 정렬합니다. 이 방법을 사용하려면 각 두 배열이 이미 정렬된 상태여야 하지만, Top-down 방식의 분할-정복 로직으로 호출 스택상 먼저 코드가 실행되는 하위 배열은 이미 정렬되어있다고 생각할 수 있습니다.
+
+<br>
+
+### 병합정렬 코드
 
 ```javascript
-/* 병합정렬 */
-function mergeSort(arr, left, right) {
-  if (left === right) return arr;
-  const mid = Math.floor((left + right) / 2);
-  const sortedLeft = mergeSort(arr, left, mid);
-  const sortedRight = mergeSort(arr, mid + 1, right);
+function sort(arr) {
+  /* 메인 로직 */
+  const temp = Array.from({ length: arr.length }, () => 0);
+  mergeSort(0, arr.length - 1);
+  return arr;
 
-  return merge([...sortedLeft, ...sortedRight], left, mid, right);
-}
+  /* 병합정렬  */
+  function mergeSort(left, right) {
+    if (left === right) return;
 
-/* 병합 */
-function merge(arr, left, mid, right) {
-  const merged = [];
-  let [lPointer, rPointer] = [left, mid + 1];
-  while (lPointer <= mid && rPointer <= right) {
-    if (arr[lPointer] <= arr[rPointer]) {
-      merged.push(arr[lPointer++]);
-    } else {
-      merged.push(arr[rPointer++]);
-    }
+    // mid를 기점으로 좌우로 배열을 분해하여 정렬(분할)
+    const mid = Math.floor((left + right) / 2);
+    mergeSort(left, mid);
+    mergeSort(mid + 1, right);
+    // 분할하여 정렬된 배열을 합치기(정복)
+    merge(left, mid, right);
   }
 
-  while (lPointer <= mid) merged.push(arr[lPointer++]);
-  while (rPointer <= mid) merged.push(arr[rPointer++]);
+  /* 병합 */
+  function merge(left, mid, right) {
+    let [pointer, lPointer, rPointer] = [left, left, mid + 1];
 
-  return merged;
+    while (lPointer <= mid && rPointer <= right) {
+      if (arr[lPointer] <= arr[rPointer]) {
+        temp[pointer++] = arr[lPointer++];
+      } else {
+        temp[pointer++] = arr[rPointer++];
+      }
+    }
+
+    while (lPointer <= mid) temp[pointer++] = arr[lPointer++];
+    while (rPointer <= right) temp[pointer++] = arr[rPointer++];
+
+    for (let i = left; i <= right; i++) arr[i] = temp[i];
+  }
 }
 ```
 
-```java
+<br>
 
-/* 병합정렬 */
-static void mergeSort(int[] arr, int left, int right) {
-    if (left == right) return;
+### 장단점
 
-    int mid = (left + right) / 2;
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    merge(arr, left, mid, right);
-}
+**장점**
 
-/* 병합 */
-static void merge(int[] arr, int left, int mid, int right) {
-    int L = left;
-    int R = mid + 1;
-    int pointer = left;
+- 퀵 정렬은 데이터에 따라 최악의 경우 $O(N^2)$의 시간복잡도를 가지지만 병합정렬은 $O(NlogN)$의 시간복잡도를 보장합니다.
+- $O(N^2)$의 시간복잡도를 가지는 정렬들에 비해 효율적인 정렬방법입니다.
+- 중복 값의 경우, 입력된 순서가 지켜지는 [안정정렬](./Stable&UnStableSort.md)입니다.
 
-    while (L <= mid && R <= right) {
-        if (arr[L] <= arr[R]) {
-            temp[pointer++] = arr[L++];
-        } else {
-            temp[pointer++] = arr[R++];
-        }
-    }
+<br>
 
-    if (L <= mid) {
-        while (L <= mid) temp[pointer++] = arr[L++];
-    } else {
-        while (R <= right) temp[pointer++] = arr[R++];
-    }
+**단점**
 
-    for (int i=left; i<=right; i++) {
-        arr[i] = temp[i];
-    }
-}
-```
-
+- 부분적으로 정렬된 데이터를 담을 임시배열(temp)이 필요하므로 메모리상의 추가 공간이 필요합니다.
+- 추가 메모리를 사용하여 정렬하므로 제자리 정렬이 아닙니다.
+- 배열의 길이가 큰 경우 데이터의 이동횟수가 많아지므로 시간 낭비가 발생할 수 있습니다.
