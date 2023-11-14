@@ -8,7 +8,7 @@
 ### **과정**
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 70%" src="images/graph02.png" alt="graph02">
+    <img style="width: 70%" src="../images/graph02.png" alt="graph02">
 </p></br>
 
 1. 먼저 인접 노드에 대한 간선의 정보를 인접 행렬에 저장한다
@@ -20,7 +20,7 @@
 **중간 지점 1을 거쳐 2에서 3으로 도착하는 최단 경로**
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 100%" src="images/Floyed-Warshell_process.png" alt="Floyed-Warshell_process">
+    <img style="width: 100%" src="../images/Floyed-Warshell_process.png" alt="Floyed-Warshell_process">
 </p></br>
 
 ### **Floyed-Warshell 코드**

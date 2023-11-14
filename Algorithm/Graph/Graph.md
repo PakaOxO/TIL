@@ -6,7 +6,7 @@
 <br/><br/>
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 60%" src="images/graph.png" alt="graph">
+    <img style="width: 60%" src="../images/graph.png" alt="graph">
 </p></br>
 
 ### **Graph 용어**
@@ -40,7 +40,7 @@
   <br/>
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 95%" src="images/adjacentMatrix.png" alt="adjacentMatrix">
+    <img style="width: 95%" src="../images/adjacentMatrix.png" alt="adjacentMatrix">
 </p></br>
 
 ### **인접 리스트 (Adjacent List)**
@@ -50,7 +50,7 @@
   <br/>
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 95%" src="images/adjcentList.png" alt="adjacentList">
+    <img style="width: 95%" src="../images/adjcentList.png" alt="adjacentList">
 </p></br>
 <br/>
 
