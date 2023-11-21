@@ -3,7 +3,7 @@
 ## **Disjoint-Set**
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 70%" src="images/disjointSet.png" alt="disjointSet">
+    <img style="width: 70%" src="../images/disjointSet.png" alt="disjointSet">
 </p></br>
 
 &nbsp;&nbsp;서로소 또는 상호배타 집합은 <u>**서로 중복 포함된 원소가 없는 집합**</u>이며 바꿔 말하면 교집합이 없는 관계의 집합이라고 할 수 있다. 집합에 속한 하나의 특정 요소를 통해 각 집합을 구분하며 이를 <u>대표자(representative)</u>라 부른다.
@@ -22,7 +22,7 @@
    </br>
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 90%" src="images/ranking.png" alt="ranking">
+    <img style="width: 90%" src="../images/ranking.png" alt="ranking">
 </p></br>
 <br/>
 
@@ -30,7 +30,7 @@
    </br>
 
 <p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 90%" src="images/pathCompression.png" alt="pathCompression">
+    <img style="width: 90%" src="../images/pathCompression.png" alt="pathCompression">
 </p></br>
 <br/>
 

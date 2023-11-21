@@ -10,13 +10,13 @@
 
 <br>
 
-**선택정렬 코드**
+### 선택정렬 코드
 
 ```javascript
 function selectionSort(arr) {
   const N = arr.length;
 
-  for (let i = 0; i < N; i++) {
+  for (let i = 0; i < N - 1; i++) {
     let [minIdx] = i;
     for (let j = i + 1; j < N; j++) {
       if (arr[j] < arr[minIdx]) {
@@ -36,6 +36,8 @@ function selectionSort(arr) {
 
 <br>
 
+### 장단점
+
 **장점**
 
 - 선택 정렬 역시 버블 정렬과 마찬가지로 단순한 로직으로 빠르게 구현할 수 있습니다.
@@ -46,4 +48,3 @@ function selectionSort(arr) {
 - $O(N^2)$의 시간 복잡도로 일반적으로 병합 정렬과 같은 $O(logN)$ 시간 복잡도를 가지는 정렬에 비해 느립니다.
 
 </br>
-
