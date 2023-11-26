@@ -8,72 +8,23 @@
         "type": "tabs",
         "children": [
           {
-            "id": "3414a8b7c98d17cd",
+            "id": "b15caa8b4585b5ca",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CS/CS.md",
+                "file": "TIL(Today I learned).md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "50197591900d9469",
+            "id": "ed361162372506c4",
             "type": "leaf",
             "state": {
-              "type": "localgraph",
-              "state": {
-                "file": "CS/CS.md",
-                "options": {
-                  "collapse-filter": true,
-                  "search": "",
-                  "localJumps": 5,
-                  "localBacklinks": true,
-                  "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
-                  "collapse-color-groups": true,
-                  "colorGroups": [
-                    {
-                      "query": "path:CS/혼공컴운  ",
-                      "color": {
-                        "a": 1,
-                        "rgb": 14701138
-                      }
-                    },
-                    {
-                      "query": "path:CS/정규표현식  ",
-                      "color": {
-                        "a": 1,
-                        "rgb": 14725458
-                      }
-                    },
-                    {
-                      "query": "path:\"CS/하향식 네트워크\"  ",
-                      "color": {
-                        "a": 1,
-                        "rgb": 11657298
-                      }
-                    }
-                  ],
-                  "collapse-display": true,
-                  "showArrow": false,
-                  "textFadeMultiplier": 0,
-                  "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1,
-                  "collapse-forces": false,
-                  "centerStrength": 0.478230794270833,
-                  "repelStrength": 15.43701171875,
-                  "linkStrength": 1,
-                  "linkDistance": 65,
-                  "scale": 0.5834335724701551,
-                  "close": true
-                }
-              }
+              "type": "graph",
+              "state": {}
             }
           }
         ],
@@ -143,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CS/CS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +110,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CS/CS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,9 +131,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "CS/CS.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -204,35 +151,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "50197591900d9469",
+  "active": "ed361162372506c4",
   "lastOpenFiles": [
-    "CS/혼공컴운/2. 데이터/2.2 0과 1로 문자를 표현하는 방법.md",
-    "CS/CS.md",
+    "Algorithm/Sort/정렬과 탐색.md",
+    "Algorithm/Sort/SelectionSort.md",
+    "TIL(Today I learned).md",
     "utf8encoding/png.md",
-    "utf8encoding",
+    "ReactJS/React.js.md",
+    "Algorithm/Algorithm.md",
+    "CS/CS.md",
+    "CS/혼공컴운/15. 파일 시스템/15.2 파일 시스템.md",
+    "ReactJS/hook/hook.md",
+    "ReactJS/basic/basic.md",
+    "Algorithm/Combination&Permutation/Combination & Permutation.md",
+    "Algorithm/GraphTheory/MST.md",
+    "Algorithm/GraphTheory/Dijkstra Algorithm.md",
+    "Algorithm/DataStructure/LinkedList.md",
+    "().md",
+    "Algorithm/DynamicProgramming/DP(Dynamic Programming).md",
+    "Algorithm/DataStructure/Data Structure.md",
+    "Algorithm/DataStructure/queue.md",
+    "Algorithm/DynamicProgramming/Dynamic Programming.md",
+    "Algorithm/Combination&Permutation/Bitmasking (Updated).md",
+    "Algorithm/Combination&Permutation/BitMasking.md",
+    "Algorithm/DataStructure/Tree.md",
+    "Algorithm/Sort/Sort.md",
+    "Algorithm/GraphTheory/Graph Theory.md",
+    "Algorithm/GraphTheory/Graph.md",
     "완성형인코딩과조합형인코딩.jpeg.md",
-    "CS/혼공컴운/2. 데이터/2.1 0과 1로 숫자를 표현하는 방법.md",
-    "CS/혼공컴운/1. 컴퓨터 구조/1.2 컴퓨터 구조의 큰 그림.md",
-    "CS/혼공컴운/1. 컴퓨터 구조/1.1 컴퓨터 구조를 알아야 하는 이유.md",
-    "CS/혼공컴운/1. 컴퓨터 구조/1. 컴퓨터 구조.md",
-    "CS/정규표현식/정규표현식(Regular Expression).md",
-    "CS/하향식 네트워크/20. 멀티미디어 네트워크 1.md",
-    "CS/하향식 네트워크/19. 무선이동네트워크 2.md",
-    "CS/하향식 네트워크/18. 무선이동네트워크 1.md",
-    "CS/하향식 네트워크/17. 링크계층 3.md",
-    "CS/하향식 네트워크/16. 링크계층 2.md",
-    "CS/하향식 네트워크/15. 링크계층 1.md",
-    "CS/하향식 네트워크/14. 네트워크계층 5.md",
-    "CS/하향식 네트워크/13. 네트워크계층 4.md",
-    "CS/하향식 네트워크/12. 네트워크계층 3.md",
-    "CS/하향식 네트워크/11. 네트워크계층 2.md",
-    "CS/하향식 네트워크/10. 네트워크계층 1.md",
-    "CS/하향식 네트워크/9. 전송계층 5.md",
-    "CS/하향식 네트워크/8. 전송계층 4.md",
-    "TCPFariness.png.md",
-    "CS/하향식 네트워크/7. 전송계층 3.md",
-    "CS/하향식 네트워크/6. 전송계층 2.md",
-    "images/congestionControlScenario1.png./images/congestionControlScenario1.png.md",
+    "utf8encoding",
     "images/congestionControlScenario1.png./images",
     "images/congestionControlScenario1.png.",
     "Untitled.canvas",
