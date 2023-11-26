@@ -27,8 +27,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -94,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "TIL(Today I learned).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,6 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "TIL(Today I learned).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +132,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "TIL(Today I learned).md"
+              }
             }
           }
         ]
@@ -151,11 +154,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ed361162372506c4",
+  "active": "b15caa8b4585b5ca",
   "lastOpenFiles": [
+    "images/congestionControlScenario1.png./images/congestionControlScenario1.png.md",
+    "TIL(Today I learned).md",
+    "images/streamingVideo.md",
     "Algorithm/Sort/정렬과 탐색.md",
     "Algorithm/Sort/SelectionSort.md",
-    "TIL(Today I learned).md",
     "utf8encoding/png.md",
     "ReactJS/React.js.md",
     "Algorithm/Algorithm.md",
@@ -177,8 +182,6 @@
     "Algorithm/DataStructure/Tree.md",
     "Algorithm/Sort/Sort.md",
     "Algorithm/GraphTheory/Graph Theory.md",
-    "Algorithm/GraphTheory/Graph.md",
-    "완성형인코딩과조합형인코딩.jpeg.md",
     "utf8encoding",
     "images/congestionControlScenario1.png./images",
     "images/congestionControlScenario1.png.",
