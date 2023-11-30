@@ -3,5 +3,8 @@
 
 ### Contents
 - [[Algorithm]]
-- [[CS]]
+- [[Computer structure & OS]]
+- [[Network]]
+- [[Javascript]]
 - [[React.js]]
+- [[Unity]]

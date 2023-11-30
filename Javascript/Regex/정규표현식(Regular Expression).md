@@ -1,5 +1,5 @@
 
-![|400](./images/regex_email.jpeg)
+![|400](regex_email.jpeg)
 
 ### Contents
 
