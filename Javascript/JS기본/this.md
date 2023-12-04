@@ -175,16 +175,17 @@ func2(); // Kim, 10
 ```
 
 ```javascript
+var name = 'Park';
 const person = {
   name: 'Lee',
   foo(callback) {
-	callback();
-  }
+	 callback.bind(this)();
+  },
 }
 
 person.foo(function() {
-  console.log('Hi, my')
-})
+  console.log(`Hi! my name is ${this.name}.`); // Hi! my name is Lee.
+});
 ```
 <br>
 
