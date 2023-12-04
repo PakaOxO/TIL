@@ -13,6 +13,7 @@
 ```javascript
 function foo() {
   console.log(this); // window
+  bar();
 
   function bar() {
     console.log(this); // window
@@ -27,7 +28,7 @@ foo();
 &nbsp;&nbsp;메소드의 내부함수의 경우에도 `this`는 전역객체에 바인딩됩니다.
 
 ```javascript
-const value = 1;
+var value = 1; // var가 아니면 window 객체의 프로퍼티 X
 
 const obj = {
   value: 100,
@@ -52,7 +53,7 @@ obj.foo();
 &nbsp;&nbsp;콜백함수 역시 `this`는 전역객체에 바인딩됩니다.
 
 ```javascript
-const value = 1;
+var value = 1;
 
 const obj = {
   value: 100,

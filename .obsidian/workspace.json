@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ff9acd54c0b5d8d7",
+        "id": "ee3adf128045c06e",
         "type": "tabs",
         "children": [
           {
-            "id": "ed8de7d6f3e73b43",
+            "id": "639d412c48a2ff34",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Untitled.md",
-                "mode": "source",
+                "file": "Javascript/JS기본/this.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.md",
+                "file": "Javascript/JS기본/this.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.md",
+                "file": "Javascript/JS기본/this.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md"
+                "file": "Javascript/JS기본/this.md"
               }
             }
           }
@@ -146,8 +146,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ed8de7d6f3e73b43",
+  "active": "639d412c48a2ff34",
   "lastOpenFiles": [
+    "Javascript/JS기본/this.md",
     "Untitled.md",
     "Javascript/ECMAScript/내장메서드/Array/sort.md",
     "Javascript/Regex/플래그.md",
