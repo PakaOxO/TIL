@@ -61,11 +61,12 @@ const obj = {
     setTimeout(function () {
       console.log(this); // window
       console.log(this.value); // 100
-    }, 100);
+    }, 1000);
   },
 };
 
 obj.foo();
+console.log("hi");
 ```
 
 <br>
