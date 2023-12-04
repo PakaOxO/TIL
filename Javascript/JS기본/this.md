@@ -174,6 +174,18 @@ func(); // undefined, undefined
 func2(); // Kim, 10
 ```
 
+```javascript
+const person = {
+  name: 'Lee',
+  foo(callback) {
+	callback();
+  }
+}
+
+person.foo(function() {
+  console.log('Hi, my')
+})
+```
 <br>
 
 **Reference**
