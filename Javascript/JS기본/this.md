@@ -179,7 +179,7 @@ var name = 'Park';
 const person = {
   name: 'Lee',
   foo(callback) {
-	 callback.bind(this)();
+    callback.bind(this)();
   },
 }
 
