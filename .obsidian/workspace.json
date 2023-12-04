@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "5b9e0856a89864b8",
+        "id": "98f368fa83abfc1a",
         "type": "tabs",
         "children": [
           {
-            "id": "8fea59b4b533547d",
+            "id": "37245ba20ee41841",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Javascript/JS기본/콜백함수.md",
-                "mode": "preview",
+                "file": "Javascript/JS기본/JS비동기처리과정.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Javascript/JS기본/콜백함수.md",
+                "file": "Javascript/JS기본/JS비동기처리과정.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Javascript/JS기본/콜백함수.md",
+                "file": "Javascript/JS기본/JS비동기처리과정.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Javascript/JS기본/콜백함수.md"
+                "file": "Javascript/JS기본/JS비동기처리과정.md"
               }
             }
           }
@@ -146,8 +146,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8fea59b4b533547d",
+  "active": "37245ba20ee41841",
   "lastOpenFiles": [
+    "Javascript/JS기본/JS Basic.md",
+    "Javascript/JS기본/async&await.md",
+    "Javascript/JS기본/호이스팅.md",
+    "Javascript/JS기본/콜백함수.md",
     "Javascript/Regex/특수문자.md",
     "Javascript/Regex/정규표현식이란.md",
     "Javascript/Regex/정규표현식(Regular Expression).md"
