@@ -5,4 +5,20 @@
 
 ### 환경변수
 
-&nbsp;&nbsp;`public` 경로는 환경
+&nbsp;&nbsp;`public` 경로는 `PUBLIC_URL`이라는 환경변수를 통해 접근할 수 있었습니다. HTML에서 접근하느냐, Javascript 코드에서 접근하느냐에 따라 다음과 같은 변수를 사용할 수 있습니다.
+
+**HTML**
+```html
+<img src="%PUBLIC_URL%/images/alpaca.png" alt="알파카 로고" />
+```
+
+**Javascript**
+```javascript
+<img src={`${process.env.PUBLIC_URL}/images/alpaca.png`} />
+```
+
+<br>
+
+**References**
+- [CreativeLee님 블로그](https://think0wise.tistory.com/21)
+- [Create React App 공식문서](https://create-react-app.dev/docs/using-the-public-folder/)
