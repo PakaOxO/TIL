@@ -23,24 +23,25 @@
 useEffect(setup, [...dependencies]);
 ```
 
-&nbsp;&nbsp;`useEffect`는 다음과 같은 형태로 `setup`과 `dependencies` 배열, 2가지 파라미터를 가질 수 있는 React hook입니다. 간단하게 채팅 서버에 연결하고, 채팅 목록을 가져오는 컴포넌트가 있다고 가정하고 예시를 살펴보겠습니다.
+&nbsp;&nbsp;`useEffect`는 다음과 같은 형태로 `setup`과 `dependencies` 배열, 2가지 파라미터를 가질 수 있는 React hook입니다. 간단하게 서버로부터 게시글 목록을 가져오기 위한 컴포넌트를 예시로 살펴보겠습니다.
 
 
 ```javascript
-const Chat = ({ roomId }) => {
-	const [serverURL, setServerURL] = useState("https://chatserver.com:3333");
-	const { createConntection } = useChat(); // Custom hook
+const BoardList = () => {
+	const [serverURL, setServerURL] = useState("https://webServer.com/");
+	const [boardList, setBoardList] = useState([]);
+	const { getBoardList } = useBoard(); // Custom hook
 
 	useEffect(() => {
-		const connection = createConnection(serverURL, roomId);
-		connection.connect();
-
-		return () => {
-			connection.disconnect();
-		}
-	}, [serverURL, roomId]);
+		getBoardList(serverURL);
+		setBoardList([...list]);
+	}, [serverURL]);
 }
 ```
+
+1. `Chat` 컴포넌트는 상위 컴포넌트로부터 연결하기 위한 채팅방의 `id`를 `props`를 통해 넘겨 받으며, 채팅 서버의 URL은 `setState`로 관리되고 있습니다.
+2. 채팅 서버와의 연결 객체를 생성하기 위한 로직은 외부에 구현된 `useChat`이라는 커스텀 훅을 사용했다고 가정하며, `useChat`이 가지고 있는 `createConnection`에 서버의 URL과 채팅방의 id를 넘겨주면 `connection` 객체가 반환됩니다.
+
 
 &nbsp;&nbsp;useEffect hook은 콜백 함수와 의존성을 담은 배열, 2가지를 파리미터로 가집니다. 여기서 의존성이란 useEffect의 콜백 함수의 호출을 유발할 인자들을 가리킵니다. 만약 카운팅이 증가할 때마다 http request를 보내는 기능을 수행한다면 이는 Side Effect이며 이 때 의존하는 값은 counting 값이 될 것입니다.
 
