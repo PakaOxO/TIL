@@ -30,12 +30,18 @@ useEffect(setup, [...dependencies]);
 const BoardList = () => {
 	const [serverURL, setServerURL] = useState("https://webServer.com/");
 	const [boardList, setBoardList] = useState([]);
-	const { getBoardList } = useBoard(); // Custom hook
+	const { fetchBoardList } = useBoard(); // Custom hook
 
 	useEffect(() => {
-		getBoardList(serverURL);
-		setBoardList([...list]);
-	}, [serverURL]);
+		async () => {
+			try {
+				const list = await fetchBoardList(serverURL);
+				setBoardList([...list]);
+			} catch(err) {
+				console.error(err);
+			}
+		}();
+	}, [fetchBoardList]);
 }
 ```
 
