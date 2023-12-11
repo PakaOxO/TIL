@@ -1,6 +1,6 @@
 ### Contents
 - [[basic]]
 - [[hook]]
-- [[issue]]
+- [[troubleshooting]]
 
 <br>
