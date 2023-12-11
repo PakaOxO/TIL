@@ -68,7 +68,8 @@ const BoardList = () => {
 
 >[!tip] **Dependencies**
 >
->&nbsp;&nbsp;`useEffect`의 문법에서 `setup`은 `Side`
+>&nbsp;&nbsp;`useEffect`의 문법에서 `setup`은 `Side Effect`를 관리하기 위한 코드를 작성하기 위한 콜백함수입니다. 그렇다면, `dependencies` 배열은 무엇을 위한 파라미터일까요? 위의 예시에서 살펴본 것처럼 useEffect는 렌더링이 완료된 이후, `setup` 코드를 실행합니다. 만약 예시 코드에서
+
 
 **기타 특징**
 
