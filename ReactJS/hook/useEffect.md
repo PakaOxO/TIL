@@ -80,23 +80,23 @@ const BoardList = () => {
 
 ```javascript
 useEffect(() => {
-	// setup
+	// setup logic: componentDidMount
 
 	return () => {
-		// clean-up logic
+		// clean-up logic: componentWillUnmount
 	}
 }, [...dependencies]);
 ```
 
 &nbsp;&nbsp;리액트에서는 effects를 크게 `clean-up` 함수를 갖는 hook과 그렇지 않은 hook 두 가지로 나눕니다. 만약 컴포넌트를 class로 작성해본 사람이라면 `componentDidMount`와 `componentDidUpdate`, `componentWillUnmount`라는 class형 컴포넌트의 생명주기 hook에 대해 들어본 적이 있을 것입니다.
 
-&nbsp;&nbsp;`useEffect`는 위의 3가지 생명주기 함수의 의미를 갖는 hook으로 `setup` 함수는 `componentDidMount` 내부에 작성할 `Side effect` 로직을, `clean-up` 함수는 컴포넌트의 DOM에서 제거될 때 호출되는 `componentWillUnmount`에 내부의 로직을 작성하기 위해 사용됩니다.
+&nbsp;&nbsp;`useEffect`는 위의 3가지 생명주기 함수의 의미를 갖는 hook으로 `setup` 함수는 `componentDidMount` 내부에 작성할 `Side effect` 로직을, `clean-up` 함수는 컴포넌트의 DOM에서 제거될 때 호출되는 `componentWillUnmount`에 내부의 로직을 작성하기 위해 사용됩니다. 즉, `clean-up` 함수는 컴포넌트가 언마운트 되기 전에 처리해야 할 로직이 구현됩니다.
 
 <br>
 
 **Debouncing(디바운싱)**
 
-&nbsp;&nbsp;clean-up 함수를 활용할 수 있는 예시 중 하나는 `디바운싱` 기법입니다. 만약 사용자가 닉네임을 만들기 위해 키를 입력하고 있다고 가정했을 때, DB에 저장된 닉네임과 중복을 확인하기 위해 키가 입력될 때마다 요청을 보내는 것은 트래픽 낭비를 야기할 수 있습니다. 때문에 모든 키 입력이 종료된 뒤에 한번만 요청을 보내도록 하는 것이 `디바운싱`입니다.
+&nbsp;&nbsp;`clean-up` 함수를 활용할 수 있는 예시 중 하나는 `Debouncing` 기법입니다. 만약 사용자가 닉네임을 만들기 위해 키를 입력하고 있다고 가정했을 때, DB에 저장된 닉네임과 중복을 확인하기 위해 키가 입력될 때마다 요청을 보내는 것은 불필요한 트래픽을 야기할 수 있습니다. 때문에 모든 키 입력이 종료된 뒤에 한번만 요청을 보내고 싶다면 `디바운싱` 기법을 사용하면 됩니다.
 
 <br>
 
@@ -124,6 +124,18 @@ useEffect(() => {
     clearTimeout(timer);
   };
 }, [nickname]);
+
+// input의 변경이 감지되면 nickname 상태를 변경합니다.
+const changeHandler = (e) => {
+	setNickName(e.currentTarget.value);
+}
+
+return (
+	<div>
+		<input text="nickname" value={nickname} onChange={changeHandler} />
+		<span>{ isNickValid ? "" : "중복된 아이디가 있습니다."}</span>
+	</div>
+)
 ```
 
 <br>
