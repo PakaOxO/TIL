@@ -150,7 +150,10 @@ return (
 
 <br>
 
-&nbsp;&nbsp;지금까지 `useEffect`를 설명하기 위해 
+### Race Condition
+
+
+&nbsp;&nbsp;지금까지 `useEffect`를 설명하기 위해 서버에 데이터를 요청하는 API를 예시를 들었습니다만.. 사실 `useEffect` 내부에서 비동기 로직을 처리하는 것은 [공식문서](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)에서는 추천하는 방법은 아닙니다. 비동기 로직은 실행 후 완료되는 시점이 불분명하기 때문에 예기치 못한 오류 
 
 <br>
 
