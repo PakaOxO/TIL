@@ -33,15 +33,21 @@ const BoardList = () => {
 	const { fetchBoardList } = useBoard(); // Custom hook
 
 	useEffect(() => {
-		async () => {
+		(async () => {
 			try {
 				const list = await fetchBoardList(serverURL);
 				setBoardList([...list]);
 			} catch(err) {
 				console.error(err);
 			}
-		}();
-	}, [fetchBoardList]);
+		}());
+	}, [serverURL, fetchBoardList]);
+
+	return (
+		{boardList.map((data) => {
+			<Board data={data} 
+		})}
+	);
 }
 ```
 
