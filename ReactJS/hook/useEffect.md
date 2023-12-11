@@ -11,19 +11,35 @@
 
 ### Side Effect
 
-&nbsp;&nbsp;앞서 리액트 컴포넌트에서의 로직은 크게 화면을 그리고, 그려진 화면에서 사용자의 액션에 의한 이벤트를 처리하기 위한 해
-컴포넌트의 주요 기능은 화면에 UI를 그리는 것인데, 컴포넌트 내에 http request나 수동으로 컴포넌트의 DOM을 수정하는 등 컴포넌트에서 UI를 직접 그리는 것 이외에 발생할 수 있는 기능들에 대해서는 Side Effect라고 표현합니다.
+&nbsp;&nbsp;앞서 리액트 컴포넌트에서의 로직은 크게 화면을 그리고, 그려진 화면에서 사용자의 액션에 의한 이벤트를 처리하는 2가지로 구성된다고 이야기 했습니다. 그렇다면 렌더링이 이루어지기 전에 SNS에서 관심 피드 목록을 가져온다던가, 유튜브에서 추천 영상 목록을 가져오는 로직은 어디에 작성되어야 할까요?
+
+&nbsp;&nbsp;컴포넌트 내에서 http request를 통해 필요한 데이터를 서버에서 가져오거나, 수동으로 컴포넌트의 DOM을 수정하는 등 컴포넌트의 기본적인 2가지 로직 이외의 기능들은 `Side Effect`라고 표현됩니다. 그리고 이러한 `Side Effect`를 처리하기 위해 사용되는 것이 `useEffect` hook이죠.
 
 <br>
 
 ### useEffect 문법
 
 ```javascript
-const [count, setCount] = useState(0);
+useEffect(setup, [...dependencies]);
+```
 
-useEffect(() => {
-  /* http request 등 수행할 side effect */
-}, [count]);
+&nbsp;&nbsp;`useEffect`는 다음과 같은 형태로 `setup`과 `dependencies` 배열, 2가지 파라미터를 가질 수 있는 React hook입니다. 간단하게 채팅 서버에 연결하고, 채팅 목록을 가져오는 컴포넌트가 있다고 가정하고 예시를 살펴보겠습니다.
+
+
+```javascript
+const Chat = ({ roomId }) => {
+	const [serverURL, setServerURL] = useState("https://chatserver.com:3333");
+	const { createConntection } = useChat(); // Custom hook
+
+	useEffect(() => {
+		const connection = createConnection(serverURL, roomId);
+		connection.connect();
+
+		return () => {
+			connection.disconnect();
+		}
+	}, [serverURL, roomId]);
+}
 ```
 
 &nbsp;&nbsp;useEffect hook은 콜백 함수와 의존성을 담은 배열, 2가지를 파리미터로 가집니다. 여기서 의존성이란 useEffect의 콜백 함수의 호출을 유발할 인자들을 가리킵니다. 만약 카운팅이 증가할 때마다 http request를 보내는 기능을 수행한다면 이는 Side Effect이며 이 때 의존하는 값은 counting 값이 될 것입니다.
@@ -79,3 +95,6 @@ useEffect(() => {
 ```
 
 <br>
+
+**References**
+- [React 공식문서](https://react.dev/reference/react/useEffect)
