@@ -27,10 +27,15 @@ useEffect(setup, [...dependencies]);
 
 
 ```javascript
+import { useEffect, useState } from 'react';
+import Board from "./Board.js";
+
 const BoardList = () => {
 	const [serverURL, setServerURL] = useState("https://webServer.com/");
 	const [boardList, setBoardList] = useState([]);
 	const { fetchBoardList } = useBoard(); // Custom hook
+
+	console.log("나 렌더링한다?"); // 2번 실행됩니다.
 
 	useEffect(() => {
 		(async () => {
@@ -44,20 +49,26 @@ const BoardList = () => {
 	}, [serverURL, fetchBoardList]);
 
 	return (
-		{boardList.map((data) => {
-			<Board data={data} 
-		})}
+		<ul>
+			{boardList.map((data) => {
+				<Board data={data} />
+			})}
+		</ul>
 	);
 }
 ```
 
-1. `Chat` 컴포넌트는 상위 컴포넌트로부터 연결하기 위한 채팅방의 `id`를 `props`를 통해 넘겨 받으며, 채팅 서버의 URL은 `setState`로 관리되고 있습니다.
-2. 채팅 서버와의 연결 객체를 생성하기 위한 로직은 외부에 구현된 `useChat`이라는 커스텀 훅을 사용했다고 가정하며, `useChat`이 가지고 있는 `createConnection`에 서버의 URL과 채팅방의 id를 넘겨주면 `connection` 객체가 반환됩니다.
-
-
-&nbsp;&nbsp;useEffect hook은 콜백 함수와 의존성을 담은 배열, 2가지를 파리미터로 가집니다. 여기서 의존성이란 useEffect의 콜백 함수의 호출을 유발할 인자들을 가리킵니다. 만약 카운팅이 증가할 때마다 http request를 보내는 기능을 수행한다면 이는 Side Effect이며 이 때 의존하는 값은 counting 값이 될 것입니다.
+1. `BoardList` 컴포넌트는 게시글을 가져오기 위한 서버의 주소를 `serverURL`이라는 `state`로 관리하고 있습니다.
+2. 게시글을 가져오기 위한 API는 `useBoard`라는 커스텀 훅의 `fetchBoardList`를 통해 구현되어 있습니다.
+3. `useEffect`는 컴포넌트가 렌더링된 직후, 실행됩니다. `fetchBoardList`에 의해 가져온 게시글 목록을 list에 담은 뒤 `setBoardList`를 통해 `boardList`의 상태를 변경합니다.
+4. 상태값이 변경되면 리액트 컴포넌트는 변경을 감지하여 다시 렌더링을 실시합니다. 실제로 위 컴포넌트에서 console이 2번 실행되는 것을 확인할 수 있습니다.
+5. 2번째 렌더링에서는 boardList에 담긴 가져온 게시글 목록들을 `Board` 컴포넌트에 `props`로 내려 렌더링합니다.
 
 <br>
+
+>[!tip] **Dependencies**
+>
+>&nbsp;&nbsp;`useEffect`의 문법에서 `setup`은 `Side`
 
 **기타 특징**
 
