@@ -66,24 +66,31 @@ const BoardList = () => {
 
 <br>
 
->[!tip] **Dependencies**
+>[!question] **Dependencies**
 >
->&nbsp;&nbsp;`useEffect`의 문법에서 `setup`은 `Side Effect`를 관리하기 위한 코드를 작성하기 위한 콜백함수입니다. 그렇다면, `dependencies` 배열은 무엇을 위한 파라미터일까요? 위의 예시에서 살펴본 것처럼 useEffect는 렌더링이 완료된 이후, `setup` 코드를 실행합니다. 만약 예시 코드에서
-
-
-**기타 특징**
-
-- 만약 의존성 배열에 빈 배열이 있다면 useEffect의 콜백 함수는 처음 컴포넌트가 실행될 때 1번만 호출됩니다.
-
-- 아예 2번째 인자를 비워져 있다면 콜백 함수는 렌더링이 발생할 때마다 호출되기 때문에 콜백 함수로 state를 수정하는 등의 작업을 한다면 렌더링이 계속해서 발생하여 컴포넌트가 무한 렌더링되는 문제가 생길 수 있습니다.
+>&nbsp;&nbsp;`useEffect`의 문법에서 `setup`은 `Side Effect`를 관리하기 위한 코드를 작성하기 위한 콜백함수입니다. 그렇다면, `dependencies` 배열은 무엇을 위한 파라미터일까요? 위의 예시에서 살펴본 것처럼 useEffect는 렌더링이 완료된 이후, `setup` 코드를 실행합니다. 만약 예시 코드에서 "serverURL, fetchBoardList"가 담긴 의존성 배열을 지우면 어떻게 될까요?
+>
+>&nbsp;&nbsp;결론은 "컴포넌트가 무한 호출된다"입니다. `dependencies` 배열은 `Side Effect`를 관리하기 위해 컴포넌트가 관리할 요소들을 가집니다. `dependencies` 배열이 없다면 컴포넌트는 모든 렌더링 시에 `setup` 코드를 실행하게되고, 게시글을 가져옴과 동시에 상태를 변경하여 컴포넌트의 재렌더링이 트리거됩니다. 이로 인해 다시 `setup` 코드가 실행되고 무한 루프가 발생합니다.
+>
+>&nbsp;&nbsp;만약 컴포넌트의 첫 렌더링 시에만 발생할 `Side Effect`를 원한다면, 2번째 파라미터에 빈 배열을 넣어주면 됩니다.
 
 <br>
 
-### clean-up 함수
+### 컴포넌트 생명주기: clean-up 함수
+
+```javascript
+useEffect(() => {
+	// setup
+
+	return () => {
+		// clean-up logic
+	}
+}, [...dependencies]);
+```
 
 &nbsp;&nbsp;리액트에서는 effects를 크게 `clean-up` 함수를 갖는 hook과 그렇지 않은 hook 두 가지로 나눕니다. 만약 컴포넌트를 class로 작성해본 사람이라면 `componentDidMount`와 `componentDidUpdate`, `componentWillUnmount`라는 class형 컴포넌트의 생명주기 hook에 대해 들어본 적이 있을 것입니다.
 
-&nbsp;&nbsp;useEffect는 위의 3가지 생명주기 함수의 의미를 갖는 hook으로 특히 `clean-up` 함수는 컴포넌트의 DOM에서 제거될 때 호출되는 `componentWillUnmount`에 대응됩니다.
+&nbsp;&nbsp;`useEffect`는 위의 3가지 생명주기 함수의 의미를 갖는 hook으로 `setup` 함수는 `componentDidMount` 내부에 작성할 `Side effect` 로직을, `clean-up` 함수는 컴포넌트의 DOM에서 제거될 때 호출되는 `componentWillUnmount`에 내부의 로직을 작성하기 위해 사용됩니다.
 
 <br>
 
