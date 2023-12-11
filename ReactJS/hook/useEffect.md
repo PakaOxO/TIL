@@ -150,12 +150,15 @@ return (
 
 <br>
 
-### Race Condition
+&nbsp;&nbsp;지금까지 `useEffect`를 설명하기 위해 서버에 데이터를 요청하는 API를 예시를 들었습니다만.. 사실 `useEffect` 내부에서 비동기 로직을 처리하는 것은 [공식문서](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)에서는 추천하는 방법은 아닙니다. 비동기 로직은 실행 후 완료되는 시점이 불분명하기 때문에 예기치 못한 오류를 발생시킬 수 있기 때문이며, 요청이 여러 개라면 각 요청을 보낸 순서대로 처리되지 않아 `Race condition(경쟁 상태)`가 발생할 수 있는 여지가 있습니다. 이외에도 다음과 같은 이유로 `useEffect` 내에서 `fetch` 로직을 구현하는 것은 지양해야 한다고 합니다.
 
+<br>
 
-&nbsp;&nbsp;지금까지 `useEffect`를 설명하기 위해 서버에 데이터를 요청하는 API를 예시를 들었습니다만.. 사실 `useEffect` 내부에서 비동기 로직을 처리하는 것은 [공식문서](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)에서는 추천하는 방법은 아닙니다. 비동기 로직은 실행 후 완료되는 시점이 불분명하기 때문에 예기치 못한 오류 
-
+1. 서버에서 실행되지 않습니다
+	- 서버에서 렌더링된 HTML은 데이터를 포함하지 않습니다. 데이터 로드를 위해서 클라이언트에서 모든 JS파일이 다운로드 된 뒤, 렌더링을 마친 후에 fetch가 발생하기 때문에 비효율적입니다.
+2. Network Waterfall 이 발생할 수 있습니다 : 
 <br>
 
 **References**
 - [React 공식문서](https://react.dev/reference/react/useEffect)
+- [React - useEffect와 비동기 처리](https://jisu-y.github.io/react/React-useEffect/)
