@@ -18,3 +18,8 @@ str.slice(startIdx, optional: [endIndex]);
 > [!tip] **substring vs slice**
 >
 > `substring`과 `slice`의 차이점 중 하나는 `substring`의 경우, 시작 인덱스가 끝 인덱스보다 작게 입력이 되었다면 두 파라미터의 위치를 뒤집어 문자열 자르기를 실행하는 반면, `slice`는 빈 문자열("")을 반환한다는 점입니다.
+
+<br>
+
+**References**
+- [MDN Docs](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/substring)

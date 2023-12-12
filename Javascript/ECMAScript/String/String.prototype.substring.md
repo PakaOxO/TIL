@@ -16,3 +16,8 @@ str.substring(startIndex, optional: [endIndex]);
 >[!tip] **String.prototype.substr**
 >
 > `substring`과 유사하나 `substr`은 두 번째 파라미터로 시작 인덱스를 기준으로 다음으로 올 문자의 개수를 입력 받습니다. 또한, `substr`은 웹 표준을 지원하긴 하지만 웹 표준과 맞지 않는 부분이 있어 공식 측에서 `substring()`의 사용을 권장하고 있습니다.
+
+<br>
+
+**References**
+- [MDN Docs](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/substring)

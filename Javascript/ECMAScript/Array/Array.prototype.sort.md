@@ -28,3 +28,8 @@ arr.sort((a, b) => {
   return 0;
 });
 ```
+
+<br>
+
+**References**
+- [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)

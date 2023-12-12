@@ -19,3 +19,16 @@ arr.filter((el, idx, self) => {
 	return el % 2 > 0;
 }); // return [1, 3]
 ```
+
+<br>
+
+### 특징
+- 콜백함수의 반환값에 따라 새로운 배열을 반환합니다.
+- 원본 배열은 수정되지 않습니다.
+- 모든 요소에 대해 `boolean` 값을 반환하는 콜백함수를 사용하는 만큼 [오버헤드](https://betterprogramming.pub/performance-analysis-of-javascript-array-prototype-filter-616e3e3d316f)가 발생할 여지가 있습니다.
+
+<br>
+
+**References**
+- [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [A Performance Analysis of JavaScript’s Array.prototype.filter](https://betterprogramming.pub/performance-analysis-of-javascript-array-prototype-filter-616e3e3d316f)
