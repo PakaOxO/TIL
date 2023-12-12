@@ -1,0 +1,2 @@
+### Contents
+- [[substring&slice]]

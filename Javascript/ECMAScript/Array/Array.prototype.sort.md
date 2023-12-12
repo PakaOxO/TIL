@@ -1,4 +1,3 @@
-## Array.prototype.sort()
 
 ### 기본 표현식
 
