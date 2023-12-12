@@ -1,2 +1,3 @@
 ### Contents
-- [[substring&slice]]
+- [[String.prototype.substring]]
+- [[String.prototype.slice]]
