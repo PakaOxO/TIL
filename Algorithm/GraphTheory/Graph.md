@@ -1,9 +1,7 @@
-# 📄 **Graph**
-
-## **Graph**
 
 &nbsp;&nbsp;정점(vertex)들의 집합과 이들을 연결하는 간선(edge)들의 집합으로 구성된 자료구조로 선형자료구조나 트리자료구조로 표현하기 어려운 M:N의 관계를 표현할 수 있다.
-<br/><br/>
+
+<br>
 
 ![Graph|500](../images/graph.png)
 

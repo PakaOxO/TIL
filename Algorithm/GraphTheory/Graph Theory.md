@@ -8,3 +8,4 @@
 - [[Dijkstra Algorithm]]
 - [[Floyed-Warshell]]
 - [[TopologicalSort]]
+- [[Strongly Connected Component]]
