@@ -18,7 +18,7 @@
 <br>
 
 ### 위상 정렬 과정
-
+[d|df](./images/sortingProcess.png)
 <p align="center" style="display: flex; justify-content: center;">
     <img style="width: 60%" src="../images/sortingProcess.png" alt="sorting process">
 </p>
