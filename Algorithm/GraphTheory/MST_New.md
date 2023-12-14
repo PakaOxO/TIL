@@ -17,9 +17,7 @@
 
 ### 너비 우선 신장트리, 깊이 우선 신장트리
 
-<figure align="center" style="width: 100%">
-  <img src="../images/SpanningTree.png" rel="Spanning Tree" />
-</figure>
+![Spanning Tree|500](../images/SpanningTree.png)
 
 &nbsp;&nbsp;위의 그림과 같은 `그래프(Graph)`가 있다고 가정했을 때, 이 그래프에서 그릴 수 있는 신장트리의 종류에는 너비 우선 탐색으로 그려지는 `너비 우선 신장트리(Breadth-First Spanning Tree)`와 깊이 우선 탐색으로 그려지는 `깊이 우선 신장트리(Depth-First Spanning Tree)`가 있습니다. 위의 예시에서는 현재 정점을 기준으로 방문할 수 있는 정점 중 가장 작은 번호를 가진 정점을 우선으로 탐색하여 그려지는 신장트리입니다.
 
