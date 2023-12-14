@@ -22,4 +22,4 @@ str.slice(startIdx, optional: [endIndex]);
 <br>
 
 **References**
-- [MDN Docs](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/substring)
+- [MDN Docs](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/slice)
