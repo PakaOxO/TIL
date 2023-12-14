@@ -1,12 +1,9 @@
-## 📄 **Topological Sorting(위상 정렬)**
 
-<p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 60%" src="../images/topologicalSort.png" alt="topological sort">
-</p>
+![위상정렬이란|500](../images/topologicalSort.png)
 
 <br>
 
-&nbsp;&nbsp;순서가 있는 작업을 차례로 진행해야 할 때 순서를 결정하기 위한 알고리즘으로 <u>**사이클이 없는 방향 그래프(DAG)**</u>의 모든 노드를 주어진 방향성에 어긋나지 않게 순서를 나열하는 것입니다.
+&nbsp;&nbsp;순서가 있는 작업을 차례로 진행해야 할 때 순서를 결정하기 위한 알고리즘으로 `사이클이 없는 방향 그래프(DAG)`의 모든 노드를 주어진 방향성에 어긋나지 않게 순서를 나열하는 것입니다.
 
 <br>
 
@@ -18,10 +15,7 @@
 <br>
 
 ### 위상 정렬 과정
-[d|df](./images/sortingProcess.png)
-<p align="center" style="display: flex; justify-content: center;">
-    <img style="width: 60%" src="../images/sortingProcess.png" alt="sorting process">
-</p>
+![위상정렬|500](../images/sortingProcess.png)
 
 <br>
 
