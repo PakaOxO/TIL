@@ -37,5 +37,31 @@
 보다 자세한 과정은 아래 Javascript 코드를 통해 살펴볼 수 있습니다.
 
 ```javascript
+// N은 정점의 개수, adjList는 각 정점의 인접 리스트
+const tajanAlgorithm = (N, adjList) => {
+	const scc = []; // 그룹화된 scc
+	let count = 0; // 정점 방문 순서를 기억
+	const dfsStack = [];
+	const stack = [];
+	const visit = new Array(N + 1).fill(false);
+	const sccPointer = new Array(N + 1).fill(-1); // 몇 번 scc에 속해있는지 체크
 
+	// dfs 시작
+	dfsStack.push([1, count]); // 1번 정점부터 시작
+	stack.push([1, count]);
+	visit[1] = true;
+	
+	while (dfsStack.length > 0) {
+		const currNode = dfsStack.pop();
+		count++;
+		
+		for (const next of adjList[currNode]) {
+			if (visit[next]) continue;
+			visit[next] = true;
+			dfsStack.push(next);
+		}
+
+		// 더이상 방문할 정점이 없거나, 
+	}
+}
 ```
