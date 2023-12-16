@@ -42,19 +42,49 @@ const tajanAlgorithm = (N, adjList) => {
 	const scc = []; // 그룹화된 scc
 	let count = 0; // 정점 방문 순서를 기억
 	const stack = [];
-	const visit = new Array(N + 1).fill(false);
+	const visit = new Array(N + 1).fill(0);
 	const sccPointer = new Array(N + 1).fill(-1); // 몇 번 scc에 속해있는지 체크
 
 	// dfs 시작
 	visit[1] = true;
-	sta
+	stack.push(1);
 	dfs(1);
 
 	return { scc, sccPointer }
 
 	// dfs
 	function dfs(node) {
+		visit[node] = ++count; // 내가 방문한 순서를 기억
+		stack.push(node);
+		let minCount = visit[node]; // 가장 먼저 스택에 들어간 정점 순서를 찾기 위함
 	
+		for (const next of adjList[node]) {
+			if (!visit[next]) { // 다음 정점을 방문한 적이 없음
+				minCount = Math.min(minCount, dfs(next));
+			} else if (sccPointer[next] < 0) { // scc로 그룹화 되지는 않음
+				minCount = Math.min(minCount, visit[next]);
+			}
+		}
+
+		const group = [];
+		while (stack.length > 0) {
+			const top = stack.pop();
+			group.push(top);
+			sccPointer[top] = scc.length;
+
+			if (visit[top] === minCount) break;
+		}
+		group.sort((a, b) => a - b);
+		scc.push(group);
 	}
+}
+
+// 실행 결과 : {
+  scc: [ [ 1, 2, 3, 4 ], [ 5, 6, 7 ], [ 8, 9 ], [ 10 ] ],
+  sccPointer: [
+    -1, 0, 0, 0, 0,
+     1, 1, 1, 2, 2,
+     3
+  ]
 }
 ```
