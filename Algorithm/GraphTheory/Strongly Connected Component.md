@@ -47,7 +47,6 @@ const tajanAlgorithm = (N, adjList) => {
 
 	// dfs 시작
 	visit[1] = true;
-	stack.push(1);
 	dfs(1);
 
 	return { scc, sccPointer }
@@ -56,7 +55,7 @@ const tajanAlgorithm = (N, adjList) => {
 	function dfs(node) {
 		visit[node] = ++count; // 내가 방문한 순서를 기억
 		stack.push(node);
-		let minCount = visit[node]; // 가장 먼저 스택에 들어간 정점 순서를 찾기 위함
+		let minCount = visit[node]; // 가장 먼저 스택에 들어간 부모의 정점 순서를 찾기 위함
 	
 		for (const next of adjList[node]) {
 			if (!visit[next]) { // 다음 정점을 방문한 적이 없음
@@ -74,12 +73,16 @@ const tajanAlgorithm = (N, adjList) => {
 
 			if (visit[top] === minCount) break;
 		}
-		group.sort((a, b) => a - b);
-		scc.push(group);
+
+		if (group.length > 0) {
+			group.sort((a, b) => a - b);
+			scc.push(group);
+		}
 	}
 }
 
-// 실행 결과 : {
+/*
+실행 결과 : {
   scc: [ [ 1, 2, 3, 4 ], [ 5, 6, 7 ], [ 8, 9 ], [ 10 ] ],
   sccPointer: [
     -1, 0, 0, 0, 0,
@@ -87,4 +90,5 @@ const tajanAlgorithm = (N, adjList) => {
      3
   ]
 }
+*/
 ```
