@@ -1,4 +1,3 @@
-## useRef
 
 &nbsp;&nbsp;Javascript로 HTML DOM에 접근하기 위해서는 id나 클래스 이름, 혹은 태그 이름을 사용합니다. 마찬가지로 React에서도 DOM에 접근하기 위한 Hook을 제공하는데 이것이 `useRef`입니다. 다음은 [리액트 공식문서](https://ko.legacy.reactjs.org/docs/hooks-reference.html#useref)에서 설명하고 있는 `useRef`입니다.
 

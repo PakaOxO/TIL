@@ -1,4 +1,3 @@
-## useReducer
 
 &nbsp;&nbsp;state를 관리하기 위해 `useState` hook을 사용할 수 있지만, 때로는 복잡한 state나 연관된 state들의 묶음을 하나로 관리하고 싶을 때가 있습니다. 리액트에서는 복잡한 state를 관리할 수 있도록 `useReducer` hook을 제공합니다.
 
