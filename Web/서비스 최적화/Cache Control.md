@@ -5,6 +5,14 @@
 
 <br>
 
+**캐싱 데이터 유효성 확인**
+
+&nbsp;&nbsp;캐싱된 데이터가 여전히 유효한지 확인하는 과정은 다음과 같습니다.
+
+1. 원 서버는 요청에 대한 응답 헤더에 `Last-modified`와 `ETag`, ``
+
+<br>
+
 ### Web Cache: Server Cache
 
 ![Cache Hit & Miss|400](./images/CacheHit&Miss.png)
@@ -35,7 +43,7 @@
 
 &nbsp;&nbsp;`Cache-Control`은 `HTTP/1.1`부터 제공되는 헤더로 캐싱을 위한 다양한 옵션들을 제공합니다. `Cache-Control`에 의한 캐싱은 `GET` Method에 대한 응답을 캐싱하는 것으로 제한되며, 헤더를 통해 서비스의 캐싱 정책을 정의할 수 있습니다. 만약 `Expire` 헤더가 존재한다면 이는 무시되고 `Cache-Control` 헤더에 정의된 설정값이 적용됩니다.
 
-&nbsp;&nbsp;최신 브라우저는 모두 `Cache-Control` 헤더를 지원하며, `Cache-Control`은 응답(Response)뿐만 아니라 요청(Request) 헤더로도 사용이 가능합니다. 요청의  `Cache-Control` 헤더 설정을 통해 캐시 서버에 캐싱된 내용이 아닌  웹 서버의 최신 데이터를 요청하는 것도 가능합니다. 다음은 각각 요청과 응답에서 `Cache-Control` 헤더에 사용할 수 있는 설정값의 종류입니다. 각 설정에 대한 자세한 설명은 [다음]()에서 확인할 수 있습니다.
+&nbsp;&nbsp;최신 브라우저는 모두 `Cache-Control` 헤더를 지원하며, `Cache-Control`은 응답(Response)뿐만 아니라 요청(Request) 헤더로도 사용이 가능합니다. 요청의  `Cache-Control` 헤더 설정을 통해 캐시 서버에 캐싱된 내용이 아닌  웹 서버의 최신 데이터를 요청하는 것도 가능합니다. 다음은 각각 요청과 응답에서 `Cache-Control` 헤더에 사용할 수 있는 설정값의 종류입니다. 각 설정에 대한 자세한 설명은 [MDN 공식문서](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Cache-Control)에서 확인할 수 있습니다.
 
 ```json
 // Request
