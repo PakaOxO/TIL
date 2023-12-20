@@ -35,10 +35,43 @@
 
 &nbsp;&nbsp;`Cache-Control`은 `HTTP/1.1`부터 제공되는 헤더로 캐싱을 위한 다양한 옵션들을 제공합니다. `Cache-Control`에 의한 캐싱은 `GET` Method에 대한 응답을 캐싱하는 것으로 제한되며, 헤더를 통해 서비스의 캐싱 정책을 정의할 수 있습니다. 만약 `Expire` 헤더가 존재한다면 이는 무시되고 `Cache-Control` 헤더에 정의된 설정값이 적용됩니다.
 
-&nbsp;&nbsp;최신 브라우저는 모두 `Cache-Control` 헤더를 지원하며, `Cache-Control`은 응답(Response)뿐만 아니라 요청(Request) 헤더로도 사용이 가능합니다. 요청의  `Cache-Control` 헤더 설정을 통해 캐시 서버에 캐싱된 내용이 아닌  웹 서버의 최신 데이터를 요청하는 것도 가능합니다.
+&nbsp;&nbsp;최신 브라우저는 모두 `Cache-Control` 헤더를 지원하며, `Cache-Control`은 응답(Response)뿐만 아니라 요청(Request) 헤더로도 사용이 가능합니다. 요청의  `Cache-Control` 헤더 설정을 통해 캐시 서버에 캐싱된 내용이 아닌  웹 서버의 최신 데이터를 요청하는 것도 가능합니다. 다음은 각각 요청과 응답에서 `Cache-Control` 헤더에 사용할 수 있는 설정값의 종류입니다. 각 설정에 대한 자세한 설명은 [다음]()에서 확인할 수 있습니다.
+
+```json
+// Request
+Cache-Control: max-age=<seconds> // 리소스가 최신이라고 판단하기 위한 최대 시간을 지정합니다.
+// Expire가 날짜/시간의 형태였다면 여기에서는 요청시간에 대한 유효시간(초)를 가리킵니다.
+Cache-Control: max-stale[=<seconds>]
+Cache-Control: min-fresh=<seconds>
+Cache-control: no-cache // 캐싱된 복사본을 보여주기 이전에 재검증을 위해 원 서버에 요청을 강제.
+Cache-control: no-store
+Cache-control: no-transform
+Cache-control: only-if-cached
+
+// Response
+Cache-control: must-revalidate // 캐싱된 내용을 재사용하기 이전에 검증과정을 강제하여 만료된 데이터는 사용하지 않도록 합니다.
+Cache-control: no-cache
+Cache-control: no-store
+Cache-control: no-transform
+Cache-control: public // 응답이 어떤 캐시에 의해서든 캐싱됩니다.
+Cache-control: private // 단일 사용자(ex. 클라이언트)만을 위해서만 캐싱됩니다.
+Cache-control: proxy-revalidate
+Cache-Control: max-age=<seconds>
+Cache-control: s-maxage=<seconds>
+```
+
+<br>
+
+마지막으로 다음은 캐싱을 막기 위한 디렉티브입니다.
+
+```json
+// 캐싱 X
+Cache-Control: no-cache, no-store, must-revalidate
+```
 
 <br>
 
 **References**
 - [MDN Docs, Expires](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Expires)
 - [holisticseo posts - Expires HTTP](https://www.holisticseo.digital/pagespeed/expires/)
+- [MDN Docs, Cache-Control](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Cache-Control)
