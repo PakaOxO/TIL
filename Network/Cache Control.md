@@ -1,6 +1,8 @@
 
 &nbsp;&nbsp;개발자들은 사용자들이 서비스를 이용하는데 있어서 속도 등의 성능 이슈로 인한 불편함을 최소화하기 위해 다양한 노력들을 하는데 이번 포스팅에서는 `Web Cache`를 통한 성능 최적화 방식에 대해 살펴보겠습니다.
 
+&nbsp;&nbsp;클라이언트가 요청하는 자원(Resource)는 보통 HTML, CSS, JS, Images 등의 정적자원입니다. `Web Cache`를 활용하면 최초 요청시에 서버로부터 받은 자원의 복사본을 저장하고, 이후 동일한 자원(URL)에 대한 요청이 발생했을 경우, 저장된 자원(Cache)을 활용하여 더욱 빠르게 서비스를 제공할 수 있습니다.
+
 <br>
 
 ### Web Cache: Server Cache
@@ -19,4 +21,9 @@
 
 **Expire**
 
-&nbsp;&nbsp;`HTTP/1.0`에서는 캐시를 제어하기 위한 명시적인 기술이 없었으나, `Expire` 헤더를 사용해 웹 서버 데이터의 유효기간을 지정할 수 있습니다.
+&nbsp;&nbsp;`HTTP/1.0`에서는 캐시를 제어하기 위한 명시적인 기술이 없었으나, `Expire` 헤더를 사용해 웹 서버 데이터의 유효기간을 지정할 수 있었습니다. `Expire` 필드는 데이터의 유효한 날짜를 날짜/시간의 형태의 값으로 가지고 있으며, 만약 유효하지 않은 날짜/시간이라면 해당 데이터는 만료된 것으로 처리됩니다. `HTTP/1.1` 이후에는 캐시를 제어하기 위해 `Cache-control` 헤더를 활용하며 `Cache-control` 헤더가 존재할 경우, `Expire` 헤더는 무시됩니다.
+
+<br>
+
+**References**
+- [MDN Docs, Expires](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Expires)
