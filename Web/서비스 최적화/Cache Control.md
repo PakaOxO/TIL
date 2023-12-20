@@ -25,13 +25,17 @@
 
 ![expires http header|600](./images/expires-http-header-2.png)
 
-&nbsp;&nbsp;`HTTP/1.0`에서는 캐시를 제어하기 위한 명시적인 기술이 없었으나, `Expire` 헤더를 사용해 웹 서버 데이터의 유효기간을 지정할 수 있었습니다. `Expire` 필드는 데이터의 유효한 날짜를 날짜/시간의 형태의 값으로 가지고 있으며, 만약 유효하지 않은 날짜/시간이라면 해당 데이터는 "신선하지 못한만료된 것으로 처리됩니다. `HTTP/1.1` 이후에는 캐시를 제어하기 위해 `Cache-control` 헤더를 활용하며 `Cache-control` 헤더가 존재할 경우, `Expire` 헤더는 무시됩니다.
+&nbsp;&nbsp;`HTTP/1.0`에서는 캐시를 제어하기 위한 명시적인 기술이 없었으나, `Expire` 헤더를 사용해 웹 서버 데이터의 유효기간을 지정할 수 있었습니다. `Expire` 필드는 데이터의 유효한 날짜를 날짜/시간의 형태의 값으로 가지고 있으며, 만약 유효하지 않은 날짜/시간이라면 해당 데이터는 "신선하지 못한"(만료된) 것으로 처리됩니다. `HTTP/1.1` 이후에는 캐시를 제어하기 위해 `Cache-control` 헤더를 활용하며 `Cache-control` 헤더가 존재할 경우, `Expire` 헤더는 무시됩니다.
 
 <br>
 
 **Cache-Control**
 
-&nbsp;&nbsp;`Cache-Control`은 `HTTP/1.1`부터 제공되는 헤더로 캐싱을 위한 다양한 옵션들을 제공합니다.
+![Cache-Control|600](./images/cache-control.png)
+
+&nbsp;&nbsp;`Cache-Control`은 `HTTP/1.1`부터 제공되는 헤더로 캐싱을 위한 다양한 옵션들을 제공합니다. `Cache-Control`에 의한 캐싱은 `GET` Method에 대한 응답을 캐싱하는 것으로 제한되며, 헤더를 통해 서비스의 캐싱 정책을 정의할 수 있습니다. 만약 `Expire` 헤더가 존재한다면 이는 무시되고 `Cache-Control` 헤더에 정의된 설정값이 적용됩니다.
+
+&nbsp;&nbsp;최신 브라우저는 모두 `Cache-Control` 헤더를 지원하며, `Cache-Control`은 응답(Response)뿐만 아니라 요청(Request) 헤더로도 사용이 가능합니다. 요청의  `Cache-Control` 헤더 설정을 통해 캐시 서버에 캐싱된 내용이 아닌  웹 서버의 최신 데이터를 요청하는 것도 가능합니다.
 
 <br>
 
