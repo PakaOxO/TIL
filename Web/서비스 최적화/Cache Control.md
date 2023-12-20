@@ -14,6 +14,13 @@
 
 <br>
 
+>[!tip] **ETag(Entity Tag)**
+>
+>&nbsp;&nbsp;`ETag`는 원본 서버가 자원(Resource)를 식별하기 위해 각 자원에 부여하는 고유한 식별번호입니다. `ETag`는 임의의 문자열로 구성되어 있으며, 구성방법은 원본 서버의 정책에 따라 달라질 수 있습니다. 캐시 서버는 원본 서버에 캐싱된 데이터가 원본 서버에서 만료되어 갱신되어야 하는지 확인하기 위해 `ETag`를 사용합니다.
+
+
+<br>
+
 ### Web Cache: Server Cache
 
 ![Cache Hit & Miss|400](./images/CacheHit&Miss.png)
