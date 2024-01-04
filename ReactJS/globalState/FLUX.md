@@ -16,7 +16,7 @@
 
 **props drilling**
 
-![props drilling | 600](../images/propsdrilling.png)
+![props drilling | 400](../images/propsdrilling.png)
 
 &nbsp;&nbsp;하지만 Container-Presenter 패턴은 여러 컴포넌트에서 공유하는 상태들을 몇몇의 상위 컴포넌트에서 관리하게 되면서 지나치게 많은 props의 전달을 야기하게 되었습니다. UI에 상태 데이터를 전달하기 위해 수많은 컴포넌트를 거치고, 또 그 과정에서 일부 컴포넌트는 props를 전달하기 위해 사용하지도 않는 props를 상속받게 됩니다. 이러한 `props drilling`에 의해 상위 컴포넌트와 하위 컴포넌트의 결합도가 증가하게 되었죠.
 
@@ -26,7 +26,7 @@
 
 &nbsp;&nbsp;`Flux` 아키텍쳐는 비즈니스 로직이 굳이 컴포넌트의 계층 구조를 따라 흘러갈 필요가 없다는 아이디어에서 시작되었습니다. 어떤 화면 UI인 `View`에서의 사용자의 동작(`Action`)은 `dispatcher`에 의해 데이터를 담고 있는 `Store`를 변경합니다. 그리고 View는 Store의 데이터와 바인딩되어 그저 변경된 내용을 화면에 보여주기만 하면 됩니다. dispatcher가 별도로 관리된다면 컴포넌트 계층 구조를 따라 비즈니스 로직이 흘러가지 않아도 되는거죠.
 
-![props drilling | 600](../images/flux-pattern.png)
+![props drilling | 400](../images/flux-pattern.png)
 
 <br>
 
