@@ -2,7 +2,7 @@
 
 - ~~FLUX 아키텍처~~
 - Recoil
-- 
+- FE Mock 데이터로 테스트하기
 
 <br>
 
