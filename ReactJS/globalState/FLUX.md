@@ -32,7 +32,7 @@
 
 **1. Action**
 
-&nbsp;&nbsp;`Action`은 데이터를 변경하는 행위이면서 `Dispatcher`에 전달되는 객체입니다. Redux에서는 Redux 내장메서드인 `useDispatch`가, Recoil에서는 `useRecoilReducer`의 reducer 함수가 Action을 넘겨받아 상태를 새롭게 갱신합니다.
+&nbsp;&nbsp;`Action`은 데이터를 변경하는 행위이면서 `Dispatcher`에 전달되는 객체입니다. Redux에서는 Redux 내장메서드인 `useDispatch`가 Action을 넘겨받아 상태를 새롭게 갱신합니다.
 
 **2. Dispatcher**
 
