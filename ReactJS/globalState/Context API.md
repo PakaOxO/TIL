@@ -77,48 +77,61 @@ export default Child;
 
 ### Context API의 렌더링 이슈
 
-&nbsp;&nbsp;`Context API`에는 렌더링 성능과 관련한 문제점이 있습니다. 바로 `Provider`가 위치한 상위 컴포넌트가 재렌더링되면 Provider 아래에 위치한 모든 컴포넌트 역시 다시 렌더링됩니다. 우선 상위 컴포넌트가 아닌 전역상태인 `CounterContext`의 값이 변경되었을 때를 살펴보겠습니다. 
-
-<br>
-
-**전역상태(CounterContext)의 변경**
-
-&nbsp;&nbsp;`App` 컴포넌트는 `CounterProvider`를 자식 컴포넌트로 가지고 있고, `CounterProvider`는 children props로 `Profile` 컴포넌트와 `Child` 컴포넌트를 받습니다. 그리고 `Child` 컴포넌트는 `useContext`를 호출해 증가 버튼을 클릭하면 이벤트가 발생해 `counter` 전역상태를 변경합니다.
+&nbsp;&nbsp;`Context API`에는 렌더링 성능과 관련한 문제점이 있습니다. 다시 예제를 살펴보겠습니다. 
 
 ```javascript
-/* App.tsx */
-function App() {
-	const [_, setToggle] = useState(false);
-	
-	return (
-		<div className="App">
-			<CounterProvider>
-				<Profile />
-				<Child />
-			</CounterProvider>
-			<button onClick={() => {setToggle((prev) => !prev);}}>			
-				토글
-			</button>
-		</div>
-	);
+/* CounterProvider.tsx */
+import { useState, createContext, useMemo } from "react";
+
+interface ICounterContext {
+	counter: number;
+	setCounter: React.Dispatch<React.SetStateAction<number>>;
+	nickname: string, // nickname 추가
+	setNickname: React.Dispatch<ReactSetStateAction<string>>;
 }
 
+const defaultContext: ICounterContext = {
+	counter: 0,
+	setCounter: () => {},
+	nickname: "", // nickname 추가
+	setNickname: () => {},
+};
+
+interface Props {
+	children: React.ReactNode;
+}
+
+export const CounterContext = createContext<ICounterContext>(defaultContext);
+
+const CounterProvider: React.FC<Props> = ({ children }) => {
+	const [counter, setCounter] = useState(0);
+	const [nickname, setNickname] = useState("Paka"); // nickname 추가
+	const memo = useMemo(() => {
+		return { counter, setCounter, nickname, setNickname };
+	}, [counter, setCounter]);
+
+	return <CounterContext.Provider value={memo}>{children}</CounterContext.Provider>;
+};
+
+export default CounterProvider;
+
 /* Child.tsx */
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { CounterContext } from "../contexts/CounterProvider";
 
-const Child = () => {
-	const { counter, setCounter } = useContext(CounterContext);
+
+const Profile = () => {
+	const { nickname } = useContext(CounterContext);
+	console.log("Profile 렌더링");
 	
 	return (
 		<div>
-			<span>Counter: {counter}</span>
-			<button onClick={() => setCounter((prev) => prev + 1)}>증가</button>
+		<span>닉네임: {nickname}</span>
 		</div>
 	);
 };
 
-export default Child;
+export default Profile;
 ```
 
 <br>
@@ -143,7 +156,7 @@ export default Child;
 
 **Provider 상위 컴포넌트의 변경**
 
-&nbsp;&nbsp;이제 CounterProvider의 부모 컴포넌트에 재렌더링이 이루어졌을 경우를 살펴보겠습니다.
+&nbsp;&nbsp;이제 CounterProvider의 부모 컴포넌트인 `App`에 재렌더링이 이루어졌을 경우를 살펴보겠습니다.
 
 ```javascript
 /* App.tsx */
