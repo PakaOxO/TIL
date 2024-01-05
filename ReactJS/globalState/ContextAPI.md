@@ -13,9 +13,8 @@
 
 ### Context API 사용법
 
-&nbsp;&nbsp;`Conext API`를 사용하기 위해서는 다음과 같은 작업이 필요합니다.
+&nbsp;&nbsp;`Conext API`를 사용하기 위해서 간단한 카운터 예제를 통해 과정을 살펴보겠습니다.
 
-1. 
 
 ```javascript
 /* CounterProvider.tsx */
@@ -47,4 +46,28 @@ const CounterProvider: React.FC<Props> = ({ children }) => {
 };
 
 export default CounterProvider;
+
+/* Child.tsx */
+import { useContext } from "react";
+import { CounterContext } from "../contexts/CounterProvider";
+
+const Child = () => {
+	const { counter, setCounter } = useContext(CounterContext);
+	
+	return (
+		<div>
+			<span>Counter: {counter}</span>
+			<button onClick={() => setCounter((prev) => prev + 1)}>증가</button>
+		</div>
+	);
+};
+
+export default Child;
 ```
+
+<br>
+
+1. `createConext`에 `defaultContext`를 넣어 컨텍스트를 생성합니다. `defaultConext`는 전역으로 관리할 초기 객체를 의미합니다.
+2. 생성한 컨텍스트를 사용할 컴포넌트 상위에 `CounterConext.Provider`로 감싸줍니다.
+3. `Provider`는 `value`를 통해 전역으로 관리할 값을 넘겨받으며 전역상태가 초기화됩니다.
+4. 하위 컴포넌트(children)에서는 `useContext`를 호출해 전역상태에 접근이 가능합니다.
