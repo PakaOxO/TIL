@@ -110,15 +110,16 @@ const CounterProvider: React.FC<Props> = ({ children }) => {
 		return { counter, setCounter, nickname, setNickname };
 	}, [counter, setCounter]);
 
+	console.log("CounterProvider 렌더링");
+
 	return <CounterContext.Provider value={memo}>{children}</CounterContext.Provider>;
 };
 
 export default CounterProvider;
 
-/* Child.tsx */
-import React, { useContext } from "react";
+/* Profile.tsx */
+import { useContext } from "react";
 import { CounterContext } from "../contexts/CounterProvider";
-
 
 const Profile = () => {
 	const { nickname } = useContext(CounterContext);
@@ -134,22 +135,25 @@ const Profile = () => {
 export default Profile;
 ```
 
+
+&nbsp;&nbsp;이번에는 `CounterContext`에 `nickname`과 `setNickname`이 추가되었습니다(counter와 연관성은 없지만...). `Profile` 컴포넌트는 `useContext`로 `nickname`을 사용하고 있고요. 모든 컴포넌트는 렌더링을 확인하기 위해 콘솔을 통해 렌더링 되었음을 출력하게 해두었습니다. 이 상태로 카운터를 증가시키면 어떻게 될까요?
+
 <br>
 
 **결과화면**
 
 ![context changed | ](../images/context_change.png)
 
-&nbsp;&nbsp;증가버튼을 누르게 되면 위에서 살펴보았듯 `CounterContext`가 가진 `setCounter`를 통해 `counter` 전역상태에 변경이 발생합니다. 결과적으로 `Child`와 `CounterProvider`는 재렌더링이 발생하지만 `CounterProvider` 자식컴포넌트인 `Profile` 컴포넌트는 렌더링이 발생하지 않습니다.
+&nbsp;&nbsp;`Profile` 컴포넌트는 `counter` 상태를 사용하지 않지만 같은 `CounterContext`를 공유하고 있기 때문에 재렌더링이 발생합니다. 지금은 관리하는 전역상태와 컴포넌트의 개수가 적지만 시스템이 커지고, 복잡해질 수록 원치않는 재렌더링은 성능저하로 연결될 수 있습니다.
 
 <br>
 
->[!caution] `children` props와 자식 컴포넌트
->
+
+###`children` props와 자식 컴포넌트
+
 >&nbsp;&nbsp;사실 하나 짚고 넘어가야할 점이 있습니다. `children` props로 넘겨받은 컴포넌트와 부모 컴포넌트 내부에 JSX 반환문에 위치한 자식 컴포넌트는 모두 DOM 트리상에서 부모 컴포넌트 아래에 위치하지만 렌더링되는 규칙이 다릅니다.
 >
 >&nbsp;&nbsp;부모 컴포넌트의 상태가 변경되어 재렌더링이 발생함에 따라 자식 컴포넌트는 함께 렌더링이 발생하지만, children props로 넘겨받은 컴포넌트는 재렌더링이 발생하지 않습니다. 그 이유는 children props는 부모 컴포넌트가 자신보다 상위 컴포넌트로부터 받은 props이기 때문인데, props는 props를 넘겨준 상위 컴포넌트에서 관리되며 상위 컴포넌트에서 props의 변경이 발생하지 않았다면 children 역시 변경 사항이 없기 때문에 부모 컴포넌트의 재렌더링과 관계없이 새롭게 렌더링이 되지 않는 것입니다.
->
 >&nbsp;&nbsp;만약 `CounterProvider` 컴포넌트 JSX 반환문에 직접 import된 `Inner` 컴포넌트가 있었다면 `CounterContext`의 변경으로 `CounterProvider`가  재렌더링될 때 함께 렌더링됩니다.
 
 <br>
