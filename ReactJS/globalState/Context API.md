@@ -77,16 +77,16 @@ export default Child;
 
 ### Context API의 렌더링 이슈
 
-&nbsp;&nbsp;`Context API`에는 렌더링 성능과 관련한 문제점이 있습니다. 바로 `Provider`가 위치한 상위 컴포넌트가 재렌더링되면 Provider 아래에 위치한 모든 컴포넌트 역시 다시 렌더링됩니다. 우선 상위 컴포넌트가 아닌 전역상태인 `CounterContext`의 값이 변경되었을 때를 살펴보겠습니다.
+&nbsp;&nbsp;`Context API`에는 렌더링 성능과 관련한 문제점이 있습니다. 바로 `Provider`가 위치한 상위 컴포넌트가 재렌더링되면 Provider 아래에 위치한 모든 컴포넌트 역시 다시 렌더링됩니다. 우선 상위 컴포넌트가 아닌 전역상태인 `CounterContext`의 값이 변경되었을 때를 살펴보겠습니다. 
 
 <br>
 
-![context changed | ](../images/context_change.png)
+**전역상태(CounterContext)의 변경**
 
-&nbsp;&nbsp;토글 버튼은 상위 컴포넌트인 App이 가지고 있는 것이므로 잠깐 무시하고, 증가버튼을 누르게 되면 위에서 살펴보았듯 `CounterContext`가 가진 `setCounter`를 통해 `counter` 전역상태에 변경이 발생하
-<br>
+&nbsp;&nbsp;`App` 컴포넌트는 `CounterProvider`를 자식 컴포넌트로 가지고 있고, `CounterProvider`는 children props로 `Profile` 컴포넌트와 `Child` 컴포넌트를 받습니다. 그리고 `Child` 컴포넌트는 `useContext`를 호출해 증가 버튼을 클릭하면 이벤트가 발생해 `counter` 전역상태를 변경합니다.
 
 ```javascript
+/* App.tsx */
 function App() {
 	const [_, setToggle] = useState(false);
 	
@@ -102,6 +102,41 @@ function App() {
 		</div>
 	);
 }
+
+/* Child.tsx */
+import { useContext } from "react";
+import { CounterContext } from "../contexts/CounterProvider";
+
+const Child = () => {
+	const { counter, setCounter } = useContext(CounterContext);
+	
+	return (
+		<div>
+			<span>Counter: {counter}</span>
+			<button onClick={() => setCounter((prev) => prev + 1)}>증가</button>
+		</div>
+	);
+};
+
+export default Child;
 ```
 
-&nbsp;&nbsp;자, 이제 CounterProvider의 부모 컴포넌트인 `App`은 하나의 상태를 가지고 있습니다. 
+<br>
+
+**결과화면**
+
+![context changed | ](../images/context_change.png)
+
+&nbsp;&nbsp;증가버튼을 누르게 되면 위에서 살펴보았듯 `CounterContext`가 가진 `setCounter`를 통해 `counter` 전역상태에 변경이 발생합니다. 결과적으로 `Child`와 `CounterProvider`는 재렌더링이 발생하지만 `CounterProvider` 자식컴포넌트인 `Profile` 컴포넌트는 렌더링이 발생하지 않습니다.
+
+<br>
+
+>[!caution] `children` props와 자식 컴포넌트
+>
+>&nbsp;&nbsp;사실 하나 짚고 넘어가야할 점이 있습니다. `children` props로 넘겨받은 컴포넌트와 
+
+<br>
+
+**Provider 상위 컴포넌트의 변경**
+
+&nbsp;&nbsp;이제 CounterProvider의 부모 컴포넌트에 재렌더링이 이루어졌을 경우를 살펴보겠습니다.
