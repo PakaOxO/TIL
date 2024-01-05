@@ -71,3 +71,37 @@ export default Child;
 2. 생성한 컨텍스트를 사용할 컴포넌트 상위에 `CounterConext.Provider`로 감싸줍니다.
 3. `Provider`는 `value`를 통해 전역으로 관리할 값을 넘겨받으며 전역상태가 초기화됩니다.
 4. 하위 컴포넌트(children)에서는 `useContext`를 호출해 전역상태에 접근이 가능합니다.
+
+
+<br>
+
+### Context API의 렌더링 이슈
+
+&nbsp;&nbsp;`Context API`에는 렌더링 성능과 관련한 문제점이 있습니다. 바로 `Provider`가 위치한 상위 컴포넌트가 재렌더링되면 Provider 아래에 위치한 모든 컴포넌트 역시 다시 렌더링됩니다. 우선 상위 컴포넌트가 아닌 전역상태인 `CounterContext`의 값이 변경되었을 때를 살펴보겠습니다.
+
+<br>
+
+![context changed | ](../images/context_change.png)
+
+&nbsp;&nbsp;토글 버튼은 상위 컴포넌트인 App이 가지고 있는 것이므로 잠깐 무시하고, 증가버튼을 누르게 되면 위에서 살펴보았듯 `CounterContext`가 가진 `setCounter`를 통해 `counter` 전역상태에 변경이 발생하
+<br>
+
+```javascript
+function App() {
+	const [_, setToggle] = useState(false);
+	
+	return (
+		<div className="App">
+			<CounterProvider>
+				<Profile />
+				<Child />
+			</CounterProvider>
+			<button onClick={() => {setToggle((prev) => !prev);}}>			
+				토글
+			</button>
+		</div>
+	);
+}
+```
+
+&nbsp;&nbsp;자, 이제 CounterProvider의 부모 컴포넌트인 `App`은 하나의 상태를 가지고 있습니다. 
