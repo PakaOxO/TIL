@@ -146,7 +146,9 @@ export default Profile;
 
 &nbsp;&nbsp;`Profile` 컴포넌트는 `counter` 상태를 사용하지 않지만 같은 `CounterContext`라는 객체를 공유하고 있기 때문에 재렌더링이 발생합니다. 지금은 관리하는 전역상태와 컴포넌트의 개수가 적지만 시스템이 커지고, 복잡해질 수록 원치않는 재렌더링은 성능저하로 연결될 수 있습니다.
 
-&nbsp;&nbsp;불필요한 렌더링을 방지하기 위해서는 `Provider`를 최대한 쪼개 별도의 컨텍스트로 묶어 범위를 최소화하는 것이 좋습니다. 이 과정에서 수많은 `Provider`가 `Wrapper`로서 JSX에 
+&nbsp;&nbsp;불필요한 렌더링을 방지하기 위해서는 `Provider`를 최대한 쪼개 별도의 컨텍스트로 묶어 범위를 최소화하는 것이 좋습니다. 이 과정에서 수많은 `Provider`가 `Wrapper`로서 JSX에서 사용될 것이고 결과적으로 `Provider Hell`을 야기할 수 있습니다.
+
+&nbsp;&nbsp;이러한 문제점 때문에 `ContextAPI`는 React에서 공식적으로 지원되는 기능이지만 `Recoil`, `Zustand`, `Redux` 등의 전역상태관리 라이브러리가 더욱 선호되는 것 같습니다. 물론 라이브러리들도 각각 장단점이 있지만 이와 관련해서는 다음 포스트에서 다뤄보도록 하겠습니다.
 
 <br>
 
