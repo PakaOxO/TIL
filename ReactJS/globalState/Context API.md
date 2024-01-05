@@ -47,11 +47,11 @@ const CounterProvider: React.FC<Props> = ({ children }) => {
 
 export default CounterProvider;
 
-/* Child.tsx */
+/* Counter.tsx */
 import { useContext } from "react";
 import { CounterContext } from "../contexts/CounterProvider";
 
-const Child = () => {
+const Counter = () => {
 	const { counter, setCounter } = useContext(CounterContext);
 	
 	return (
@@ -62,7 +62,7 @@ const Child = () => {
 	);
 };
 
-export default Child;
+export default Counter;
 ```
 
 <br>
@@ -146,7 +146,7 @@ export default Profile;
 
 &nbsp;&nbsp;`Profile` 컴포넌트는 `counter` 상태를 사용하지 않지만 같은 `CounterContext`라는 객체를 공유하고 있기 때문에 재렌더링이 발생합니다. 지금은 관리하는 전역상태와 컴포넌트의 개수가 적지만 시스템이 커지고, 복잡해질 수록 원치않는 재렌더링은 성능저하로 연결될 수 있습니다.
 
-&nbsp;&nbsp;불필요한 렌더링을 방지하기 위해서는 `Provider`를 최대한 쪼개 별도의 컨텍스트로 묶거나 렌더링되는 범위를 최소화하거나 
+&nbsp;&nbsp;불필요한 렌더링을 방지하기 위해서는 `Provider`를 최대한 쪼개 별도의 컨텍스트로 묶어 범위를 최소화하는 것이 좋습니다. 이 과정에서 수많은 `Provider`가 `Wrapper`로서 JSX에 
 
 <br>
 
@@ -200,7 +200,13 @@ const Child = () => {
 
 &nbsp;&nbsp;위 예제에서 `Parent` 컴포넌트는 `chilren props`로 `Children` 컴포넌트를, 그리고 JSX 내부에 `Child` 컴포넌트를 가지고 있으며, 두 자식 컴포넌트는 DOM 트리 상에서 Parent의 자식 컴포넌트가 됩니다. 
 
-&nbsp;&nbsp;`Parent` 컴포넌트의 토글 버튼을 클릭하면 컴포넌트가 가진 상태에 변경이 발생하고, `Parent` 컴포넌트는 `Child` 컴포넌트와 함께 재렌더링 됩니다.
+<br>
+
+**결과화면**
+
+![childComp rendering | ](childComp_rendering.png)
+
+&nbsp;&nbsp;`Parent` 컴포넌트의 토글 버튼을 클릭하면 컴포넌트가 가진 상태에 변경이 발생하고, `Parent` 컴포넌트는 `Child` 컴포넌트와 함께 재렌더링 됩니다. 하지만 `Children` 컴포넌트는 `App` 컴포넌트에서 `Parent` 컴포넌트의 children props로 넘겨졌기 때문에 렌더링이 이루어지지 않습니다.
 
 <br>
 
