@@ -1,4 +1,4 @@
 ### Contents
-- [[1. 컴포넌트]]
+- [[1. Component]]
 - [[2. JSX]]
 - [[3. Portal]]
