@@ -152,14 +152,59 @@ export default Profile;
 
 ### children props와 자식 컴포넌트
 
-&nbsp;&nbsp;사실 하나 짚고 넘어가야할 점이 있습니다. `children` props로 넘겨받은 컴포넌트와 부모 컴포넌트 내부에 JSX 반환문에 위치한 자식 컴포넌트는 모두 DOM 트리상에서 부모 컴포넌트 아래에 위치하지만 렌더링되는 규칙이 다릅니다.
+&nbsp;&nbsp;학습을 진행하면서 렌더링과 관련해 새롭게 배운 내용이 있어 추가된 내용입니다. `children` props로 넘겨받은 컴포넌트와 부모 컴포넌트 내부에 JSX 반환문에 위치한 자식 컴포넌트는 모두 DOM 트리상에서 부모 컴포넌트 아래에 위치하지만 렌더링되는 규칙이 다릅니다.
 
-&nbsp;&nbsp;부모 컴포넌트의 상태가 변경되어 재렌더링이 발생함에 따라 자식 컴포넌트는 함께 렌더링이 발생하지만, children props로 넘겨받은 컴포넌트는 재렌더링이 발생하지 않습니다. 그 이유는 children props는 부모 컴포넌트가 자신보다 상위 컴포넌트로부터 받은 props이기 때문인데, props는 props를 넘겨준 상위 컴포넌트에서 관리되며 상위 컴포넌트에서 props의 변경이 발생하지 않았다면 children 역시 변경 사항이 없기 때문에 부모 컴포넌트의 재렌더링과 관계없이 새롭게 렌더링이 되지 않는 것입니다.
 
-&nbsp;&nbsp;만약 `CounterProvider` 컴포넌트 JSX 반환문에 직접 import된 `Inner` 컴포넌트가 있었다면 `CounterContext`의 변경으로 `CounterProvider`가  재렌더링될 때 함께 렌더링됩니다.
+&nbsp;&nbsp;부모 컴포넌트의 상태가 변경되어 재렌더링이 발생함에 따라 자식 컴포넌트는 함께 렌더링이 발생하지만, children props로 넘겨받은 컴포넌트는 재렌더링이 발생하지 않습니다. 그 이유는 children props는 부모 컴포넌트가 자신보다 상위 컴포넌트로부터 받은 props이기 때문인데, props는 props를 넘겨준 상위 컴포넌트에서 관리되며 상위 컴포넌트에서 props의 변경이 발생하지 않았다면 children 역시 변경 사항이 없기 때문에 부모 컴포넌트의 재렌더링과 관계없이 새롭게 렌더링이 되지 않는 것입니다. 예제를 통해 살펴보겠습니다.
+
+<br>
+
+```javascript
+/* App.js */
+const App = () => {
+	return (
+		<div>
+			<Parent>
+				<Children />
+			</Parent>
+		</div>
+	)	
+}
+/* Parent.js */
+const Parent = () => {
+	const [_, setToggle] = useState(false);
+	console.log("Parent 컴포넌트 렌더링");
+	return (
+		<div>
+			{ children }
+			<Child />
+			<button onClick={() => setToggle((prev) => !prev)}>토글</button>
+		</div>
+	)
+}
+
+/* Children */
+const Children = () => {
+	console.log("Chilren 컴포넌트 렌더링");
+	return (
+		<div>Children</div>
+	)
+}
+
+/* Child */
+const Child = () => {
+	console.log("Child 컴포넌트 렌더링");
+	return <div>Child</div>
+}
+```
+
+&nbsp;&nbsp;위 예제에서 `Parent` 컴포넌트는 `chilren props`로 `Children` 컴포넌트를, 그리고 JSX 내부에 `Child` 컴포넌트를 가지고 있으며, 두 자식 컴포넌트는 DOM 트리 상에서 Parent의 자식 컴포넌트가 됩니다. 
+
+&nbsp;&nbsp;`Parent` 컴포넌트의 토글 버튼을 클릭하면 컴포넌트가 가진 상태에 변경이 발생하고, `Parent` 컴포넌트는 `Child` 컴포넌트와 함께 재렌더링 됩니다.
 
 <br>
 
 **References**
-- ㅇ
-- [](https://www.zerocho.com/category/React/post/5fa63fc6301d080004c4e32b)
+- [React Docs, useContext](https://react.dev/reference/react/useContext)
+- [React Hooks! useContext편(React 17)](https://www.zerocho.com/category/React/post/5fa63fc6301d080004c4e32b)
+- [Context API의 최대 단점은 무엇일까](https://velog.io/@ckstn0777/Context-API%EC%9D%98-%EC%B5%9C%EB%8C%80-%EB%8B%A8%EC%A0%90%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C)
