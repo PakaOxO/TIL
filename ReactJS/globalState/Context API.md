@@ -18,22 +18,33 @@
 1. 
 
 ```javascript
-/* CounterProvider.js */
-import { useState, createContext, useContext } from 'react';
+/* CounterProvider.tsx */
+import { useState, createContext, useMemo } from "react";
 
-const defaultContext = {
+interface ICounterContext {
+	counter: number;
+	setCounter: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const defaultContext: ICounterContext = {
 	counter: 0,
+	setCounter: () => {},
+};
+
+interface Props {
+	children: React.ReactNode;
 }
 
-const CounterContext = createContext(defaultContext);
+export const CounterContext = createContext<ICounterContext>(defaultContext);
 
-const CounterProvider = () => {
+const CounterProvider: React.FC<Props> = ({ children }) => {
 	const [counter, setCounter] = useState(0);
-	
-	return (
-		<CounterContext.Provider value={}>
-			{ children }
-		</CounterContext.Provider>
-	);
-}
+	const memo = useMemo(() => {
+		return { counter, setCounter };
+	}, [counter, setCounter]);
+
+	return <CounterContext.Provider value={memo}>{children}</CounterContext.Provider>;
+};
+
+export default CounterProvider;
 ```
