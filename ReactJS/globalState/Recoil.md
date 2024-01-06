@@ -21,21 +21,21 @@
 &nbsp;&nbsp;`atoms`를 구독하기 위해서는 필요한 컴포넌트 내부에서 `useRecoilState` hook을 통해 사용하고자 하는 `atom`의 이름을 가지고 구독해 값을 참조하거나 업데이트할 수 있습니다.
 
 ```javascript
-/* textState.tsx */
-export const textState = atom<string>({
-	key: "textState",
+/* emailState.tsx */
+export const emailState = atom<string>({
+	key: "emailState",
 	default: "",
 });
 
 /* myComponent */
 const MyComponent = () => {
-	const [text, setText] = useRecoilState<string>(textState);
+	const [email, setEmail] = useRecoilState<string>(emailState);
 
 	return (
-		<div>
-			<input>{text}</input>
-			<button onClick={() => setCounter((prev: number) => prev + 1)}>증가</button>
-		</div>
+		<form>
+			<label htmlFor="email">Email</label>
+			<input id="email" type="text" value={text} />
+		</form>
 	);
 }
 ```
@@ -51,13 +51,30 @@ const MyComponent = () => {
 &nbsp;&nbsp;`selctor`는 `atom`과 유사하게 객체를 인자로 넘겨받으며, `selector`를 식별하기 위한 `key`와 `get`을 통해 의존할 상태값을 호출하고 반환합니다.
 
 ```javascript
-/* counterState.tsx */
-export const totalCounterClickState = atom<number>({
-	key: "totalCounterClickState",
+/* emailState.tsx */
+export const emailValidationState = atom<boolean>({
+	key: "emailValidationState",
 	get: ({ get }) => {
-		const 
+		const email = get(emailState);
+		const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+		
+		return regex.match(email);
 	}
 });
+
+/* myComponent */
+const MyComponent = () => {
+	const [email, setEmail] = useRecoilState<string>(emailState);
+	const isEmailValid = useRecoilValue<boolean>(emailValidationState);
+
+	return (
+		<form>
+			<label htmlFor="email">Email</label>
+			<input id="email" type="text" value={text} />
+			{ isEmailValid && <span>이메일 형식을 확인해주세요</span> }
+		</form>
+	);
+}
 ```
 
 
