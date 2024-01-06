@@ -86,6 +86,40 @@ const MyComponent = () => {
 
 <br>
 
+### Recoil Hooks
+
+**1. useRecoilState**
+
+&nbsp;&nbsp;React의 `useState`와 비슷하게 원하는 `atom`의 전역상태를 구독하고 변경할 수 있는 메서드를 반환합니다.
+
+```javascript
+const [state, setState] = useRecoildState<any>(myState);
+```
+
+**2. useRecoilValue**
+
+&nbsp;&nbsp;전역상태 중 사용하고자 하는 `atom`을 구독하고 값을 반환합니다.  별도의 전역상태를 변경할 필요가 없을 경우 사용할 수 있습니다.
+
+```javascript
+const state = useRecoilValue<any>(myState);
+```
+
+
+**3. useSetRecoilState**
+
+&nbsp;&nbsp;변경하고자 하는 `atom`이나 `selector`가 가진 상태값을 변경하기 위한 메서드를 반환합니다. 구독없이 값을 변경하는 메서드만을 반환하기 때문에 전역상태의 변경으로 인한 재렌더링으로부터 안전합니다.
+
+```javascript
+const setState = useSetRecoilState<any>(myState);
+```
+
+**4. useResetRecoilState**
+
+&nbsp;&nbsp;초기화하고자 하는 `atom`이나 `selector`의 값을 
+
+
+<br>
+
 
 
 
