@@ -90,44 +90,51 @@ const MyComponent = () => {
 
 **1. useRecoilState**
 
-&nbsp;&nbsp;React의 `useState`와 비슷하게 원하는 `atom`의 전역상태를 구독하고 변경할 수 있는 메서드를 반환합니다.
-
 ```javascript
 const [state, setState] = useRecoildState<any>(myState);
 ```
 
-**2. useRecoilValue**
+&nbsp;&nbsp;React의 `useState`와 비슷하게 원하는 `atom`의 전역상태를 구독하고 변경할 수 있는 메서드를 반환합니다.
 
-&nbsp;&nbsp;전역상태 중 사용하고자 하는 `atom`을 구독하고 값을 반환합니다.  별도의 전역상태를 변경할 필요가 없을 경우 사용할 수 있습니다.
+**2. useRecoilValue**
 
 ```javascript
 const state = useRecoilValue<any>(myState);
 ```
 
+&nbsp;&nbsp;전역상태 중 사용하고자 하는 `atom`을 구독하고 값을 반환합니다.  별도의 전역상태를 변경할 필요가 없을 경우 사용할 수 있습니다.
 
 **3. useSetRecoilState**
-
-&nbsp;&nbsp;변경하고자 하는 `atom`이나 `selector`가 가진 상태값을 변경하기 위한 메서드를 반환합니다. 구독없이 값을 변경하는 메서드만을 반환하기 때문에 전역상태의 변경으로 인한 재렌더링으로부터 안전합니다.
 
 ```javascript
 const setState = useSetRecoilState<any>(myState);
 ```
 
+&nbsp;&nbsp;변경하고자 하는 `atom`이 가진 상태값을 변경하기 위한 메서드를 반환합니다. 구독없이 값을 변경하는 메서드만을 반환하기 때문에 전역상태의 변경으로 인한 재렌더링으로부터 안전합니다.
+
 **4. useResetRecoilState**
 
-&nbsp;&nbsp;초기화하고자 하는 `atom`이나 `selector`의 값을 
+```javascript
+const resetState = useResetRecoilState<any>(myState);
+```
 
+&nbsp;&nbsp;초기화하고자 하는 `atom`의 값을 선언시에 넘겨준 `default` 프로퍼티의 값으로 되돌리기 위한 메서드입니다. `useSetRecoilState`와 마찬가지로 `atom`을 구독하지 않고 초기화가 가능하므로 재렌더링으로부터 안전합니다.
 
 <br>
 
+### Recoil 장단점
 
+**1. 사용이 간편하다**
 
+&nbsp;&nbsp;앞서 다른 프로젝트에서 `Redux`와 `contextAPI`를 사용해본 입장에서 `Recoil`은 정말 상대적으로 사용하기가 편리한 라이브러리였습니다. 쓸데없이 `Provider`를 쪼개기 위해 `Context`를 잘게 분리하거나 복잡한 초기 설정을 잡아주기 위해 들이는 시간 또한 적어 개인적으로는 최근에 가장 자주 사용했던 라이브러리가 아닌가 싶습니다.
 
+&nbsp;&nbsp;지난 포스팅에서는 props drilling을 방지하고, 변수를 전역에서 관리하기 위해 리액트에서 내장으로 제공하는 `Context API`에 대해 다루었습니다. `Context API`의 경우에는 `Provider`에게 전역상태를 받아 사용하는 컴포넌트의 경우, 다른 컴포넌트에 의해 `Context`가 변경되었더라도 재렌더링되는 이슈가 있었습니다. 
 
+**2. 파생된 상태관리가 용이**
 
-&nbsp;&nbsp;지난 포스팅에서는 props drilling을 방지하고, 변수를 전역에서 관리하기 위해 리액트에서 내장으로 제공하는 `Context API`에 대해 다루었습니다. `Context API`의 경우에는 `Provider`에게 전역상태를 받아 사용하는 컴포넌트의 경우, 다른 컴포넌트에 의해 `Context`가 변경되었더라도 재렌더링되는 이슈가 있었습니다. 그렇
-
+&nbsp;&nbsp;`Recoil`은 `selector`를 통해 의존하고 있는 상태를 추적해 파생된 데이터를 추상화하여 캐싱하고, 이를 여러 컴포넌트에서 사용해 재사용성이 좋습니다.
 <br>
 
 **References**
 - [Recoil Docs](https://recoiljs.org/ko/docs/introduction/core-concepts)
+- [3분 Recoil](https://velog.io/@gomjellie/3%EB%B6%84-Recoil)
