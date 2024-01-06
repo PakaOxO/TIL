@@ -134,7 +134,7 @@ const resetState = useResetRecoilState<any>(myState);
 
 &nbsp;&nbsp;`Recoil`은 `selector`를 통해 의존하고 있는 상태를 추적해 파생된 데이터를 추상화하여 캐싱하고, 이를 여러 컴포넌트에서 사용해 재사용성이 좋습니다.
 
-**3. 캐싱 지원
+**3. 캐싱 지원**
 
 &nbsp;&nbsp;`selector` 내부에서 비동기 로직을 처리한다고 가정했을 때 `selector`가 의존하고 있는 `atom`의 값이 같다면 캐싱되어있는 값을 반환합니다. `selector`의 `set`을 통해 수동으로 캐싱하는 것 역시 가능합니다.
 
@@ -158,7 +158,11 @@ const clockState = () => {
 
 **4. Concurrent Mode 지원**
 
+>[!tip] **Concurrent Mode?**
+>
+> &nbsp;&nbsp;Concurrent모드는 React 앱이 빠른 반응속도를 유지하도록 하고 사용자의 장치 기능 및 네트워크 속도에 적절하게 맞추도록 돕는 새로운 기능들의 집합체입니다.
 
+&nbsp;&nbsp;`Recoil`은 React에서 제공하는 `Concurrent Mode`를 지원합니다. 쉽게 말해 동시다발적으로 진행되는 컴포넌트 프로세스에서 렌더링과 관련해 우선순위를 두어 적절한 타이밍에 동작할 수 있도록 하는 것인데 `Concurrent Mode`와 관련해서는 이후에 기회가 된다면 자세히 다뤄보도록 하겠습니다.
 
 <br>
 

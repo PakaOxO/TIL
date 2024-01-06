@@ -1,5 +1,5 @@
 ### Contents
-- [[정렬과 탐색]]
+- [[Sort&Search]]
 - [[BubbleSort]]
 - [[InsertionSort]]
 - [[MergeSort]]
