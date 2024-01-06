@@ -12,7 +12,8 @@
 
 **Atoms**
 
-&nbsp;&nbsp;`Atoms`는 
+>[!tip] Atoms는 상태의 단위이며, 업데이트와 구독이 가능하다. atom이 업데이트되면 각각 구독된 컴포넌트는 새로운 값을 반영하여 다시 렌더링 된다.
+
 
 ```javascript
 /* counterState.tsx */
@@ -24,6 +25,7 @@ export const counterState = atom<number>({
 
 **Selectors**
 
+>[!tip] **Selector**는 atoms나 다른 selectors를 입력으로 받아들이는 순수 함수(pure function)다.
 
 <br>
 
