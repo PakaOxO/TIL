@@ -16,7 +16,9 @@
 
 >[!tip] Atoms는 상태의 단위이며, 업데이트와 구독이 가능하다. atom이 업데이트되면 각각 구독된 컴포넌트는 새로운 값을 반영하여 다시 렌더링 된다.
 
-&nbsp;&nbsp;React의 상태처럼 `Recoil`에서 제공하는 상태의 단위입니다. `Recoil`에서 제공하는 `atom`함수를 사용해 생성합니다. `atom`은 
+&nbsp;&nbsp;React의 상태처럼 `Recoil`에서 제공하는 상태의 단위입니다. `Recoil`에서 제공하는 `atom`함수를 사용해 생성합니다. `atom`은 객체를 인자로 받는데 이 객체는 `atom`을 식별하기 위한 `key`와 이 `atom`의 기본 초기화 값인 `default`를 프로퍼티로 갖습니다.
+
+&nbsp;&nbsp;`atoms`를 구독하기 위해서는 필요한 컴포넌트 내부에서 `useRecoilState` hook을 통해 사용하고자 하는 `atom`의 이름을 가지고 구독해 값을 참조하거나 업데이트할 수 있습니다.
 
 ```javascript
 /* counterState.tsx */
@@ -24,11 +26,28 @@ export const counterState = atom<number>({
 	key: "counterState",
 	default: 0,
 });
+
+/* myComponent */
+const MyComponent = () => {
+	const [counter, setCounter] = useRecoilState(counterState);
+
+	return (
+		<div>
+			<span>Counter: {counter}</span>
+			<button onClick={() => setCounter((prev) => prev + 1)}>증가</button>
+		</div>
+	);
+}
 ```
+
+<br>
 
 **Selectors**
 
 >[!tip] **Selector**는 atoms나 다른 selectors를 입력으로 받아들이는 순수 함수(pure function)다.
+
+&nbsp;&nbsp;`selectors`는 순수 함수로 `atoms`나 또 다른 `selectors`의 변경이 이루어졌을 때 이를 기반으로 파생된 데이터(`derived state`)를 생성하기 위해 사용됩니다. `selectors` 역시 `atoms`와 마찬가지로 컴포넌트에 의해 구독될 수 있습니다. 함수형 개발 관점에서 `selectors`는 자신이 의존하는 상태를 추적하여 계산하고 이를 추상화함으로써 
+
 
 <br>
 
