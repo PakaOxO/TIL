@@ -48,7 +48,7 @@ const MyComponent = () => {
 
 &nbsp;&nbsp;`selectors`는 순수 함수로 `atoms`나 또 다른 `selectors`의 변경이 이루어졌을 때 이를 기반으로 파생된 데이터(`derived state`)를 생성하기 위해 사용됩니다. `selectors` 역시 `atoms`와 마찬가지로 컴포넌트에 의해 구독될 수 있습니다. 함수형 개발 관점에서 `selectors`는 자신이 의존하는 상태를 추적하여 계산하고 이를 추상화 함으로써 코드의 관리를 용이하게 할 수 있습니다.
 
-&nbsp;&nbsp;`selctor`는 `atom`과 유사하게 객체를 인자로 넘겨받으며, `selector`를 식별하기 위한 `key`와 `get`을 통해 의존할 상태값을 호출하고 반환합니다.
+&nbsp;&nbsp;`selctor`는 `atom`과 유사하게 객체를 인자로 넘겨받으며, `selector`를 식별하기 위한 `key`와 `get`을 통해 의존할 상태값을 호출하고 함수 내부의 계산결과를 바탕으로 반환값을 결정합니다. 객체는 `set` 프로퍼티 또한 가질 수 있는데, 이 경우 `selector`를 통해 직접 상태를 변경할 수 있으며, `selector`를 import한 뒤 `selector.set(newState)` 형식으로 호출합니다.
 
 ```javascript
 /* emailState.tsx */
@@ -59,10 +59,15 @@ export const emailValidationState = atom<boolean>({
 		const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 		
 		return regex.match(email);
+	},
+	set: ({ set }, newState) => {
+		return true;
 	}
 });
 
 /* myComponent */
+import emailValidationState from "../atoms/emailValidationState.text";
+
 const MyComponent = () => {
 	const [email, setEmail] = useRecoilState<string>(emailState);
 	const isEmailValid = useRecoilValue<boolean>(emailValidationState);
@@ -72,6 +77,7 @@ const MyComponent = () => {
 			<label htmlFor="email">Email</label>
 			<input id="email" type="text" value={text} />
 			{ isEmailValid && <span>이메일 형식을 확인해주세요</span> }
+			<MasterBtn onClick={emailValidationState.set(true)} /> /* 이게 무슨 버튼이지... */
 		</form>
 	);
 }
