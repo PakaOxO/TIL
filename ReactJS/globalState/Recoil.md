@@ -1,7 +1,7 @@
 
 >[!tip] Recoil을 사용하면 _atoms_ (공유 상태)에서 _selectors_ (순수 함수)를 거쳐 React 컴포넌트로 내려가는 data-flow graph를 만들 수 있다. Atoms는 컴포넌트가 구독할 수 있는 상태의 단위다. Selectors는 atoms 상태 값을 동기 또는 비동기 방식을 통해 변환한다.
 
-&nbsp;&nbsp; `Recoil`은 React에서 전역상태관리를 사용되는 라이브러리 중 하나입니다. `Redux`에 비해 초기 설정이 간단하고, 지원하는 hook도 복잡하지 않아 개인적으로 전역상태관리 라이브러리 중에서는 사용하기 가장 편하다고 느끼고 있습니다. 이번 포스트에서는 `Recoil`의 특징과 사용할 수 있는 hook에 대해 가볍게 정리해보도록 하겠습니다.
+&nbsp;&nbsp; `Recoil`은 Facebook이 만든 React에서 전역상태관리를 사용되는 라이브러리로 `context API`를 기반으로 개발되었습니다. `Redux`에 비해 초기 설정이 간단하고, 지원하는 hook도 복잡하지 않아 개인적으로 전역상태관리 라이브러리 중에서는 사용하기 가장 편하다고 느끼고 있습니다. 이번 포스트에서는 `Recoil`의 특징과 사용할 수 있는 hook에 대해 가볍게 정리해보도록 하겠습니다.
 
 
 <br>
@@ -122,7 +122,7 @@ const resetState = useResetRecoilState<any>(myState);
 
 <br>
 
-### Recoil 장단점
+### Recoil 특징
 
 **1. 사용이 간편하다**
 
@@ -133,6 +133,13 @@ const resetState = useResetRecoilState<any>(myState);
 **2. 파생된 상태관리가 용이**
 
 &nbsp;&nbsp;`Recoil`은 `selector`를 통해 의존하고 있는 상태를 추적해 파생된 데이터를 추상화하여 캐싱하고, 이를 여러 컴포넌트에서 사용해 재사용성이 좋습니다.
+
+**3. 캐싱 지원
+
+&nbsp;&nbsp;`selector` 내부에서 비동기 로직을 처리한다면  `selector`는 의존하고 있는 `atom`의 값이 같다면 캐싱되어잇는 값을 반환합니다.
+
+
+
 <br>
 
 **References**
