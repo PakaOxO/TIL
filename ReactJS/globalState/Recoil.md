@@ -118,7 +118,7 @@ const setState = useSetRecoilState<any>(myState);
 const resetState = useResetRecoilState<any>(myState);
 ```
 
-&nbsp;&nbsp;초기화하고자 하는 `atom`의 값을 선언시에 넘겨준 `default` 프로퍼티의 값으로 되돌리기 위한 메서드입니다. `useSetRecoilState`와 마찬가지로 `atom`을 구독하지 않고 초기화가 가능하므로 재렌더링으로부터 안전합니다.
+&nbsp;&nbsp;초기화하고자 하는 `atom` 또는 `selector`의 값을 선언시에 넘겨준 `default` 프로퍼티의 값으로 되돌리기 위한 메서드입니다. `useSetRecoilState`와 마찬가지로 `atom`을 구독하지 않고 초기화가 가능하므로 재렌더링으로부터 안전합니다.
 
 <br>
 
@@ -136,7 +136,27 @@ const resetState = useResetRecoilState<any>(myState);
 
 **3. 캐싱 지원
 
-&nbsp;&nbsp;`selector` 내부에서 비동기 로직을 처리한다면  `selector`는 의존하고 있는 `atom`의 값이 같다면 캐싱되어잇는 값을 반환합니다.
+&nbsp;&nbsp;`selector` 내부에서 비동기 로직을 처리한다고 가정했을 때 `selector`가 의존하고 있는 `atom`의 값이 같다면 캐싱되어있는 값을 반환합니다. `selector`의 `set`을 통해 수동으로 캐싱하는 것 역시 가능합니다.
+
+&nbsp;&nbsp;`Selector`는 프로퍼티로 `cachePolicy_UNSTABLE`를 가집니다. `eviction`의 값에 따라 `lru`는 정의된 메모리의 `maxSize`를 초과하면 가장 오래전 사용된 캐시를 제거하고, `most-recent`는 가장 최근 값만을 캐싱합니다. 만약 별도로 값을 지정하지 않았다면 `keep-all`이 기본값으로 모든 캐시를 보관하고 제거하지 않습니다.
+
+```javascript
+const clockState = () => {
+	key: "clockState",
+	get: ({ get }) => {
+		const hour = get(hourState);
+		const min = get(minState);
+		const sec = get(secState);
+		
+		return `{hour}:{min}:{sec}`;
+	},
+	cachePolicy_UNSTABLE: {
+		eviction: "most-recent", // or "lru", "keep-all"
+	}
+}
+```
+
+**4. Concurrent Mode 지원**
 
 
 
@@ -145,3 +165,4 @@ const resetState = useResetRecoilState<any>(myState);
 **References**
 - [Recoil Docs](https://recoiljs.org/ko/docs/introduction/core-concepts)
 - [3분 Recoil](https://velog.io/@gomjellie/3%EB%B6%84-Recoil)
+- [immagrationm Recoil 0.4 Patch Note](https://immigration9.github.io/react,recoil/2021/08/01/reading-patchnote-recoil04.html)
