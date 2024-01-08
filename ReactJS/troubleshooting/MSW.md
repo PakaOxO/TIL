@@ -85,9 +85,10 @@ const handlers = [
 		});
 	}),
 	http.post("/api/characters"), async ({ request, params, cookies }) => {
-		const postData = await request.json(); // 클라이언트가 보낸 데이터
+		const postData = await request.json(); // 클라이언트에서 보낸 데이터
 		
-		/* Post 요청 처리 */
+		/* ...Post 요청 처리 */
+		
 		return HttpResponse.json({
 			message: "POST 요청이 성공적으로 처리되었습니다.",
 		});
@@ -145,14 +146,14 @@ fetch("/api/characters?code=400")
 		console.error("Request error: ", error);
 	});
 
-// 응답 결과: GET http://localhost:3000/api/characters?code=400 400 (Bad Request)
+// 응답 결과: [MSW] 19:51:47 GET /api/characters (400 Bad Request)
 ```
 
 <br>
 
 ### 후기
 
-&nbsp;&nbsp;이번 프로젝트는 `Mock`을 본격적으로 도입해 사용한 첫 번째 프로젝트가 될 것 같습니다. 한동안은 `MSW`를 테스트하기 위해 만든 토이 프로젝트에서 `Service Worker`에 여러가지 상황에 맞춰 적절한 응답을 반환해보면서 연습을 좀 해보려고 합니다. 아직 `MSW`에 의문이 몇 가지 남아있는데 `Handler`의 두 번째 파라미터인 함수가 가지는 인자 중 `params`에 대해 공식문서에서는 `Request`의 `querystring`와 `cookies`에 대해서는 테스트 코드를 돌려보면서 기능을 확인해보아야 할 것 같습니다.
+&nbsp;&nbsp;이번 프로젝트는 `Mock`을 본격적으로 도입해 사용한 첫 번째 프로젝트가 될 것 같습니다. 한동안은 `MSW`를 테스트하기 위해 만든 토이 프로젝트에서 `Service Worker`에 여러가지 상황에 맞춰 적절한 응답을 반환해보면서 연습을 좀 해보려고 합니다. 아직 `MSW`에 의문이 몇 가지 남아있는데 `Handler`의 두 번째 파라미터인 함수가 가지는 인자 중 `params`에 대해 공식문서에서는 `Request`의 `querystring`를 받기 위한 장치로 설명하는데 실제로 `querystring`을 넘겨도 `params`는 빈 객체로 오고, 결국 `request.getParams.get("key")` 메서드를 사용해 가져오더군요... 이외에도 몇 가지 확인해보고 다시 후기를 남겨보도록 하겠습니다.
 
 <br>
 
