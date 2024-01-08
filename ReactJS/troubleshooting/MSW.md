@@ -31,7 +31,7 @@
 
 ![MSW Architecture | ](../images/msw_architecture.webp)
 
-&nbsp;&nbsp;`Service Worker`는 `MSW`에서 핵심 역할을 수행하는 기술입니다. `Service Worker`는 메인 스레드에서 벗어나 백그라운드 상에서 특정한 동작을 수행하는 프로그램입니다. 이전에 `Web Push`를 구현하면서 서버가 `Push`한 정보를 받아 `포어그라운드` 서비스로 전달하기 위해 `Service Worker`를 사용했었습니다. `MSW`에서도 메인 애플리케이션과 서버 사이에서 클라이언트의 요청을 가로채 `MSW` 프로그램에 전달하는 역할을 수행합니다.
+&nbsp;&nbsp;`Service Worker`는 `MSW`에서 핵심 역할을 수행하는 자바스크립트 기술입니다. `Service Worker`는 메인 스레드에서 벗어나 백그라운드 상에서 특정한 동작을 수행하는 자바스크립트 프로그램으로 이전에 `Web Push`를 구현하면서 푸시서버가 `Push`한 정보를 받아 `포어그라운드` 서비스로 전달하기 위해 `Service Worker`를 사용했었습니다. `MSW`에서도 메인 애플리케이션과 서버 사이에서 클라이언트의 요청을 가로채 `MSW` 프로그램에 전달하는 역할을 수행한다고 하는군요.
 
 <br>
 
@@ -39,23 +39,23 @@
 
 **1. MSW 추가**
 
+&nbsp;&nbsp;먼저 `MSW` 라이브러리를 프로젝트에 추가해줍니다.
+
 ```bash
 npm install msw --save-dev
 or
 yarn add msw --dev
 ```
 
-&nbsp;&nbsp;먼저 `MSW` 라이브러리를 프로젝트에 추가해줍니다.
-
 <br>
 
 **2. `Service Worker`를 Public 경로에 추가
 
+&nbsp;&nbsp;위 명령어를 실행하면 `PUBLIC` 경로에 `mockServiceWorker.js`가 추가됩니다.
+
 ```bash
 npx msw init <PUBLIC_DIR> --save
 ```
-
-&nbsp;&nbsp;위 명령어를 실행하면 `PUBLIC` 경로에 `mockServiceWorker.js`가 추가됩니다.
 
 <br>
 
@@ -153,7 +153,7 @@ fetch("/api/characters?code=400")
 
 ### 후기
 
-&nbsp;&nbsp;이번 프로젝트는 `Mock`을 본격적으로 도입해 사용한 첫 번째 프로젝트가 될 것 같습니다. 한동안은 `MSW`를 프로젝트에
+&nbsp;&nbsp;이번 프로젝트는 `Mock`을 본격적으로 도입해 사용한 첫 번째 프로젝트가 될 것 같습니다. 한동안은 `MSW`를 프로젝트에서 본격적으로 활용하기 위해 사용자 시나리오를 가져와 이것저것 시도해보려고 합니다. 자세한 후기는 프로젝트를 진행하면서 느낀점을 토대로 추가해보도록 하겠습니다.
 
 <br>
 
