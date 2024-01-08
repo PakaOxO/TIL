@@ -119,6 +119,32 @@ enableMocking().then(() => {
 	root.render(<App />);
 });
 ```
+
+<br>
+
+### 실행 결과
+
+![mocking enabled | 300](../images/mocking_enabled.png)
+
+&nbsp;&nbsp;프로젝트를 실행한 뒤, 브라우저 콘솔을 확인해 성공적으로 `Service Worker`가 실행되었다면 위와 같은 메시지를 확인할 수 있습니다.
+
+```javascript
+fetch("/api/characters")
+	.then((res) => {
+		return res.json();
+	})
+	.then((data) => {
+		console.log("Response data: ", data);
+	})
+	.catch((error) => {
+		console.error("Request error: ", error);
+	});
+```
+
+```
+Request {method: 'GET', url: 'http://localhost:3000/api/characters?code=400', headers: Headers, destination: '', referrer: 'http://localhost:3000/', …}
+```
+
 <br>
 
 **References**
