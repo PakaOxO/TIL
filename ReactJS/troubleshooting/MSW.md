@@ -21,7 +21,15 @@
 
 ### MSW
 
-&nbsp;&nbsp;`MSW.js`는 `Mock Service Worker`의 약자로 `Service Worker`를 통해 `Request`에 대해 적절한 `Response`를 반환하게 끔 해주는 JS기반의 라이브러리입니다.
+>[!tip] Mock Service Worker (MSW) is an API mocking library for browser and Node.js. With MSW, you can intercept outgoing requests, observe them, and respond to them using mocked responses.
+
+&nbsp;&nbsp;`MSW.js`는 `Mock Service Worker`의 약자로 `Service Worker`를 통해 `Request`를 가로채 MSW적절한 `Response`를 반환하게 끔 해주는 라이브러리입니다. 사실 네트워크 수준의 `Mocking`을 제공하기 위해서는 별도의 `Mock` 서버를 구축해 여러 요청에 대해 적절한 `Mock` 객체를 반환해주는 방법이 있습니다. 다만 이 방법은 서버를 구축해야한다는 관점에서 원치 않는 개발비용이 추가로 발생할 수 있습니다.
+
+<br>
+
+**MSW 구조**
+
+
 
 
 <br>
