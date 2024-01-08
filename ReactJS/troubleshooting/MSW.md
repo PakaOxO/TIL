@@ -61,10 +61,34 @@ npx msw init <PUBLIC_DIR> --save
 
 **3. 서비스 워커 등록**
 
-&nbsp;&nbsp;저는 `src/mock/`  경ㄹ
+&nbsp;&nbsp;저는 `src/mock/`  경로를 별도로 만들어 다음 파일들을 추가해주었습니다. `browser.js`
 
 ```javascript
+/* src/mock/browser.js */
+const { setupWorker } from "msw";
+const handlers from "./handlers";
 
+export const worker = setupWorker(...handlers);
+
+/* src/mock/handlers.js */
+import { HttpResponse, http } from "msw";
+// 처리할 요청들을 배열로 가지고 있습니다
+const handlers = [
+	http.get("/api/characters", ({ request, params, cookies }) => {
+		const url = new URL(request.url); // queryString 받는 방법
+		const name = url.getParams.get("name");
+		
+		return HttpResponse.json({
+			/* 반환할 객체 정의 */
+		});
+	}),
+	http.post("/api/characters"), ({ request, params, cookies }) => {
+		/* Post 요청 처리 */
+		return HttpResponse.
+	}),
+];
+
+export default handlers;
 ```
 
 
