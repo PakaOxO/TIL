@@ -96,8 +96,29 @@ export default handlers;
 
 >[!caution] Post시 404 Not Found
 >
->&nbsp;&nbsp;아! 삽질을 한번 했습니다. http.post로 GET과  동일한 URI로 들어오는 POST 요청을 인터셉트까진 성공했지만 브라우저에서 `404 Not Found` 오류가 발생하는 것을 확인해 원인을 찾았습니다만... http.post 구문에서 인터셉트를 한뒤 별도의 응답(`HttpResponse`)을 반환하지 않아 발생하는 현상이었습니다. 위 코드를 보시면 post 인터셉터의 마지막에 HttpResponse .json객체를 반환해주었습니다.
+>&nbsp;&nbsp;아! 삽질을 한번 했습니다. http.post로 GET과  동일한 URI로 들어오는 POST 요청을 인터셉트까진 성공했지만 브라우저에서 `404 Not Found` 오류가 발생하는 것을 확인해 원인을 찾았습니다만... http.post 구문에서 인터셉트를 한뒤 별도의 응답(`HttpResponse`)을 반환하지 않아 발생하는 현상이었습니다. 위 코드를 보시면 post 인터셉터의 마지막에 `HttpResponse .json()`을 반환해주었습니다.
 
+<br>
+
+**4. 서비스 워커 실행**
+
+&nbsp;&nbsp;이제 다왔습니다. `index.tsx` 파일로 이동해 설정이 끝난 `Service Worker`를 웹 서비스 실행시에 `start`하는 코드를 추가해줍니다. 환경변수의 값을 확인해 테스트 환경일 경우에만 `Service Worker`가 실행될 수 있도록 해주었습니다.
+
+```javascript
+/* index.tsx */
+const enableMocking = async () => {
+	// NODE_ENV 환경변수의 값을 확인해 개발환경이 아니면 서비스워커를 실행하지 않습니다.
+	if (process.env.NODE_ENV !== "development") return;
+	const { worker } = await import("./mocks/browser");
+	
+	return worker.start();
+};
+
+enableMocking().then(() => {
+	const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+	root.render(<App />);
+});
+```
 <br>
 
 **References**
