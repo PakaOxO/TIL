@@ -61,13 +61,12 @@ npx msw init <PUBLIC_DIR> --save
 
 **3. 서비스 워커 등록**
 
-&nbsp;&nbsp;저는 `src/mock/`  경로를 별도로 만들어 다음 파일들을 추가해주었습니다. `browser.js`
+&nbsp;&nbsp;`src/mock/`  경로를 별도로 만들어 다음 파일들을 추가해주었습니다. `browser.js`는 `handler.js`가 가진 요청처리 로직이 담긴 배열을 받아 `Service Worker` 에 넘겨줍니다. `http`가 갖는 `RestAPI` 메서드는 첫 번째 인자로 요청을 가로챌 API 주소를, 두 번째 인자는 ₩ㅇ
 
 ```javascript
 /* src/mock/browser.js */
 const { setupWorker } from "msw";
 const handlers from "./handlers";
-
 export const worker = setupWorker(...handlers);
 
 /* src/mock/handlers.js */
