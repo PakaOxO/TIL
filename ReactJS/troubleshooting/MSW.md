@@ -83,13 +83,20 @@ const handlers = [
 	}),
 	http.post("/api/characters"), ({ request, params, cookies }) => {
 		/* Post 요청 처리 */
-		return HttpResponse(respon)
+		return HttpResponse.json({
+			message: "POST 요청이 성공적으로 처리되었습니다.",
+		});
 	}),
 ];
 
 export default handlers;
 ```
 
+<br>
+
+>[!caution] Post시 404 Not Found
+>
+>&nbsp;&nbsp;아! 삽질을 한번 했습니다. http.post로 GET과  동일한 URI로 들어오는 POST 요청을 인터셉트까진 성공했지만 브라우저에서 `404 Not Found` 오류가 발생하는 것을 확인해 원인을 찾았습니다만... http.post 구문에서 인터셉트를 한뒤 별도의 응답(`HttpResponse`)을 반환하지 않아 발생하는 현상이었습니다. 위 코드를 보시면 post 인터셉터의 마지막에 HttpResponse .json객체를 반환해주었습니다.
 
 <br>
 
