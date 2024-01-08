@@ -39,6 +39,34 @@
 
 **1. MSW 추가**
 
+```bash
+npm install msw --save-dev
+or
+yarn add msw --dev
+```
+
+&nbsp;&nbsp;먼저 `MSW` 라이브러리를 프로젝트에 추가해줍니다.
+
+<br>
+
+**2. `Service Worker`를 Public 경로에 추가
+
+```bash
+npx msw init <PUBLIC_DIR> --save
+```
+
+&nbsp;&nbsp;위 명령어를 실행하면 `PUBLIC` 경로에 `mockServiceWorker.js`가 추가됩니다.
+
+<br>
+
+**3. 서비스 워커 등록**
+
+&nbsp;&nbsp;저는 `src/mock/`  경ㄹ
+
+```javascript
+
+```
+
 
 <br>
 
