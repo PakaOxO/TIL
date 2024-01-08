@@ -76,6 +76,9 @@ const handlers = [
 	http.get("/api/characters", ({ request, params, cookies }) => {
 		const url = new URL(request.url); // queryString 받는 방법
 		const name = url.getParams.get("name");
+		if (code) {
+			return HttpResponse.json({ error: "Bad Request" }, { status: 400 });
+		}
 		
 		return HttpResponse.json({
 			/* 반환할 객체 정의 */
@@ -126,10 +129,10 @@ enableMocking().then(() => {
 
 ![mocking enabled | 300](../images/mocking_enabled.png)
 
-&nbsp;&nbsp;프로젝트를 실행한 뒤, 브라우저 콘솔을 확인해 성공적으로 `Service Worker`가 실행되었다면 위와 같은 메시지를 확인할 수 있습니다.
+&nbsp;&nbsp;프로젝트를 실행한 뒤, 브라우저 콘솔을 확인해 성공적으로 `Service Worker`가 실행되었다면 위와 같은 메시지를 확인할 수 있습니다. 아래는 GET 요청을 보냈을 때 `MSW`에서 보내주는 응답 결과 예시입니다. 위에 작성된 `Handler` 코드를 살펴보면 `querystring`으로 `code`값이 있을 경우 `400` 응답을 반환하도록 했기 때문에 `400 (Bad Reqeust)`를 받았습니다.
 
 ```javascript
-fetch("/api/characters")
+fetch("/api/characters?code=400")
 	.then((res) => {
 		return res.json();
 	})
@@ -139,11 +142,13 @@ fetch("/api/characters")
 	.catch((error) => {
 		console.error("Request error: ", error);
 	});
+
+// 응답 결과: GET http://localhost:3000/api/characters?code=400 400 (Bad Request)
 ```
 
-```
-Request {method: 'GET', url: 'http://localhost:3000/api/characters?code=400', headers: Headers, destination: '', referrer: 'http://localhost:3000/', …}
-```
+<br>
+
+### tㅏ요
 
 <br>
 
