@@ -49,7 +49,7 @@ yarn add msw --dev
 
 <br>
 
-**2. `Service Worker`를 Public 경로에 추가
+**2. `Service Worker`를 Public 경로에 추가**
 
 &nbsp;&nbsp;위 명령어를 실행하면 `PUBLIC` 경로에 `mockServiceWorker.js`가 추가됩니다.
 
