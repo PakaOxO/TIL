@@ -1,8 +1,15 @@
+### 업무
+
+- 이력서, 원티드 및 프로그래머스 이력서 업데이트
+
+<br>
+
 ### TIL 정리
 
 - ~~FLUX 아키텍처~~
 - ~~React ContextAPI~~
 - ~~Recoil과 Recoil 아키텍처?(Atom & Selector)~~
+- React lazy-loading
 - FE Mock 데이터로 테스트하기
 - useMemo를 무시하는 children props
 
@@ -11,7 +18,6 @@
 ### 서적
 
 - 하향식 네트워크
-
 - 모던 자바스크립트 deep dive
 
 <br>
