@@ -52,7 +52,9 @@ const MyComponent = () => {
 
 ```javascript
 /* emailState.tsx */
-export const emailValidationState = atom<boolean>({
+import { selector } from "recoil";
+
+export const emailValidationState = selector({
 	key: "emailValidationState",
 	get: ({ get }) => {
 		const email = get(emailState);
