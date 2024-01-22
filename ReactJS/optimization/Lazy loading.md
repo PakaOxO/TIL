@@ -90,9 +90,9 @@ const MyComponent = () => {
 
 <br>
 
-**useTransition**
+**startTransition**
 
-&nbsp;&nbsp;하지만 무조건 `fallback`을 표시하기 보단 이전에 띄워져 있는 컴포넌트를 보여주는 편이 좋을 수 있습니다. `Photos` 컴포넌트가 이미 렌더링되어 있는 상황에서 `Comments` 컴포넌트로 전환이 이루어질 때 굳이 `Glimmer`를 표시하는 것보단 `Photos`를 보여주다 `Comments`로 넘어가는 것이 자연스러울 수도 있으니깐요. React에서 제공하는 `useTransition` hook의 `startTransition`을 사용하면 불필요한 `fallback`을 피할 수 있습니다.
+&nbsp;&nbsp;하지만 무조건 `fallback`을 표시하기 보단 이전에 띄워져 있는 컴포넌트를 보여주는 편이 좋을 수 있습니다. `Photos` 컴포넌트가 이미 렌더링되어 있는 상황에서 `Comments` 컴포넌트로 전환이 이루어질 때 굳이 `Glimmer`를 표시하는 것보단 `Photos`를 보여주다 `Comments`로 넘어가는 것이 자연스러울 수도 있으니깐요. React에서 제공하는 `startTransition`을 사용하면 불필요한 `fallback`을 피할 수 있습니다.
 
 &nbsp;&nbsp;`Photos` 컴포넌트는 초기 렌더링 시에는 `fallback content`인 `Glimmer` 컴포넌트를 보여주지만, 이후 탭을 클릭해 컴포넌트를 전환할 때는 `startTransition`를 통해 `state`를 변경하고 재렌더링이 이루어지므로 `fallback content`는 표시되지 않고 old component인 `Photos` 또는 `Comments`가 보여집니다.
 
@@ -124,6 +124,14 @@ const MyComponent = () => {
   );
 }
 ```
+
+<br>
+
+&nbsp;&nbsp;React는 컴포넌트의 [[Concurrent Mode]] Mode 지원하기 위해 `useTransition` hook과 `startTransition`을 제공합니다. `useTransition`은 `isPending`과 `startTranstion`를 반환하는데, 여기서 반환되는 `startTransition`은 `React.startTransition`과 매우 비슷하게 동작합니다.
+
+>[!tip] `useTransition` vs `startTransition`
+>
+> &nbsp;&nbsp; `startTransition` is very similar to [`useTransition`](https://react.dev/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library. - React Docs.
 
 <br>
 
@@ -169,4 +177,5 @@ const MyComponent = () => {
 
 **References**
 - [React Docs, Code Splitting & Lazy loading](https://legacy.reactjs.org/docs/code-splitting.html)
+- [React Docs, startTransition](https://react.dev/reference/react/startTransition)
 - [React-suspense와 lazy loading을 통한 성능 최적화](https://www.deviantceblog.com/react-suspense%EC%99%80-lazy-loading%EC%9D%84-%ED%86%B5%ED%95%9C-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94/)
