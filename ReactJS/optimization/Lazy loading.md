@@ -44,12 +44,12 @@ import SkeletonUI from "./SkeletonUI";
 const LazyComponent = React.lazy(() => import("./OtherComponent"));
 
 const MyComponent = () => {
-	return (
-		<div>
-			<Suspense fallback={<SkeletonUI />}>
-				<LazyComponent />
-			</Suspense>
-		</div>
+  return (
+	  <div>
+		  <Suspense fallback={<SkeletonUI />}>
+			  <LazyComponent />
+		</Suspense>
+	  </div>
 	);
 }
 ```
@@ -92,7 +92,35 @@ function MyComponent() {
 
 **startTransition**
 
-&nbsp;&nbsp;하지만 무조건 `fallback`을 표시하기 보단 이전의 컴포넌트를 보여주는 편이 좋을 수 있습니다. `Photos` 컴포넌트가 이미 표시되어 있는 상황에서 `Comments` 컴포넌트로 전환이 이루어지면 굳이 `Glimmer`를 표시하는 것보단 `Photos`를 보여주다 `Comments`로 넘어가는 것이 자연스러울 수도 있으니깐요.
+&nbsp;&nbsp;하지만 무조건 `fallback`을 표시하기 보단 이전의 컴포넌트를 보여주는 편이 좋을 수 있습니다. `Photos` 컴포넌트가 이미 표시되어 있는 상황에서 `Comments` 컴포넌트로 전환이 이루어지면 굳이 `Glimmer`를 표시하는 것보단 `Photos`를 보여주다 `Comments`로 넘어가는 것이 자연스러울 수도 있으니깐요. React는 `startTransition` 메서드를 통해 불필요한 `fallback` 표시를 피할 수 있습니다.
+
+```javascript
+import React, { Suspense, startTransition } from 'react';
+import Tabs from './Tabs';
+import Glimmer from './Glimmer';
+
+const Comments = React.lazy(() => import('./Comments'));
+const Photos = React.lazy(() => import('./Photos'));
+
+function MyComponent() {
+  const [tab, setTab] = React.useState('photos');
+  
+  function handleTabSelect(tab) {
+	startTransition(() => {
+	  setTab(tab);
+	});
+  };
+
+  return (
+    <div>
+      <Tabs onTabSelect={handleTabSelect} />
+      <Suspense fallback={<Glimmer />}>
+        {tab === 'photos' ? <Photos /> : <Comments />}
+      </Suspense>
+    </div>
+  );
+}
+```
 
 <br>
 
