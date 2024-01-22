@@ -58,8 +58,41 @@ const MyComponent = () => {
 
 ### Avoiding fallbacks
 
-&nbsp;&nbsp;`fallback`을 사용하면 컴포넌트가 준비되기 전까지 `fallback content`를 보여줄 수 있지만 때로는 우
+&nbsp;&nbsp;`fallback`을 사용하면 컴포넌트가 준비되기 전까지 `fallback content`를 보여줄 수 있다는 점은 장점이면서도 때로는 원치 않은 동작이 될 수 있습니다. 다음 예시를 살펴보겠습니다.
 
+&nbsp;&nbsp;현재 우리 앱은 `Tabs` 컴포넌트를 통해 `Photos`와 `Comments` 컴포넌트간 전환이 가능합니다. 두 컴포넌트는 `Suspense` 컴포넌트에 의해 감싸져 있으며 준비가 완료되기 전엔 `fallback content`인 `Glimmer` 컴포넌트가 보여집니다.
+
+```javascript
+import React, { Suspense } from 'react';
+import Tabs from './Tabs';
+import Glimmer from './Glimmer';
+
+const Comments = React.lazy(() => import('./Comments'));
+const Photos = React.lazy(() => import('./Photos'));
+
+function MyComponent() {
+  const [tab, setTab] = React.useState('photos');
+  
+  function handleTabSelect(tab) {
+    setTab(tab);
+  };
+
+  return (
+    <div>
+      <Tabs onTabSelect={handleTabSelect} />
+      <Suspense fallback={<Glimmer />}>
+        {tab === 'photos' ? <Photos /> : <Comments />}
+      </Suspense>
+    </div>
+  );
+}
+```
+
+<br>
+
+**startTransition**
+
+&nbsp;&nbsp;하지만 무조건 `fallback`을 표시하기 보단 이전의 컴포넌트를 보여주는 편이 좋을 수 있습니다. `Photos` 컴포넌트가 이미 표시되어 있는 상황에서 `Comments` 컴포넌트로 전환이 이루어지면 굳이 `Glimmer`를 표시하는 것보단 `Photos`를 보여주다 `Comments`로 넘어가는 것이 자연스러울 수도 있으니깐요.
 
 <br>
 
