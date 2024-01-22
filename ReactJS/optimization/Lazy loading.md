@@ -33,7 +33,11 @@ return <>
 
 ### React.lazy
 
+&nbsp;&nbsp;React는 컴포넌트의 성능 개선을 위해 `React.lazy` 메서드를 제공하며, 이를 통해 `Lazy loading`을 구현할 수 있습니다.
 
+```react
+import React, { Suspense }
+```
 
 <br>
 
