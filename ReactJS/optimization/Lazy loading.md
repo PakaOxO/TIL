@@ -129,7 +129,7 @@ const MyComponent = () => {
 
 **Concurrent Mode**
 
-&nbsp;&nbsp;React는 `Concurrent Mode`를 지원하기 위해 `Suspense` 컴포넌트를 포함해,  `useTransition` hook과 `startTransition`을 제공합니다. `useTransition`은 `isPending`과 `startTranstion`이 담긴 배열을 반환하는데, 여기서 반환되는 `startTransition`은 `React.startTransition`과 매우 비슷하게 동작합니다. `startTransition`의 동작에 대한 자세한 설명은 [[Concurrent Mode]]에 대해 이야기하면서 다뤄보도록 하겠습니다.
+&nbsp;&nbsp;React는 `Concurrent Mode`를 지원하기 위해 `useDeferredValue`과 `useTransition` hook을 제공합니다. `useTransition`은 `isPending`과 `startTranstion`이 담긴 배열을 반환하는데, 여기서 반환되는 `startTransition`은 `React.startTransition`과 매우 비슷하게 동작합니다. `startTransition`의 동작과 `useDeferredValue`와의 차이점 등에 관한 자세한 설명은 이후 [[Concurrent Mode]]에 대해 이야기하면서 다뤄보도록 하겠습니다.
 
 >[!tip] `useTransition` vs `startTransition`
 >

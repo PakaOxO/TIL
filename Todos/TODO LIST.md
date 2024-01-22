@@ -9,7 +9,9 @@
 - ~~FLUX 아키텍처~~
 - ~~React ContextAPI~~
 - ~~Recoil과 Recoil 아키텍처?(Atom & Selector)~~
-- React lazy loading
+- ~~React, lazy loading~~
+- React, Concurrent Mode
+- React, Skeleton UI
 - FE Mock 데이터로 테스트하기
 
 <br>
