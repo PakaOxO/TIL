@@ -13,7 +13,7 @@
 
 **Code splitting**
 
-&nbsp;`Lazy loading`을 위해서는 `Code splitting`을 알아야 합니다. `Code splitting`은 크기가 큰 번들을 쪼개 `청크(Chunk)`로 나누고, 각 청크를 필요로 하는 상황  로드함으로 초기 렌더링 성능을 향상시킵니다.
+&nbsp;`Lazy loading`을 위해서는 `Code splitting`을 알아야 합니다. `Code splitting`은 크기가 큰 번들을 쪼개 `청크(Chunk)`로 나누고, 각 청크를 필요로 하는 상황에 따라  로드함으로 초기 렌더링 성능을 향상시킵니다.
 
 &nbsp;&nbsp;아래 버튼을 클릭했을 때 상품 정보를 서버에 요청하는 간단한 React JSX 반환문입니다. 만약 컴포넌트 상단에서 `./apis/callData` 모듈을 import 했다면 버튼을 클릭하기 전에도 해당 모듈 리소스를 내려받아야 합니다. 하지만 아래 코드는 버튼을 클릭했을 때에 비로소 모듈을 로드하고, 요청을 보내기 시작합니다.
 
