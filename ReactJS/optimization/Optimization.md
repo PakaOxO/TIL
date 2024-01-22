@@ -1,3 +1,4 @@
 
 ### Contents
 - [[Lazy loading]]
+- [[SkeletonUI]]

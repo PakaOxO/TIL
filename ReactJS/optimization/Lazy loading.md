@@ -33,10 +33,25 @@ return <>
 
 ### React.lazy
 
-&nbsp;&nbsp;React는 컴포넌트의 성능 개선을 위해 `React.lazy` 메서드를 제공하며, 이를 통해 `Lazy loading`을 구현할 수 있습니다.
+&nbsp;&nbsp;React는 컴포넌트의 성능 개선을 위해 `React.lazy` 메서드를 제공하며, 이를 통해 `Lazy loading`을 구현할 수 있습니다. `lazy()` 함수는 동적으로 `import`를 호출하는 함수를 콜백으로 받으며, `Promise`를 반환합니다. 이렇게 불러온 컴포넌트는 무조건 `Suspense`로 감싸야 합니다. `Suspense`는 리액트에서 제공하는 컴포넌트로 `Lazy loading`할 컴포넌트의 준비가 완료되기 전까지 `fallback content`를 화면에 표시합니다.
 
-```react
-import React, { Suspense }
+&nbsp;&nbsp;일반적으로 좋은 사용자 경험을 위해 `fallback content`에는  [[SkeletonUI]] 컴포넌트 또는 로딩 컴포넌트를 넘겨주는 것이 좋습니다.
+
+```javascript
+import React, { Suspense } from 'react';
+import SkeletonUI from "./SkeletonUI";
+
+const LazyComponent = React.lazy(() => import("./OtherComponent"));
+
+const MyComponent = () => {
+	return (
+		<div>
+			<Suspense fallback={<SkeletonUI />}>
+				<LazyComponent />
+			</Suspense>
+		</div>
+	);
+}
 ```
 
 <br>
