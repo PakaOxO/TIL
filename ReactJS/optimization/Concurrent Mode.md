@@ -7,7 +7,13 @@
 
 ### React v18 : Concurrent Mode
 
+**Interreptable**
+
 &nbsp;&nbsp;`Concurrent Mode`는 React 17에서 실험적으로 도입되었고 React 18에 이르러 본격적으로 지원되는 사양입니다. `Concurrent Mode`의 가장 큰 특징은 `interrupted`입니다. 이제 `Concurrent Mode`에서 렌더링은 우선순위가 높은 작업이 끼어들면 중간에 일시중지 되었다 이후 다시 시작될 수도 있고, 아예 중단될 수도 있습니다. React는 전체 Render Tree의 평가가 끝나고 DOM이 변경이 완료된 후에야 트리거되는 방식으로 동작합니다. 때문에 렌더링이 중단되어도 일관성있는 UI를 보장할 수 있습니다.
+
+<br>
+
+**Avoid Unwanted Spinner**
 
 &nbsp;&nbsp;기존의 React 프로젝트에서는 종종 데이터 fetch가 완료되기 전까지 Spinner를 확인할 수 있었습니다. Spinner는 사용자가 화면 로딩을 기다린다는 느낌을 주어 사용자 경험을 향상시킬 수 있지만, 반대로 과한 Spinner는 오히려 사용자 경험에 악영향을 끼칠 수 있습니다. 빠르게 fetch가 완료되거나 한번에 여러 정보를 가져올 때에는 불필요한 Spinner를 자주 보게 된다는 느낌을 지울 수 없습니다.
 
@@ -15,9 +21,17 @@
 
 <br>
 
-### useTransition
+### startTransition
 
-&nbsp;&nbsp;`useTransition`은 `isPending`과 `startTransition`을 담은 배열을 반환하는 React hook으로 `Suspense`와 함께 사용해 불필
+&nbsp;&nbsp;`useTransition`은 `isPending`과 `startTransition`을 담은 배열을 반환하는 React hook으로 `Concurrent Mode`에서 사용됩니다. 만약 `useTransition`을 사용할 수 없다면 `react` 모듈에서 `startTransition`을 직접 import해 사용할 수 있습니다.
+
+&nbsp;&nbsp;`startTransition`은 콜백함수를 받는데 콜백 함수에서 실행된 상태 변화는 
+
+`Suspense`와 함께 사용해 불필요한 placeholder를 방지할 수 있습니다. 앞서 매 데이터 fetch마다 표시되는 Spinner처럼 때로는 불필요한 placeholder content가 보이는 것을 원치 않을 수 있습니다.
+
+```javascript
+
+```
 
 <br>
 
