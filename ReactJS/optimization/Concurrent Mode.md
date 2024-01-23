@@ -62,7 +62,7 @@ const MyComponent = () => {
 
 **Perspective 02: Interruptable Render**
 
-&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 
+&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 입력, 클릭과 같은 직접적인 상호작용을 포함한 
 
 <br>
 
