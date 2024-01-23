@@ -1,7 +1,7 @@
 
 ### Concurrency?
 
-&nbsp;&nbsp;React의 `Concurrent Mode`에 대해 이해하기 위해서는 먼저 `동시성(Concurrency)`이 무엇인지 알아야 합니다. 결론부터 이야기하자면 `동시성(Concurrency)`은 사용자 경험을 위한 성질입니다. 기존의 React 렌더링은 `uninterrupted`한 특성을 가지고 있었습니다. 한번 렌더링이 시작되면 메인 스레드는 블록되고 렌더링이 완료되기 전까지 다른 작업은 실행될 수 없었죠. React 18에서는 본격적으로 `Concurrent Mode`를 통해 `동시성(Concurrency)`을 지원합니다. `Concurrent Mode`에서는 우선순위가 낮춰진 프로세스는 중간에 `interrupt`될 수 있어 중간에 긴급한 동작을 처리할 수 있습니다.
+&nbsp;&nbsp;React의 `Concurrent Mode`에 대해 이해하기 위해서는 먼저 `동시성(Concurrency)`이 무엇인지 알아야 합니다. 결론부터 이야기하자면 `동시성(Concurrency)`은 동시에 여러 동작이 이루어지는 것처럼 보이는 특성입니다. 기존의 React 렌더링은 `uninterrupted`한 특성을 가지고 있었습니다. 한번 렌더링이 시작되면 메인 스레드는 블록되고 렌더링이 완료되기 전까지 다른 작업은 실행될 수 없었죠. React 18에서는 본격적으로 `Concurrent Mode`를 통해 `동시성(Concurrency)`을 지원합니다. `Concurrent Mode`에서는 우선순위가 낮춰진 프로세스는 중간에 `interrupt`될 수 있어 중간에 긴급한 동작이 실행될 수 있으며, 동시에 여러 동작을 처리할 수 있게 되었습니다.
 
 <br>
 
