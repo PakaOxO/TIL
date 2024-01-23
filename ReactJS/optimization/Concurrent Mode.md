@@ -62,7 +62,7 @@ const MyComponent = () => {
 
 **Perspective 02: Interruptable Render**
 
-&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 입력, 클릭과 같은 직접적인 상호작용을 포함한 긴급한 업데이트에 의해 `interrupt`될 수 있습니다. [React 공식문서](https://react.dev/reference/react/useTransition)의 `TabButton` 예제를 보면 `startTransition`없이 `setTab` 상태변경이 이루어지면 렌더링 대기시간이 긴 `Posts` 탭을 클릭한 직후, 다른 탭의 클릭이 블록되는 것을 확인할 수 있습니다. 하지만 `startTransition` 내부에 `setTab`으로 상태변경을 했을 경우, `Posts` 컴포넌트의 렌더링은 클릭 이벤트에 의해 `interrupt`되어 중다
+&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 입력, 클릭과 같은 직접적인 상호작용을 포함한 긴급한 업데이트에 의해 `interrupt`될 수 있습니다. [React 공식문서](https://react.dev/reference/react/useTransition)의 `TabButton` 예제를 보면 `startTransition`없이 `setTab` 상태변경이 이루어지면 렌더링 대기시간이 긴 `Posts` 탭을 클릭한 직후, 다른 탭의 클릭이 블록되는 것을 확인할 수 있습니다. 하지만 `startTransition` 내부에 `setTab`으로 상태변경을 했을 경우, `Posts` 컴포넌트의 렌더링은 클릭 이벤트에 의해 `interrupt`되어 중단됩니다.
 
 ```javascript
 import { useState, useTransition } from 'react';
@@ -105,6 +105,33 @@ export default function TabContainer() {
       {tab === 'about' && <AboutTab />}
       {tab === 'posts' && <PostsTab />}
       {tab === 'contact' && <ContactTab />}
+    </>
+  );
+}
+```
+
+<br>
+
+&nbsp;&nbsp;이와 같이 React 18에서는 `startTransition`과 같은 사용자 경험을 위한 강력한 기능을 제공합니다. React의 `Concurrent Mode`를 활용하면 사용자 입장에서는 지연없이 다음 화면이 빠르게 보여지는 것처럼 구현할 수 있죠. 본문에서는 다루지 않았지만 React는 `useTransition` 외에도 `useDefferedValue` hook을 제공합니다. `startTransition`은 콜백함수를 통해 함수의 우선순위를 낮춘다면 `useDefferedValue`는 값의 우선순위를 낮추어 값에 의한 렌더 트리 리렌더링을 지연시킵니다.
+
+```javascript
+function Typeahead() {
+  const query = useSearchQuery('');
+
+  // useDeferredValue는 값만 지연하는 것이다.
+  const deferredQuery = useDeferredValue(query);
+
+  // 급한 update 동안 리렌더링을 방지하려면 컴포넌트는 메모해야 한다
+  // useDeferredValue에만 통용되는 패턴은 아니며 디바운싱을 사용하는 경우도 마찬가지다
+  const suggestions = useMemo(
+    () => <SearchSuggestions query={deferredQuery} />,
+    [deferredQuery],
+  );
+
+  return (
+    <>
+      <SearchInput query={query} />
+      <Suspense fallback="Loading results...">{suggestions}</Suspense>
     </>
   );
 }
