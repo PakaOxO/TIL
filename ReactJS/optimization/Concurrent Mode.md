@@ -62,7 +62,53 @@ const MyComponent = () => {
 
 **Perspective 02: Interruptable Render**
 
-&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 입력, 클릭과 같은 직접적인 상호작용을 포함한 
+&nbsp;&nbsp;`startTransition`을 통해 우선순위가 밀린 동작은 입력, 클릭과 같은 직접적인 상호작용을 포함한 긴급한 업데이트에 의해 `interrupt`될 수 있습니다. [React 공식문서](https://react.dev/reference/react/useTransition)의 `TabButton` 예제를 보면 `startTransition`없이 `setTab` 상태변경이 이루어지면 렌더링 대기시간이 긴 `Posts` 탭을 클릭한 직후, 다른 탭의 클릭이 블록되는 것을 확인할 수 있습니다. 하지만 `startTransition` 내부에 `setTab`으로 상태변경을 했을 경우, `Posts` 컴포넌트의 렌더링은 클릭 이벤트에 의해 `interrupt`되어 중다
+
+```javascript
+import { useState, useTransition } from 'react';
+import TabButton from './TabButton.js';
+import AboutTab from './AboutTab.js';
+import PostsTab from './PostsTab.js';
+import ContactTab from './ContactTab.js';
+
+export default function TabContainer() {
+  const [isPending, startTransition] = useTransition();
+  const [tab, setTab] = useState('about');
+
+  function selectTab(nextTab) {
+    startTransition(() => {
+      setTab(nextTab);
+    });
+  }
+
+  return (
+    <>
+      <TabButton
+        isActive={tab === 'about'}
+        onClick={() => selectTab('about')}
+      >
+        About
+      </TabButton>
+      <TabButton
+        isActive={tab === 'posts'}
+        onClick={() => selectTab('posts')}
+      >
+        Posts (slow)
+      </TabButton>
+      <TabButton
+        isActive={tab === 'contact'}
+        onClick={() => selectTab('contact')}
+      >
+        Contact
+      </TabButton>
+      <hr />
+      {tab === 'about' && <AboutTab />}
+      {tab === 'posts' && <PostsTab />}
+      {tab === 'contact' && <ContactTab />}
+    </>
+  );
+}
+```
 
 <br>
 
