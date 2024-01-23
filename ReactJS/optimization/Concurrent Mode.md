@@ -23,9 +23,11 @@
 
 ### startTransition
 
-**Perspective 01: Avoid Unwanted Spinner**
-
 &nbsp;&nbsp;`startTransition`은 React가 제공하는 함수로 `Concurrent Mode`를 지원합니다. `startTransition`은 낮은 우선순위로 실행할 콜백함수를 받는데, 상태 변경을 위한 `useState` hook의 `setState`가 `startTransition` 콜백함수 내에서 실행되면 상태 변경의 우선순위가 현재 렌더링이 아닌 다음 렌더링으로 밀려 업데이트 됩니다.
+
+<br>
+
+**Perspective 01: Avoid Unwanted Spinner**
 
 &nbsp;&nbsp;또한 `startTransition`을 사용하면 DOM의 변동사항이 실제 화면에 적용되는 것은 필요한 모든 데이터가 준비될 때까지 기다리게 됩니다. 때문에 사용자는 변경된 화면을 보기 전까진 이전의 UI를 바라보게 되죠. 이를 활용하면 앞서 이야기했듯 원치 않는 Spinner를 방지할 수 있습니다. 아래 코드에서는 `startTransition` 내부에서 tab 상태를 변경합니다. 때문에 `setTab`으로 호출되어 탭이 이동할 때에는 상태 변경이 지연되어 다음 탭 컴포넌트 데이터가 모두 준비될 때까지 Spinner가 아닌 이전의 탭(`Photos` 또는 `Comments`)을 보게되는 것이지요.
 
@@ -112,7 +114,11 @@ export default function TabContainer() {
 
 <br>
 
+**useDefferedValue**
+
 &nbsp;&nbsp;이와 같이 React 18에서는 `startTransition`과 같은 사용자 경험을 위한 강력한 기능을 제공합니다. React의 `Concurrent Mode`를 활용하면 사용자 입장에서는 지연없이 다음 화면이 빠르게 보여지는 것처럼 구현할 수 있죠. 본문에서는 다루지 않았지만 React는 `useTransition` 외에도 `useDefferedValue` hook을 제공합니다. `startTransition`은 콜백함수를 통해 함수의 우선순위를 낮춘다면 `useDefferedValue`는 값의 우선순위를 낮추어 값에 의한 렌더 트리 리렌더링을 지연시킵니다.
+
+&nbsp;&nbsp;다음 코드는 검색창의 입력에 맞는 추천 검색어를 제시해주는 샘플 코드로 `useDfferedValue`를 활용할 수 있는 예시입니다. 이와 가이 `useDefferedValue`는 값의 변경에 의한 리렌더링을 지연시키며, 값이 `props`로 전달될 경우
 
 ```javascript
 function Typeahead() {
