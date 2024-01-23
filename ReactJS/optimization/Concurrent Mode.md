@@ -13,7 +13,7 @@
 
 <br>
 
-**Avoid Unwanted Spinner**
+**Avoiding Unwanted Spinner**
 
 &nbsp;&nbsp;기존의 React 프로젝트에서는 종종 데이터 fetch가 완료되기 전까지 Spinner를 확인할 수 있었습니다. Spinner는 사용자가 화면 로딩을 기다린다는 느낌을 주어 사용자 경험을 향상시킬 수 있지만, 반대로 과한 Spinner는 오히려 사용자 경험에 악영향을 끼칠 수 있습니다. 빠르게 fetch가 완료되거나 이전 탭에서 다른 탭으로 이동하는 경우에는 불필요한 Spinner를 자주 보게 된다는 느낌을 받을 수 있습니다.
 
@@ -27,7 +27,7 @@
 
 <br>
 
-**Perspective 01: Avoid Unwanted Spinner**
+**Perspective 01: Avoiding Unwanted Spinner**
 
 &nbsp;&nbsp;`startTransition`을 사용하면 DOM의 변동사항이 실제 화면에 적용되는 것은 필요한 모든 데이터가 준비될 때까지 지연됩니다. 때문에 사용자는 변경된 화면을 보기 전까진 이전의 UI를 바라보게 되죠. 이를 활용하면 앞서 이야기했듯 원치 않는 Spinner를 방지할 수 있습니다. 아래 코드에서는 `startTransition` 내부에서 tab 상태를 변경합니다. `setTab`이 호출되어 탭이 이동할 때에는 상태 변경이 지연되므로 다음 탭 컴포넌트 데이터가 모두 준비될 때까지 Spinner가 아닌 이전의 탭(`Photos` 또는 `Comments`)을 보게되는 것이지요.
 
