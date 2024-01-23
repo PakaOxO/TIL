@@ -23,6 +23,8 @@
 
 ### startTransition
 
+**Perspective 01: Avoid Unwanted Spinner**
+
 &nbsp;&nbsp;`startTransition`은 React가 제공하는 함수로 `Concurrent Mode`를 지원합니다. `startTransition`은 낮은 우선순위로 실행할 콜백함수를 받는데, 상태 변경을 위한 `useState` hook의 `setState`가 `startTransition` 콜백함수 내에서 실행되면 상태 변경의 우선순위가 현재 렌더링이 아닌 다음 렌더링으로 밀려 업데이트 됩니다.
 
 &nbsp;&nbsp;또한 `startTransition`을 사용하면 DOM의 변동사항이 실제 화면에 적용되는 것은 필요한 모든 데이터가 준비될 때까지 기다리게 됩니다. 때문에 사용자는 변경된 화면을 보기 전까진 이전의 UI를 바라보게 되죠. 이를 활용하면 앞서 이야기했듯 원치 않는 Spinner를 방지할 수 있습니다. 아래 코드에서는 `startTransition` 내부에서 tab 상태를 변경합니다. 때문에 `setTab`으로 호출되어 탭이 이동할 때에는 상태 변경이 지연되어 다음 탭 컴포넌트 데이터가 모두 준비될 때까지 Spinner가 아닌 이전의 탭(`Photos` 또는 `Comments`)을 보게되는 것이지요.
@@ -58,9 +60,14 @@ const MyComponent = () => {
 
 <br>
 
-**useTransition**
+**Perspective 02: Interruptable Render**
 
-&nbsp;&nbsp;`useTransition` hook은 지연상태인지 여부를 표시하는 불리언 값인 `isPending`과 우선순위를 낮출 
+<br>
+
+> [!tip] **useTransition**
+>
+> &nbsp;&nbsp;`useTransition` hook은 지연상태인지 여부를 표시하는 불리언 값인 `isPending`과 `startTransition`을 배열에 담아 반환합니다. `startTransition`에 의해 우선순위가 밀린 작업이 완료되기 전까지 `isPending`은 `true`값을 가지므로 이를 활용해 대기시간동안 표시할 `JSX`를 반환할 수 있습니다.
+
 <br>
 
 **References**
