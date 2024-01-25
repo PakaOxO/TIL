@@ -20,7 +20,7 @@
 ```javascript
 // Character.tsx
 const Character = ({ uid }: { uid: string }) => {
-  const character = useRecoilValue<ICharacter>();
+  const [character, setCharacter] = useState<ICharacter>()
 
   // fetch-on-render
   useEffect(() => {
@@ -74,11 +74,22 @@ const CharacterStatus = ({ cuid }: { cuid: string }) => {
 
 **Waterfall problem**
 
-&nbsp;&nbsp;위 예시 코드의 동작 과정을 살펴보면,
+다음은 위 예시 코드의 동작 과정입니다.
 
-1. Character 컴포넌트 렌더링 + characterFetch
-2. 조회된 character를 통해 Character 컴포넌트 재렌더링 with 
-3. Fetch 완료
+1. Character 렌더링 + characterFetch
+2. 조회된 character로 Character 컴포넌트 재렌더링
+3. CharacterStatus 렌더링 + characterStatFetch
+4. 조회된 stats로 CharacterStatus 재렌더링
+
+<br>
+
+&nbsp;&nbsp;비동기 작업의 장점은 동시성을 통한 효율성이지만, 위 코드는 동시성을 포기했기 때문에 `Waterfall` 이슈가 발생하게 됩니다. CharacterStatus 컴포넌트는 Character 컴포넌트에서 호출한 fetch 함수의 결과로 응답을 받았을 때 비로소 렌더링될 수 있으며, CharacterStatus에서 fetch 요청을 보낼 수 있습니다. 결과적으로 부모 컴포넌트부터 순차적으로 렌더링 & fetch가 이루어지기 때문에 효율성이 떨어집니다.
+
+<br>
+
+### Fetch-then-render
+
+&nbsp;&nbsp;그렇다면 이번에는 fetch 이벤트의 동시성을 보장하기 위해 부모 컴포넌트에서 한번에 처리해보도록 하겠습니다. 모든 비동기 작업이 완료되면 부모 컴포넌트는 
 
 
 <br>
