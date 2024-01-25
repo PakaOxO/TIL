@@ -66,6 +66,23 @@ const CharacterStatus = ({ cuid }: { cuid: string }) => {
 
 <br>
 
+**Race Condition(경쟁 상태)**
+
+&nbsp;&nbsp;위 코드를 살펴보면 데이터를 `fetch`하는 함수와 컴포넌트 렌더링은 각자 독자적인 `생명주기(Lifecycle)`가지고 동작하기 때문에 서로 `경쟁 상태`에 놓이게 됩니다. 때문에 서버로부터 데이터를 받기 전에 빈 데이터가 렌더링 되는 것을 방지하기 위해 두 작업을 동기화 시키는 코드를 추가했죠. 하지만 이러한 방식은 컴포넌트 복잡성 증가와 `Waterfall` 이슈를 야기할 수 있습니다.
+
+<br>
+
+**Waterfall problem**
+
+&nbsp;&nbsp;위 예시 코드의 동작 과정을 살펴보면,
+
+1. Character 컴포넌트 렌더링 + characterFetch
+2. 조회된 character를 통해 Character 컴포넌트 재렌더링 with 
+3. Fetch 완료
+
+
+<br>
+
 **References**
 - [React Docs, Suspense](https://react.dev/blog/2022/03/29/react-v18#suspense-in-data-frameworks)
 - [React Docs(v17), Suspense for Data Fetching](https://17.reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)
