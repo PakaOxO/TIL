@@ -3,6 +3,13 @@
 
 <br>
 
-### Fetch-on-render
+### Tranditional Fetch vs Fetch with Suspense
 
 &nbsp;&nbsp;
+
+<br>
+
+**References**
+- [React Docs, Suspense](https://react.dev/blog/2022/03/29/react-v18#suspense-in-data-frameworks)
+- [React Docs(v17), Suspense for Data Fetching](https://17.reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)
+- [Suspense와 선언적으로 Data fetching처리(카카오 기술블로그)](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)
