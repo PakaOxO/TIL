@@ -207,6 +207,10 @@ const App = () => {
 
 <br>
 
+>[!tip] &nbsp;&nbsp;React Canary 버전에서는 새로운 hook인 `use`를 제시하고 있습니다. `use`는 인자로 `Promise`, 혹은 `Context`을 넘겨 받으며 `Promise`의 상태(status)가 `fullfilled`가 아니라면 `Suspense`의 `fallback`을 렌더링하도록 합니다. `use` hook에 대해서는 이후 포스트에서 자세하게 다뤄보도록 하겠습니다.
+
+<br>
+
 **Suspense의 장점**
 
 1. 이제 자식 컴포넌트는 각자 필요한 데이터를 동시에 직접 호출하며, `Waterfall` 이슈가 발생하지 않습니다.
@@ -219,6 +223,7 @@ const App = () => {
 ### 후기
 
 &nbsp;&nbsp;현재 진행하는 프로젝트에서는 애매한 개발 컨벤션으로 `Fetch-on-Render`와  `Fetch-then-Render` 방식이 혼재해 있어 데이터 `fetching`과 렌더링에 `Waterfall` 이슈가 있으며, 컴포넌트의 복잡성이 매우 높은 편입니다. 마감 기한으로 현재는 바로 코드 개선이 어려운 상황이지만 릴리즈 이후에 본격적으로 `Suspense`, `react-query` 등을 도입해 리팩토링과 성능 개선을 위한 시간을 가져보려고 합니다. 이후 리팩토링 기간에 직접 코드를 작성하며 `Suspense`를 사용해 컴포넌트 렌더링을 함으로써 개선한 사항들을 다룰 기회가 있다면 별도의 포스트를 남겨보도록 하겠습니다.
+
 <br>
 
 **References**
