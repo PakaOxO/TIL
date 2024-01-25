@@ -143,12 +143,15 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 <br>
 
-&nbsp;&nbsp;아래 `useFetch` 커스텀 hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다.
+**Custom Hook 작성**
+
+&nbsp;&nbsp;아래 `useFetch` custom hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다.
 
 ```javascript
+// useFetch.tsx
 const useFetch<T, I> = (fetch: (arg: I) => Promise<T>, arg: I) => {
   const [ _promise, _setPromise ] = useState<Promise<void>>();
-  const [ _status, _setStatus ] = useState<"pending" | "error" | "fullfilled">("pending");
+  const [ _status, _setStatus ] = useState<"pending" | "fullfilled" | "error">("pending");
   const [ _result, _setResult ] = useState<T>();
   const [ _error, _setError ] = useState<Error>();
 
@@ -179,7 +182,37 @@ const useFetch<T, I> = (fetch: (arg: I) => Promise<T>, arg: I) => {
 }
 
 export default useFetch;
+
+// Character.tsx
+const Character = ({ uid }: { uid: string }) => {
+  const character = useFetch<ICharacter, string>(getCharacter, uid);
+  return (
+    <>
+      <h2>character?.name</h2>
+    </>
+  );
+}
+
+// App.tsx
+const App = () => {
+  return (
+    <div className="app">
+      <Suspense fallback={<div>Loading...</div>}>
+        <Character uid={"u012320240125"} />
+      </Suspense>
+    </div>
+  );
+}
 ```
+
+<br>
+
+**Suspense의 장점**
+
+1. 이제 자식 컴포넌트는 각자 필요한 데이터를 동시에 직접 호출하며, waterfall 이슈가 발생하지 않습니다.
+2. `Suspense`와 `fallback` 프로퍼티를 통한 렌더링으로 컴포넌트들은 `경쟁상태`를 신경쓰지 않아도 됩니다.
+3. 컴포넌트들의 역할이 분명해졌습니다. 또한 컴포넌트 결합도가 낮아집니다.
+4. 동기화를 위해 사용했던 코드가 사라졌습니다. 각 컴포넌트는 `fetch`와 렌더링 로직만 가지고 있어 컴포넌트의 복잡성이 낮아졌습니다.
 
 <br>
 
