@@ -20,11 +20,11 @@
 ```javascript
 // Character.tsx
 const Character = ({ uid }: { uid: string }) => {
-  const [character, setCharacter] = useState<ICharacter>()
+  const [character, setCharacter] = useState<ICharacter>();
 
   // fetch-on-render
   useEffect(() => {
-    fetchCharacter(uid);
+    fetchCharacter(uid).then(setCharacter);
   }, [uid]);
 
   // 동기화 작업
@@ -42,11 +42,11 @@ const Character = ({ uid }: { uid: string }) => {
 
 // CharacterStatus.tsx
 const CharacterStatus = ({ cuid }: { cuid: string }) => {
-  const stats = useRecoilValue<IStats>();
+  const [stats, setStats] = useState<IStat>();
 
   // fetch-on-render
   useEffect(() => {
-    fetchStatus(cuid);
+    fetchStatus(cuid).then(setStats);
   });
 
   // 동기화 작업
@@ -87,10 +87,56 @@ const CharacterStatus = ({ cuid }: { cuid: string }) => {
 
 <br>
 
-### Fetch-then-render
+### Fetch-then-render: Relay without Suspense
 
-&nbsp;&nbsp;그렇다면 이번에는 fetch 이벤트의 동시성을 보장하기 위해 부모 컴포넌트에서 한번에 처리해보도록 하겠습니다. 모든 비동기 작업이 완료되면 부모 컴포넌트는 
+&nbsp;&nbsp;그렇다면 이번에는 fetch 이벤트의 동시성을 보장하기 위해 부모 컴포넌트에서 한번에 처리해보도록 하겠습니다. 모든 비동기 작업이 완료되면 부모 컴포넌트는 자식 컴포넌트에게 데이터를 전달합니다.
 
+```javascript
+// Character.tsx
+const Character = ({ uid }: { uid: string }) => {
+  const [character, setCharacter] = useState<ICharacter>();
+  const [stats, setStats] = useState<IStat>();
+
+  // fetch-then-render
+  useEffect(() => {
+    Promise.all([fetchCharacter(uid), fetchStatus(uid)])
+      .then((character, stats) => {
+        setCharacter(character);
+        setStats(stats);
+      });
+  }, [uid]);
+
+  return (
+    <>
+      <h2>character?.name</h2>
+      <CharacterStatus stats={stats} />
+    </>
+  );
+}
+
+// CharacterStatus.tsx
+const CharacterStatus = ({ stats }: { stats: IStat }) => {
+  return (
+    <ul>
+      {stats?.map((stat) => 
+        <li key={stat.id}>{ stat.name }: { stat.value }</li>
+      )}
+    </ul>
+  );
+}
+```
+
+<br>
+
+**높은 결합도**
+
+&nbsp;&nbsp;이제는 모든 비동기 작업이 동시에 이루어집니다. 하지만 Character 컴포넌트의 역할이 커지게 되었습니다. 실제로 Character는 자식 컴포넌트로 장착 장비(Weapons), 장착 펫(Pets) 등을 가지고 있습니다. 모든 자식 컴포넌트의 fetch 요청을 Character가 들고 있게 되면 하위 컴포넌트는 Character에 높은 결합도가 생기고, 각 컴포넌트의 역할이 불분명해집니다. 사실 각 컴포넌트에서 자신이 필요로 하는 작업을 처리하는 편이 더 좋아보입니다.
+
+<br>
+
+### Render-as-you-fetch: Relay with Suspense
+
+&nbsp;&nbsp;`Render
 
 <br>
 
