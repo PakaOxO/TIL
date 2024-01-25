@@ -146,10 +146,36 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 &nbsp;&nbsp;아래 `useFetch` 커스텀 hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다.
 
 ```javascript
-const useFetch<T, I> = (fetch: (arg: T) => Promise<T>, arg: I) => {
+const useFetch<T, I> = (fetch: (arg: I) => Promise<T>, arg: I) => {
   const [ _promise, _setPromise ] = useState<Promise<void>>();
   const [ _status, _setStatus ] = useState<"pending" | "error" | "fullfilled">("pending");
   const [ _result, _setResult ] = useState<T>();
+  const [ _error, _setError ] = useState<Error>();
+
+  const _resolvePromise = (result: T) => {
+    _setStatus("fullfilled");
+    _setResult(result);
+  }
+
+  const _rejectPromise = (error: Error) => {
+    _setStatus("error");
+    _setError(error);
+  }
+
+  useEffect(() => {
+    _setStatus("pending");
+    _setPromise(fetch(arg).then(_resolvePromise, _rejectPromise));
+  }, [arg]);
+
+  if (_status === "pending" && _promise) {
+    throw _promise;
+  }
+
+  if (_status === "error") {
+    throw _error;
+  }
+
+  return _result;
 }
 
 export default useFetch;
