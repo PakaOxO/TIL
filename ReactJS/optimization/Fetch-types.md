@@ -15,16 +15,52 @@
 
 ### Fetch-on-render: Fetch in useEffect
 
-&nbsp;&nbsp;`Fetch-on-render`는 일반적으로 `useEffect` 내부에서 비동기 요청을 처리하고, 응답 데이터를 받으면 새롭게 컴포넌트를 렌더링하는 방법입니다. 아래 예시코드는 최근 진행하는 프로젝트의 캐릭터 정보 조회 컴포넌트의 일부입니다.
+&nbsp;&nbsp;`Fetch-on-render`는 일반적으로 `useEffect` 내부에서 비동기 요청을 처리하고, 응답 데이터를 받으면 새롭게 컴포넌트를 렌더링하는 방법입니다. 아래 예시 코드는 최근 진행하는 프로젝트의 캐릭터 정보 조회 컴포넌트의 일부입니다.
 
 ```javascript
+// Character.tsx
 const Character = ({ uid }: { uid: string }) => {
-  const [character, setCharacter] = useState<ICharacter>();
+  const character = useRecoilValue<ICharacter>();
 
   // fetch-on-render
   useEffect(() => {
-    fetchCharacter(uid).then(setChara)
+    fetchCharacter(uid);
+  }, [uid]);
+
+  // 동기화 작업
+  if (isEmpty(character)) {
+    return <p>Loading...</p>
+  }
+
+  return (
+    <>
+      <h2>character?.name</h2>
+      <CharacterStatus cuid={uid} />
+    </>
+  );
+}
+
+// CharacterStatus.tsx
+const CharacterStatus = ({ cuid }: { cuid: string }) => {
+  const stats = useRecoilValue<IStats>();
+
+  // fetch-on-render
+  useEffect(() => {
+    fetchStatus(cuid);
   });
+
+  // 동기화 작업
+  if (isEmpty(stats)) {
+    return <p>Loading</p>
+  }
+
+  return (
+    <ul>
+      {stats?.map((stat) => 
+        <li key={stat.id}>{ stat.name }: { stat.value }</li>
+      )}
+    </ul>
+  );
 }
 ```
 
