@@ -136,7 +136,7 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 ### Render-as-you-fetch: Relay with Suspense
 
-&nbsp;&nbsp;`Render
+&nbsp;&nbsp;`Render-as-you-fetch` 방법을 살펴보기 전에 `Suspense`의 동작 방식을 먼저 알아야 합니다.
 
 <br>
 
