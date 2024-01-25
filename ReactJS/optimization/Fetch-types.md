@@ -145,7 +145,7 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 **Custom Hook 작성**
 
-&nbsp;&nbsp;아래 `useFetch` custom hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다.
+&nbsp;&nbsp;아래 `useFetch` custom hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다. `useFetch`에서 넘겨 받은 `fetch` 함수의 반환 `Promise`의 `status`값이 `fullfilled`가 되기 전엔 `throw`를 통해 `Suspense`의 `fallback`이 렌더링되며, `fullfilled`가 되었을 때 비로소 `children`으로 주어진 컴포넌트(Character)가 렌더링됩니다.
 
 ```javascript
 // useFetch.tsx
@@ -209,15 +209,16 @@ const App = () => {
 
 **Suspense의 장점**
 
-1. 이제 자식 컴포넌트는 각자 필요한 데이터를 동시에 직접 호출하며, waterfall 이슈가 발생하지 않습니다.
+1. 이제 자식 컴포넌트는 각자 필요한 데이터를 동시에 직접 호출하며, `Waterfall` 이슈가 발생하지 않습니다.
 2. `Suspense`와 `fallback` 프로퍼티를 통한 렌더링으로 컴포넌트들은 `경쟁상태`를 신경쓰지 않아도 됩니다.
 3. 컴포넌트들의 역할이 분명해졌습니다. 또한 컴포넌트 결합도가 낮아집니다.
 4. 동기화를 위해 사용했던 코드가 사라졌습니다. 각 컴포넌트는 `fetch`와 렌더링 로직만 가지고 있어 컴포넌트의 복잡성이 낮아졌습니다.
 
 <br>
 
+### 후기
 
-
+&nbsp;&nbsp;현재 진행하는 프로젝트에서는 애매한 개발 컨벤션으로 `Fetch-on-Render`와  `Fetch-then-Render` 방식이 혼재해 있어 데이터 `fetching`과 렌더링에 `Waterfall` 이슈가 있으며, 컴포넌트의 복잡성이 매우 높은 편입니다. 마감 기한으로 현재는 바로 코드 개선이 어려운 상황이지만 릴리즈 이후에 본격적으로 `Suspense`, `react-query` 등을 도입해 리팩토링과 성능 개선을 위한 시간을 가져보려고 합니다. 이후 리팩토링 기간에 직접 코드를 작성하며 `Suspense`를 사용해 컴포넌트 렌더링을 함으로써 개선한 사항들을 다룰 기회가 있다면 별도의 포스트를 남겨보도록 하겠습니다.
 <br>
 
 **References**
