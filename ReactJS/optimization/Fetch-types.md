@@ -136,7 +136,28 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 ### Render-as-you-fetch: Relay with Suspense
 
-&nbsp;&nbsp;`Render-as-you-fetch` 방법을 살펴보기 전에 `Suspense`의 동작 방식을 먼저 알아야 합니다.
+&nbsp;&nbsp;`Render-as-you-fetch`를 살펴보기 전에 `Suspense`의 동작 방식을 먼저 알아야 합니다. React에서 제공하는 `Suspense` 컴포넌트와 비동기 작업을 가진 자식 컴포넌트 간의 동작은 다음과 같이 이루어집니다.
+
+1. `children` 컴포넌트가 `Promise`를 `throw`하면 `Suspense` 컴포넌트는 `fallback`으로 넘겨받은 컴포넌트를 렌더링합니다.
+2. `fullfill(이행)`된 `Promise`가 반환되면 `children` 컴포넌트를 렌더링합니다.
+
+<br>
+
+&nbsp;&nbsp;아래 `useFetch` 커스텀 hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다.
+
+```javascript
+const useFetch<T, I> = (fetch: (arg: T) => Promise<T>, arg: I) => {
+  const [ _promise, _setPromise ] = useState<Promise<void>>();
+  const [ _status, _setStatus ] = useState<"pending" | "error" | "fullfilled">("pending");
+  const [ _result, _setResult ] = useState<T>();
+}
+
+export default useFetch;
+```
+
+<br>
+
+
 
 <br>
 
