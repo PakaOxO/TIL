@@ -147,6 +147,8 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 &nbsp;&nbsp;아래 `useFetch` custom hook은 기존에 제가 작성하던 코드보다 깔끔하게 작성되어 있어 [카카오 기술블로그](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)로부터 참조했습니다. `useFetch`에서 넘겨 받은 `fetch` 함수의 반환 `Promise`의 `status`값이 `fullfilled`가 되기 전엔 `throw`를 통해 `Suspense`의 `fallback`이 렌더링되며, `fullfilled`가 되었을 때 비로소 `children`으로 주어진 컴포넌트(Character)가 렌더링됩니다.
 
+&nbsp;&nbsp;중요한 점은 `Suspense`가 `Character` 컴포넌트의 렌더링을 기다리기 위해서는 `Character` 컴포넌트가 `React.lazy()`를 통해 `Lazy-component`로 호출되어야 한다는 점입니다. `Lazy-component`에 관한 내용은 [[Lazy loading]] 포스트에서 다루고 있습니다.
+
 ```javascript
 // useFetch.tsx
 const useFetch<T, I> = (fetch: (arg: I) => Promise<T>, arg: I) => {
@@ -194,11 +196,12 @@ const Character = ({ uid }: { uid: string }) => {
 }
 
 // App.tsx
+const LazyCharacter = React.lazy(() => import("./Character"));
 const App = () => {
   return (
     <div className="app">
       <Suspense fallback={<div>Loading...</div>}>
-        <Character uid={"u012320240125"} />
+        <LazyCharacter uid={"u012320240125"} />
       </Suspense>
     </div>
   );
