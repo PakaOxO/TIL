@@ -42,7 +42,7 @@
 
 &nbsp;&nbsp;사실 로드되는 시간은 개발자가 제어할 수 없는 인자입니다. 네트워크 상황에 따라, 사용자에 따라 동일한 페이지가 로드되는 시간은 다를 수 있습니다. 그렇다면 페이지가 빠르게 로드될 때에는 `Skeleton UI`를 표시하지 않고, 느리게 로드될 때엔 표시되도록 하는 방법이 있을까요?
 
-&nbsp;&nbsp;[카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서는 `Suspense`의 `fallback`으로 넘겨받은 `Skeleton` 컴포넌트를 `DeferredComponent`로 감싸 이를 통해 `Skeleton` 컴포넌트가 200ms 안쪽으로 로드되는 것을 방지하는 코드로 로드 속도에 따라 동적으로 `Skeleton` 컴포넌트를 표시할지 말지를 결정하는 방식으로 구현하고 있습니다.
+&nbsp;&nbsp;[카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서는 `Suspense`의 `fallback`으로 넘겨받은 `Skeleton` 컴포넌트를 `DeferredComponent`로 감싸 이를 통해 `Skeleton` 컴포넌트가 200ms 안쪽으로 로드되는 것을 방지하는 코드로 로드 속도에 따라 동적으로 `Skeleton` 컴포넌트를 표시할지 말지를 결정하는 방식으로 구현하고 있습니다. 이 방식을 현재 개발하고 있는 토이 프로젝트에 바로 적용해보도록 하겠습니다.
 
 <br>
 
