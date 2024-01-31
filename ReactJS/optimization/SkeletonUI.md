@@ -18,7 +18,7 @@
 
 ### Skeleton UI와 사용자 경험
 
-&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 `사용자 경험`
+&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요?
 
 
 <br>
