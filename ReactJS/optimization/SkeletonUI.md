@@ -46,6 +46,12 @@
 
 <br>
 
+```javascript
+
+```
+
+<br>
+
 **References**
 - [더 나은 UX를 위한 React에서 스켈레톤 컴포넌트 만들기](https://ui.toast.com/weekly-pick/ko_20201110)
 - [무조건 스켈레톤 화면을 보여주는게 사용자 경험에 도움이 될까요?](https://tech.kakaopay.com/post/skeleton-ui-idea/)
