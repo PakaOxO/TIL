@@ -18,12 +18,16 @@
 
 ### Skeleton UI와 사용자 경험
 
-&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요?
+&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요? 결론부터 이야기하자면 "그렇지 않다"입니다. [카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서 인용한 UX 리서치 그룹(닐슨 노먼 그룹)의 [Progress indicators](https://www.nngroup.com/articles/progress-indicators/) 지침을 아래와 같이 정리할 수 있습니다.
 
+1. Looped animation: Use only for fast actions.
+2. Percent-done animation: Use for actions that take 10 seconds or more.
+3. Static progress indicators: Don’t use them.
+4. Don’t-click-again warnings: Don’t use them.
 
 <br>
 
 **References**
 - [더 나은 UX를 위한 React에서 스켈레톤 컴포넌트 만들기](https://ui.toast.com/weekly-pick/ko_20201110)
 - [무조건 스켈레톤 화면을 보여주는게 사용자 경험에 도움이 될까요?](https://tech.kakaopay.com/post/skeleton-ui-idea/)
-- [](https://www.nngroup.com/articles/progress-indicators/)
+- [Progress indicators, Nielsen Norman Group](https://www.nngroup.com/articles/progress-indicators/)
