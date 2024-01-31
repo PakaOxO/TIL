@@ -82,7 +82,15 @@ return (
 );
 ```
 
-&nbsp;&nbsp;기존의 `fallback` 컴포넌트 밖을 `DeferredComponent`로 감쌌습니다. `DeferredComponent`는 200ms가 지나야 비로소 `children`을 렌더링하기 때문에 만약 `Suspense` 내부 컴포넌트가 200ms 이내로 로드된다면 `fallback`에 등록된 로딩 컴포넌트는 보지 않을 수 있습니다. 
+&nbsp;&nbsp;기존의 `fallback` 컴포넌트 밖을 `DeferredComponent`로 감쌌습니다. `DeferredComponent`는 200ms가 지나야 비로소 `children`을 렌더링하기 때문에 만약 `Suspense` 내부 컴포넌트가 200ms 이내로 로드된다면 `fallback`에 등록된 로딩 컴포넌트는 보지 않을 수 있습니다.
+
+&nbsp;&nbsp;이제 `Suspense` 내부 컴포넌트가 빠르게 준비가 완료되어 로드되면 `Skeleton UI`로 인한 불필요한 깜빡임이 발생하지 않게 되었습니다. 물론 이 방법도 완벽한 방법은 아니라고 생각합니다. ~~만약 로드되는 시간이 220ms가 걸린다면 20ms 동안은 로딩 페이지를 보게 되지 않을까...~~ 하지만 일반적으로 200ms 이내로  빠르게 로드되는 컴포넌트에 한해서는(setTimeout 값 지정에 따라 다릅니다) `Skeleton UI`를 보지 않고, 로드되는데 200ms 이상 걸리는 컴포넌트만 로딩 페이지를 본다는 관점에서 개발자가 `fallback` 컴포넌트를 어느정도 제어할 수 있게 되었습니다.
+
+<br>
+
+### 후기
+
+&nbsp;&nbsp;`Skeleton UI`는 사용자 경험을 향상시키기 위한 장치로 이를 적절하게 활용하는 것이 프론트엔드 개발자의 역량이라 생각합니다. 하지만 모든 것이 그렇듯 `Skeleton UI`를 남용하는 것은 오히려 사용자 경험을 저해하는 요인이 될 수 있는 만큼 개발하는 서비스/기능에 맞게 적절한 `Skeleton UI`를 적용하고, 관리하는 것이 중요할 것 입니다.
 
 <br>
 
