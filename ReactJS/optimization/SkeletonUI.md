@@ -1,7 +1,7 @@
 
 &nbsp;&nbsp;`Skeleton UI`는 프론트엔드 개발자라면 `사용자 경험(User Experience)`을 위해서 Spinner의 형태든, Bar의 형태든 데이터를 기다리는 동안 보여주기 위한 화면을 활용해본 경험이 있을 것입니다. `Skeleton UI`가 없다면 사용자는 데이터를 기다리는 동안 빈 화면만을 보고 있어야 하고, 실제로 화면이 로드되는 중인지 알 수 없습니다. 그렇기 때문에 `Skeleton UI`는 사용자로 하여금 무언가 로드되는 중임을 나타내고, 기다리는 동안 생길 수 있는 지루함을 조금이나마(?) 덜기 위해 사용됩니다.
 
-![|Spinner](../images/spinner.gif)
+![Spinner|](../images/spinner.gif)
 [출처: cssloaders](https://cssloaders.github.io/)
 
 <br>
@@ -10,7 +10,7 @@
 
 &nbsp;&nbsp;`Skeleton UI`에는 앞서 이미지로 살펴본 Spinner처럼 Spinner와 Bar를 사용해 로딩 중임을 나타내는 방법과 함께 최근에는 대체 컴포넌트를 활용해 해당 영역에 내용이 어떻게 표시될 것인지 간접적으로 표현하는 방법이 자주 사용됩니다. 대표적인 항공권 예매 서비스인 Skyscanner에서 검색한 항공편 데이터를 가져오고 로드하는 부분에 대체 컴포넌트를 활용한 `Skeleton UI`가 적용되어 있습니다.
 
-![|skyscanner skeleton UI](../images/skyscanner_skeletonUI.gif)
+![skyscanner skeleton UI|](../images/skyscanner_skeletonUI.gif)
 
 &nbsp;&nbsp;상대적으로 로드되기까지 시간이 오래걸리는 페이지에 대해 표시하고자 하는 데이터에 따라 적절한 `Skeleton UI`를 활용할 수 있습니다. `사용자 경험`이라는 취지에서 도입된 기능인 만큼 어디까지나 서비스 특성에 맞게  `Skeleton UI`를 디자인을 하는 것이 서비스를 이용하는 사용자에게 좋은 경험을 제공할 수 있을 것이라 생각합니다.
 
@@ -30,7 +30,7 @@
 
 &nbsp;&nbsp;지침에서 가장 중요하게 봐야할 점은 Progress indicator는 1초 이상이 걸리는 작업에 적용해야 한다는 것입니다. 아래 이미지는 현재 토이프로젝트로 개발 중인 서비스의 캐릭터 조회 페이지입니다. 캐릭터 조회 후 발생하는 대기시간에 로딩 페이지를 보여주고 있죠. 하지만 대부분의 경우엔 로딩 페이지는 1초 내외로 보입니다. 사용자 입장에서 로딩 페이지는 순식간에 깜빡거리며 지나가기 때문에 오히려 거슬리는 느낌을 줄 수 있습니다.
 
-![|gada character search](../images/gada_search.gif)
+![gada character search|](../images/gada_search.gif)
 
 <br>
 
@@ -83,6 +83,11 @@ return (
 ```
 
 &nbsp;&nbsp;기존의 `fallback` 컴포넌트 밖을 `DeferredComponent`로 감쌌습니다. `DeferredComponent`는 200ms가 지나야 비로소 `children`을 렌더링하기 때문에 만약 `Suspense` 내부 컴포넌트가 200ms 이내로 로드된다면 `fallback`에 등록된 로딩 컴포넌트는 보지 않을 수 있습니다.
+
+
+![gada character search|600](../images/gada_search_deferredcomponent.gif)
+
+<br>
 
 &nbsp;&nbsp;이제 `Suspense` 내부 컴포넌트가 빠르게 준비가 완료되어 로드되면 `Skeleton UI`로 인한 불필요한 깜빡임이 발생하지 않게 되었습니다. 물론 이 방법도 완벽한 방법은 아니라고 생각합니다. ~~만약 로드되는 시간이 220ms가 걸린다면 20ms 동안은 로딩 페이지를 보게 되지 않을까...~~ 하지만 일반적으로 200ms 이내로  빠르게 로드되는 컴포넌트에 한해서는(setTimeout 값 지정에 따라 다릅니다) `Skeleton UI`를 보지 않고, 로드되는데 200ms 이상 걸리는 컴포넌트만 로딩 페이지를 본다는 관점에서 개발자가 `fallback` 컴포넌트를 어느정도 제어할 수 있게 되었습니다.
 
