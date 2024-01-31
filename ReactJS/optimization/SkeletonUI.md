@@ -47,8 +47,42 @@
 <br>
 
 ```javascript
+// DeferredComponent.tsx
+import { PropsWithChildren, useEffect, useState } from "react";
 
+const DeferredComponent = ({ children }: PropsWithChildren) => {
+  const [isDeferred, setIsDeferred] = useState<boolean>(false);
+
+  // 200ms가 지났을 때 children이 렌더링 되도록...
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDeferred(true);
+    }, 200);
+  }, []);
+
+  if (!isDeferred) return null;
+  return <>{children}</>;
+};
+
+// Character.tsx
+// 상단코드 생략
+return (
+  <CenteredBox>
+    <FetchErrorBoundary errorMsg="조회된 캐릭터가 없습니다.">
+      <Suspense
+        fallback={
+          <DeferredComponent> // 추가
+            <Loading text="캐릭터 정보를 조회 중 입니다" />
+          </DeferredComponent>
+        }>        
+        <CharacterFetchContainer />
+      </Suspense>
+    </FetchErrorBoundary>
+  </CenteredBox>
+);
 ```
+
+&nbsp;&nbsp;기존의 `fallback` 컴포넌트 밖을 `DeferredComponent`로 감쌌습니다. `DeferredComponent`는 200ms가 지나야 비로소 `children`을 렌더링하기 때문에 만약 `Suspense` 내부 컴포넌트가 200ms 이내로 로드된다면 `fallback`에 등록된 로딩 컴포넌트는 보지 않을 수 있습니다. 
 
 <br>
 
