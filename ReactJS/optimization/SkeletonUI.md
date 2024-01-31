@@ -20,10 +20,15 @@
 
 &nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요? 결론부터 이야기하자면 "그렇지 않다"입니다. [카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서 인용한 UX 리서치 그룹(닐슨 노먼 그룹)의 [Progress indicators](https://www.nngroup.com/articles/progress-indicators/) 지침을 아래와 같이 정리할 수 있습니다.
 
-1. Looped animation: Use only for fast actions.
-2. Percent-done animation: Use for actions that take 10 seconds or more.
-3. Static progress indicators: Don’t use them.
-4. Don’t-click-again warnings: Don’t use them.
+> [!tip] Use a progress indicator for any action that takes longer than about 1.0 second.
+>1. Looped animation: Use only for fast actions.
+>2. Percent-done animation: Use for actions that take 10 seconds or more.
+>3. Static progress indicators: Don’t use them.
+>4. Don’t-click-again warnings: Don’t use them.
+
+&nbsp;&nbsp;지침에서 가장 중요하게 봐야할 점은 Progress indicator는 1초 이상이 걸리는 작업에 적용해야 한다는 것입니다. 아래 이미지는 현재 토이프로젝트로 개발 중인 서비스의 캐릭터 조회 
+
+
 
 <br>
 
