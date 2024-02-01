@@ -1,6 +1,13 @@
 ### 업무
 
-- 이력서, 원티드 및 프로그래머스 이력서 업데이트
+- 이력서/포트폴리오 업데이트
+- 원티드 및 프로그래머스 이력서 업데이트
+
+<br>
+
+### 프로젝트
+
+- 가다, 게임 데이터 플랫폼 서비스(with Nexon API)
 
 <br>
 
@@ -12,7 +19,7 @@
 - ~~React, lazy loading~~
 - ~~React, Concurrent Mode~~
 - ~~React, Fetch-types~~
-- React, Skeleton UI
+- ~~React, Skeleton UI~~
 - FE Mock 데이터로 테스트하기
 
 <br>
