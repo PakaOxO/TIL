@@ -20,7 +20,8 @@
 - ~~React, Concurrent Mode~~
 - ~~React, Fetch-types~~
 - ~~React, Skeleton UI~~
-- FE Mock 데이터로 테스트하기
+- Google Analytics, GADA 프로젝트 적용
+
 
 <br>
 
