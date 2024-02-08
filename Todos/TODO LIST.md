@@ -22,7 +22,7 @@
 - ~~React, Skeleton UI~~
 - Google Analytics, GADA 프로젝트 적용
 - Next.js, fonts & images 최적화
-- Next.js, Routing system(with file system)
+- Next.js, Routing system(with file system) / [Linking and Navigating](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works)
 
 <br>
 
