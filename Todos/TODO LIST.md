@@ -22,6 +22,7 @@
 - ~~React, Skeleton UI~~
 - Google Analytics, GADA 프로젝트 적용
 - Next.js, fonts & images 최적화
+- Next.js, Routing system(with file system)
 
 <br>
 
