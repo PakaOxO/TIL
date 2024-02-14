@@ -26,9 +26,26 @@
 
 <br>
 
-**RSC Payload**
+### RSC Payload
 
-&nbsp;&nbsp
+&nbsp;&nbsp;[공식문서](https://nextjs.org/docs/app/building-your-application/rendering/server-components)를 읽으면서 가장 이해하기 어려웠던 개념은 `RSC Payload`였습니다. 문서에는 `RSC Payload`를 다음과 같이 설명하고 있습니다.
+
+>[!tip] **RSC Payload**
+>
+>&nbsp;&nbsp;The RSC Payload is a compact binary representation of the rendered React Server Components tree. It's used by React on the client to update the browser's DOM. The RSC Payload contains:
+
+<br>
+
+&nbsp;&nbsp;꽤나 난해한 개념이었지만 어떤 분의 [블로그](https://velog.io/@2ast/React-%EC%84%9C%EB%B2%84-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8React-Server-Component%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0)를 보고 어느정도 이해할 수 있게 되었는데 제가 이해한 내용을 바탕으로 정리해보았습니다.
+
+&nbsp;&nbsp;우선 공식문서에 이야기한 것처럼 `RSC`는 바이너리 데이터의 일종으로 `RSC` 컴포넌트 트리 정보를 담고 있는 데이터의 형태입니다. 그렇다면 이렇게 독특한 데이터의 형태를 왜 사용하는 것일까요? 이에 대한 해답은 우선 `Next.js`가 단순히 `SSR(Server Side Rendering)`을 위한 도구가 아님을 먼저 알아야 합니다.
+
+<br>
+
+**Next.js에서의 SSR**
+
+&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 것입니다. 하지만 실제 `Next.js`는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있습니다.
+
 
 <br>
 
