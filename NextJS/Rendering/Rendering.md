@@ -31,11 +31,11 @@
 
 <br>
 
-&nbsp;&nbsp;컴포넌트의 렌더링 환경에 따라 `Server Component`와 `Client Component`로 구분할 수 있습니다. 만약 어떤 컴포넌트의 렌더링 환경을 지정하기 위해서 `Next.js`에서는 다음과 같은 방법을 제공합니다.
+&nbsp;&nbsp;컴포넌트의 렌더링 환경에 따라 [[Server Component]]와 [[Client Component]]로 구분할 수 있습니다. 만약 어떤 컴포넌트의 렌더링 환경을 지정하기 위해서 `Next.js`에서는 다음과 같은 방법을 제공합니다.
 
 ```javascript
 // 서버 컴포넌트
-import { useServer } from 'next/server'
+""
 
 function ServerOnlyComponent() {
   useServer();
@@ -46,7 +46,7 @@ function ServerOnlyComponent() {
 }
 
 // 클라이언트 컴포넌트
-import { useClient } from 'next/client'
+"use client"
 
 function ClientOnlyComponent() {
   useClient();
@@ -57,6 +57,12 @@ function ClientOnlyComponent() {
 }
 ```
 
+
+<br>
+
+### Rendering Strategy
+
+&nbsp;&nbsp;
 
 <br>
 
