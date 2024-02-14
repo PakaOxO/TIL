@@ -31,11 +31,11 @@
 
 <br>
 
-&nbsp;&nbsp;컴포넌트의 렌더링 환경에 따라 `Server Component`와 `Client Component`로 구분할 수 있습니다. `Next.js`의 컴포넌트는 기본적으로 `Server Component`이며, 만약 어떤 컴포넌트의 `Client Component`로 지정하고 싶다면 `use client` 키워드를 사용할 수 있습니다.
+&nbsp;&nbsp;컴포넌트의 렌더링 환경에 따라 `Server Component`와 `Client Component`로 구분할 수 있습니다. `Next.js`의 컴포넌트는 별다른 설정없이 `Server Component`으로 동작하는데, 만약 어떤 컴포넌트를 `Client Component`로 지정하고 싶다면 `use client` 키워드를 사용할 수 있습니다.
 
 ```javascript
 // 서버 컴포넌트
-"use server"
+"use server" // 명시적으로 사용할 수 있지만 없어도 괜찮습니다.
 function ServerComponent() {
   return (<>
     // JSX...
@@ -52,8 +52,9 @@ function ClientComponent() {
 }
 ```
 
-
 <br>
+
+&nbsp;&nbsp;지금까지 살펴보았듯 `Next.js`의 컴포넌트 렌더링 환경은 `Server`와 `Client`로 나뉘어 `Server Component`와 `Client Component`로 구분됩니다. 각각의 컴포넌트의 특징과 장점 및 단점은 다음 포스트에서 차차 다뤄보도록 하겠습니다.
 
 <br>
 
