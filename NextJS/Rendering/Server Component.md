@@ -50,6 +50,8 @@
 
 <br>
 
+![RSC payload|600](../images/RSC_payload.png)
+
 1. 사용자의 요청에 따라 서버는 `Root`부터 컴포넌트 트리를 작성하기 시작합니다.
 2. 컴포넌트 트리는 브라우저에게 전달하기 위해 `직렬화(serialization)` 과정을 거쳐 `json`의 형태로 변환됩니다. `RCC`는 함수로 `직렬화`가 불가능하기 때문에 `placeholder`의 형태로 해당 위치에 `RCC`가 렌더링되는 위치임을 나타내는 `Reference`로서 담깁니다. 이렇게 `직렬화` 과정을 거쳐 만들어진 `json` 데이터가 `RSC Payload` 입니다.
 4. 클라이언트는 `RSC Payload`와 JS 번들을 내려받아 렌더링하고,`RCC Reference`가 등장할 때마다 `RCC`를 렌더링해 빈 공간을 채웁니다.
@@ -62,11 +64,18 @@
 
 <br>
 
+### Server Rendering Type
+
+
+
+<br>
+
 ### Server Rendering의 장점
 
 
 <br>
 
 **References**
-- []()
+- [Server Components, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [How React server components work: an in-depth guide](https://www.plasmic.app/blog/how-react-server-components-work)
 - [Serialization, Wikipedia](https://en.wikipedia.org/wiki/Serialization)
