@@ -100,7 +100,81 @@
 
 &nsbp;&nbsp;위 그림에서 화면 전체의 `Layout` 중 게시글이 표시될 영역은 가장 `fetching time`이 긴 요소이며 전체 렌더링을 지연시키는 컴포넌트입니다. 해당 컴포넌트의 렌더링을 미루고 대체 컴포넌트(`loading.tsx` 등)을 보여 줌으로써 사용자는 빠르게 UI를 확인할 수 있으며, 지연된 UI 이외에는 UI 확인과, 상호작용이 가능하므로 상대적으로 기다린다는 느낌을 줄일 수 있습니다.
 
-&nbsp;&nbsp;`Streaming`은 `React`의 `Suspense`를 통해 구현할 수 있습니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
+&nbsp;&nbsp;특정한 컴포넌트에 대해서 `Streaming`은 `React`의 `Suspense`를 통해 구현할 수 있습니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
+
+```javascript
+// app/dashboard/(overview)/page.tsx
+import { Card } from '@/app/ui/dashboard/cards';
+import RevenueChart from '@/app/ui/dashboard/revenue-chart';
+import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
+import { Suspense } from 'react';
+import { RevenueChartSkeleton } from '@/app/ui/skeletons';
+ 
+export default async function Page() {
+  const latestInvoices = await fetchLatestInvoices();
+  const {
+    numberOfInvoices,
+    numberOfCustomers,
+    totalPaidInvoices,
+    totalPendingInvoices,
+  } = await fetchCardData();
+ 
+  return (
+    <main>
+      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+        Dashboard
+      </h1>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Card title="Collected" value={totalPaidInvoices} type="collected" />
+        <Card title="Pending" value={totalPendingInvoices} type="pending" />
+        <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+        <Card
+          title="Total Customers"
+          value={numberOfCustomers}
+          type="customers"
+        />
+      </div>
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+        // fallback으로 렌더링이 되기 전에 표시할 컴포넌트를 지정합니다.
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
+        <LatestInvoices latestInvoices={latestInvoices} />
+      </div>
+    </main>
+  );
+}
+
+// app/ui/dashboard/revenue-chart.tsx
+import { generateYAxis } from '@/app/lib/utils';
+import { CalendarIcon } from '@heroicons/react/24/outline';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchRevenue } from '@/app/lib/data';
+ 
+// ...
+ 
+export default async function RevenueChart() { // Make component async, remove the props
+  const revenue = await fetchRevenue(); // Fetch data inside the component
+ 
+  const chartHeight = 350;
+  const { yAxisLabels, topLabel } = generateYAxis(revenue);
+ 
+  if (!revenue || revenue.length === 0) {
+    return <p className="mt-4 text-gray-400">No data available.</p>;
+  }
+ 
+  return (
+    // ...
+  );
+}
+```
+<br>
+
+>[!tip] **Next.js `loading.tsx`**
+>
+>&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 상위의 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다.
 
 <br>
 
