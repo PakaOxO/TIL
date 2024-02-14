@@ -20,9 +20,11 @@
 - ~~React, Concurrent Mode~~
 - ~~React, Fetch-types~~
 - ~~React, Skeleton UI~~
-- Google Analytics, GADA 프로젝트 적용
+- ~~Google Analytics, GADA 프로젝트 적용~~
+- Next.js, 특징(Hot-reloading, Automatic routing, Code-splitting)
+- Next.js, Automatic routing / app-routing & pages-routing / [Linking and Navigating](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works)
+- Next.js, Server Component & Client Component / Streaming?(NextJS 13)
 - Next.js, fonts & images 최적화
-- Next.js, Routing system(with file system) / [Linking and Navigating](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works)
 
 <br>
 
