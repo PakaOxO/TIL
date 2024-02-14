@@ -76,14 +76,23 @@
 
 &nbsp;&nbsp;`Static Rendering`은 `Next 13`의 `SSG(Server Site Generation)`과 매우 흡사합니다. 블로그 게시물처럼 자주 변경이 발생하지 않거나, 모든 사용자에게 동일한 결과를 제공해야하는, not personalized한 페이지를 보여주기 위해 주로 사용됩니다.
 
+<br>
+
 **2. Dynamic Rendering**
 
 &nbsp;&nbsp;`Dynamic Rendering`은 사용자가 요청을 보낼 때마다 새롭게 서버에서 렌더링되는 방식입니다. 만약 같은 페이지지만 사용자마다 다른 UI를 보아야 한다면 `Dynamic Rendering`을 할 수 있습니다. 매 요청마다 새롭게 페이지를 렌더링하기 때문에 요청 시에 넘겨받는 데이터(cookies, url params)들을 활용할 수 있습니다.
 
 >[!tip] **Switching to Dynamic Rendering**
 >
->&nbsp;&nbsp;`Next.js`는 별다른 설정 없이  `Dynamic Rendering`을
+>&nbsp;&nbsp;`Next.js`는 자동으로 컴퍼넌트 내부 `Dynamic function`의 유무와 데이터의 `캐싱`여부를  통해 해당 컴포넌트를 `Static Rendering`을 할지 `Dynamic Rendering`을 할지 결정합니다. 만약 `Dynamic function`이 존재하거나 `캐싱`되지 않은 데이터가 있다면 `Next.js`는 컴포넌트를 동적으로 렌더링합니다.
+>
+>&nbsp;&nbsp;추가로 `Dynamic function`은 사용자의 `Request` 시점에 의존해 실행결과가 달라지는 함수를 의미합니다. 주로 `cookie`나 `URL Params`, `Request header` 등에 의존하는 함수 등이 이에 해당합니다. 
 
+<br>
+
+**3. Streaming**
+
+&nbsp;&nbsp;
 
 <br>
 
