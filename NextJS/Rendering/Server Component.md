@@ -3,5 +3,17 @@
 
 <br>
 
+>[!tip] **Pre-render & Hydrating**
+>
+>&nbsp;&nbsp;`Next.js`의 컴포넌트는 기본적으로 빌드될 때 미리 렌더링되고(`pre-rendered`), 사용자가 페이지를 요청했을 때 캐싱된 페이지를 빠르게 응답으로 줄 수 있다는 장점이 있습니다. 하지만 서버에서 반환하는 사전 렌더링된 HTML에는 동적인 Javascript 코드는 빠져있습니다. 서버는 클라이언트에게 렌더링된 HTML과 함께 번들링된 Javascript를 전송하는데, 클라이언트는 이를 받아 HTML과 JS 번들 코드를 합치는 `Hydrating` 과정을 통해 어플리케이션이 인터렉티브하게 동작할 수 있습니다.
+
+<br>
+
+### Server Component in Next.js
+
+&nbsp;&nbsp;`Next.js`에서 제공하는 컴포넌트는 기본적으로 `Server Component`입니다. 별다른 설정이 없다면 서버 환경에서 동작하는 컴포넌트로 캐싱 전략을 통해 클라이언트에게 빠른 응답을 제공하는 것이 가능합니다.
+
+<br>
+
 ### Server Rendering의 장점
 
