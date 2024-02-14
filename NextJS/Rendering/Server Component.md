@@ -11,7 +11,13 @@
 
 ### Server Component in Next.js
 
-&nbsp;&nbsp;`Next.js`에서 제공하는 컴포넌트는 기본적으로 `Server Component`입니다. 별다른 설정이 없다면 서버 환경에서 동작하는 컴포넌트로 캐싱 전략을 통해 클라이언트에게 빠른 응답을 제공하는 것이 가능합니다.
+&nbsp;&nbsp;`Next.js`에서 제공하는 컴포넌트는 기본적으로 `Server Component`입니다. 별다른 설정이 없다면 서버 환경에서 동작하는 컴포넌트로 캐싱 전략을 통해 클라이언트에게 빠른 응답을 제공하는 것이 가능합니다. `Next.js`의  `캐싱` 동작방식은 다음 [섹션](../Caching/Caching) 에서 살펴볼 수 있습니다.
+
+<br>
+
+### 렌더링 방식
+
+`Next.js`에서 `Server Component`의 렌더링은 
 
 <br>
 
