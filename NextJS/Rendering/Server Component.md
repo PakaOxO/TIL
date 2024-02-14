@@ -204,5 +204,6 @@ export default async function RevenueChart() { // Make component async, remove t
 
 **References**
 - [Server Components, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [Learn Next.js dashboard-app, streaming](https://nextjs.org/learn/dashboard-app/streaming)
 - [How React server components work: an in-depth guide](https://www.plasmic.app/blog/how-react-server-components-work)
 - [Serialization, Wikipedia](https://en.wikipedia.org/wiki/Serialization)
