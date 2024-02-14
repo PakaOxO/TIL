@@ -90,11 +90,15 @@
 
 <br>
 
-**3. Streaming**
+**3. Streaming (Progressive Rendering))*
 
 &nbsp;&nbsp;사용자가 보는 페이지의 `UI Loading time`은 사실 가장 오래 걸리는 `data fetching` 시간에 의존합니다. 다른 모든 데이터를 가져오는데 100ms가 걸리지 않았더라도 남은 하나의 `fetching time`이 3s라면 사용자가 해당 페이지를 보기까지 걸리는 시간은 최소 3s 이상일테니깐요.
 
-&nbsp;&nbsp;`Streaming`은 `Next 13`부터 추가되어, `App router`에 기본적으로 내장된 기능입니다. `Streaming`을 사용하면 개발자는 `TTV(Time to view)`를 크게 개선할 수 있습니다. `Streaming`은 `React`의 `Suspense`를 통해 컴포넌트를 감싸는 방식으로 사용합니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
+&nbsp;&nbsp;`Streaming`은 `Next 13`부터 추가되어, `App router`에 기본적으로 내장된 기능입니다. `Streaming`을 사용하면 개발자는 `TTV(Time to view)`를 크게 개선할 수 있습니다. `Streaming`을 위해서는 컴포넌트를 더욱 작게 쪼갠 `chunk`를 `Streaming` 요소(Suspense)에 포함시키면 됩니다. 아래 그림에서 화면 전체의 `Layout` 중 게시글이 표시될 영역은 가장 `fetching time`이 긴 요소이며 렌더링을 지연시키는 컴포넌트일 수 있으므로 `Streaming`에 포함시킵니다.
+
+![Streaming|600](../images/server-rendering-with-streaming.avif)
+
+&nbsp;&nbsp;`Streaming`은 `React`의 `Suspense`를 통해 컴포넌트를 감싸는 방식으로 사용합니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
 
 <br>
 
