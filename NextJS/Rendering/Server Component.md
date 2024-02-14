@@ -64,9 +64,17 @@
 
 <br>
 
-### Server Rendering Type
+### Server Rendering 전략
 
+&nbsp;&nbsp;`Next.js`의 컴포넌트 렌더링 방법은 크게 `Static Rendering`, `Dynamic Rendering`, `Streaming`로 3가지 입니다. 각각의 렌더링 방식의 특징과 언제 해당 렌더링 방식을 채택해야 하는지 살펴보겠습니다.
 
+<br>
+
+**1. Static Rendering(Default)**
+
+&nbsp;&nbsp;`Next.js`에서 컴포넌트에 별다른 설정을 하지 않았다면 기본적으로 렌더링되는 방식입니다. 컴포넌트는 `빌드 타임`, 혹은 데이터가 재평가되는 시점에 렌더링되며 렌더링된 결과는 캐싱되거나 `CDN(Content Delivery Network)`에 보내져 이후 사용자의 요청에 대해 빠르게 결과를 제공할 수 있습니다.
+
+&nbsp;&nbsp;`Static Rendering`은 `Next 13`의 `SSG(Server Site Generation)`과 매우 흡사합니다. 블로그 게시물처럼 자주 변경이 발생하지 않거나, 모든 사용자에게 동일한 결과를 제공해야하는, not personalized한 페이지를 보여주기 위해 주로 사용됩니다.
 
 <br>
 
