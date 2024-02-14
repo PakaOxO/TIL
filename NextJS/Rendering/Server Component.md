@@ -104,7 +104,7 @@
 
 <br>
 
-&nbsp;&nbsp;특정한 컴포넌트에 대해서 `Streaming`은 `React`의 `Suspense`를 통해 구현할 수 있습니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
+&nbsp;&nbsp;특정한 컴포넌트에 대해서 `Streaming`은 `React`의 `Suspense`를 통해 구현할 수 있습니다. `Suspense`는 Boundary 내부에 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
 
 ```javascript
 // app/dashboard/(overview)/page.tsx
@@ -176,6 +176,11 @@ export default async function RevenueChart() { // Make component async, remove t
 ```
 
 <br>
+
+>[!tip] **무분별한 Suspense boundary**
+>
+>&nbsp;&nbsp;모든 부분 컴포넌트마다 `Suspense`를 통해 `Streaming`을 하는 것은 오히려 사용자 경험을 저해하는 요소로 작용할 수 있습니다. 만약 한 페이지에 게시글 목록, 사용자 정보, 즐겨찾기 등 다양한 컴포넌트가 각자 별개의 `stream`으로 묶여있다면 각 컴포넌트가 렌더링되는 속도에 따라 제각각 화면에 표시되는 
+
 
 >[!tip] **Next.js `loading.tsx`**
 >
