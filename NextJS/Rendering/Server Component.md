@@ -177,9 +177,9 @@ export default async function RevenueChart() { // Make component async, remove t
 
 <br>
 
->[!tip] **무분별한 Suspense boundary**
+>[!caution] **무분별한 Suspense boundary 지정**
 >
->&nbsp;&nbsp;모든 부분 컴포넌트마다 `Suspense`를 통해 `Streaming`을 하는 것은 오히려 사용자 경험을 저해하는 요소로 작용할 수 있습니다. 만약 한 페이지에 게시글 목록, 사용자 정보, 즐겨찾기 등 다양한 컴포넌트가 각자 별개의 `stream`으로 묶여있다면 각 컴포넌트가 렌더링되는 속도에 따라 제각각 화면에 표시되는 
+>&nbsp;&nbsp;모든 부분 컴포넌트마다 `Suspense`를 통해 `Streaming`을 하는 것은 오히려 사용자 경험을 저해하는 요소로 작용할 수 있습니다. 만약 한 페이지에 게시글 목록, 사용자 정보, 즐겨찾기 등 다양한 컴포넌트가 각자 별개의 `stream`으로 묶여있다면 각 컴포넌트가 렌더링되는 속도에 따라 제각각 화면에 나타나겠죠. 사용자의 입장에선 화면 여기저기서 정보가 popping하는 것처럼 느껴질 수 있습니다.
 
 
 >[!tip] **Next.js `loading.tsx`**
@@ -190,6 +190,11 @@ export default async function RevenueChart() { // Make component async, remove t
 
 ### Server Rendering의 장점
 
+&nbsp;&nbsp;지금까지 `Server Component`와 `Server Rendering`에 대해 살펴보면서 먼 길을 왔습니다. 마지막으로 `Server Rendering`을 했을 때 얻을 수 있는 장점들을 살펴보고 포스트를 마무리하겠습니다.
+
+1. **Data fetching**: `Server Component`는 클라이언트에 비해 상대적으로 DB에 가까지 위치한 서버에서 데이터를 요청하므로 데이터를 `fetching` 해오는 시간이 빠릅니다. 또한 클라이언트가 서버에 요청하는 요청의 횟수 또한 감소합니다.
+2. **Security**: `Server Component`는 `token`이나 `API key` 등 민감한 정보를 클라이언트에 노출시키지 않습니다.
+3. **Caching**: 서버에서 렌더링되고 캐싱되기 때문에 여러 사용자로부터 발생하는 요청에 대해 마지막 요청에 의해 캐싱된 최신 UI를 제공할 수 있습니다. 사용자의 모든 요청마다 불필요하게 렌더링되는 것을 방지할 수 있습니다.
 
 <br>
 
