@@ -44,7 +44,7 @@
 
 **Next.js에서의 SSR**
 
-&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 단순한 구조입니다. 하지만 실제 `Next.js` 프로젝트는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있죠. `RSC`와 `RCC`의 관계를 정의하고, 이를 통해 DOM Tree를 작성하기 위한 데이터가 `RSC Payload`입니다.
+&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 단순한 구조입니다. 하지만 실제 `Next.js` 프로젝트는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있죠. 컴포넌트 트리 상에서 렌더링된 `RSC` 결과와 함께 `RCC`의 위치, `RSC`와 `RCC`간 주고 받는 `props`의 정보를 담고 있으며 이를 통해 클라이언트가 DOM Tree를 작성할 수 있도록 하는 데이터가 `RSC Payload`입니다.
 
 &nbsp;&nbsp;아래는 `RSC Payload`를 설명하기 위한 예시로, 만약 `RSC`와 `RCC`가 뒤섞여 있는 페이지를 사용자가 요청했다고 가정하고 `RSC Payload`가 어떻게 이용되는지 설명하고 있습니다.
 
@@ -58,7 +58,7 @@
 
 >[!tip] **직렬화(Serialization)**
 >
->&nbsp;&nbsp;`직렬화(Serialization)`은 
+>&nbsp;&nbsp;`직렬화(Serialization)`는 컴퓨터 과학의 데이터 스토리지 문맥에서 데이터 구조나 오브젝트 상태를 동일하거나 다른 컴퓨터 환경에 저장하고 나중에 재구성할 수 있는 포맷으로 변환하는 과정입니다.(Wikipedia)
 
 <br>
 
@@ -69,4 +69,4 @@
 
 **References**
 - []()
-- [S](https://ko.wikipedia.org/wiki/%EC%A7%81%EB%A0%AC%ED%99%94)
+- [Serialization, Wikipedia](https://en.wikipedia.org/wiki/Serialization)
