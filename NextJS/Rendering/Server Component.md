@@ -44,13 +44,13 @@
 
 **Next.js에서의 SSR**
 
-&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 단순한 구조입니다. 하지만 실제 `Next.js` 프로젝트는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있죠. 컴포넌트 트리 상에서 렌더링된 `RSC` 결과와 함께 `RCC`의 위치, `RSC`와 `RCC`간 주고 받는 `props`의 정보를 담고 있으며 이를 통해 클라이언트가 DOM Tree를 작성할 수 있도록 하는 데이터가 `RSC Payload`입니다.
-
-&nbsp;&nbsp;아래는 `RSC Payload`를 설명하기 위한 예시로, 만약 `RSC`와 `RCC`가 뒤섞여 있는 페이지를 사용자가 요청했다고 가정하고 `RSC Payload`가 어떻게 이용되는지 설명하고 있습니다.
+&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 단순한 구조입니다. 하지만 실제 `Next.js`로 만들어진 페이지는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있죠. 컴포넌트 트리 상에서 렌더링된 `RSC` 결과와 함께 `RCC`의 위치, `RSC`와 `RCC`간 주고 받는 `props`의 정보를 담고 있으며 이를 통해 클라이언트가 DOM Tree를 작성할 수 있도록 하는 데이터가 `RSC Payload`입니다.
 
 <br>
 
 ![RSC payload|600](../images/RSC_payload.png)
+
+&nbsp;&nbsp;아래는 `RSC Payload`를 설명하기 위한 예시로, 만약 `RSC`와 `RCC`가 뒤섞여 있는 페이지를 사용자가 요청했다고 가정하고 `RSC Payload`가 어떻게 이용되는지 설명하고 있습니다.
 
 1. 사용자의 요청에 따라 서버는 `Root`부터 컴포넌트 트리를 작성하기 시작합니다.
 2. 컴포넌트 트리는 브라우저에게 전달하기 위해 `직렬화(serialization)` 과정을 거쳐 `json`의 형태로 변환됩니다. `RCC`는 함수로 `직렬화`가 불가능하기 때문에 `placeholder`의 형태로 해당 위치에 `RCC`가 렌더링되는 위치임을 나타내는 `Reference`로서 담깁니다. 이렇게 `직렬화` 과정을 거쳐 만들어진 `json` 데이터가 `RSC Payload` 입니다.
@@ -75,6 +75,15 @@
 &nbsp;&nbsp;`Next.js`에서 컴포넌트에 별다른 설정을 하지 않았다면 기본적으로 렌더링되는 방식입니다. 컴포넌트는 `빌드 타임`, 혹은 데이터가 재평가되는 시점에 렌더링되며 렌더링된 결과는 캐싱되거나 `CDN(Content Delivery Network)`에 보내져 이후 사용자의 요청에 대해 빠르게 결과를 제공할 수 있습니다.
 
 &nbsp;&nbsp;`Static Rendering`은 `Next 13`의 `SSG(Server Site Generation)`과 매우 흡사합니다. 블로그 게시물처럼 자주 변경이 발생하지 않거나, 모든 사용자에게 동일한 결과를 제공해야하는, not personalized한 페이지를 보여주기 위해 주로 사용됩니다.
+
+**2. Dynamic Rendering**
+
+&nbsp;&nbsp;`Dynamic Rendering`은 사용자가 요청을 보낼 때마다 새롭게 서버에서 렌더링되는 방식입니다. 만약 같은 페이지지만 사용자마다 다른 UI를 보아야 한다면 `Dynamic Rendering`을 할 수 있습니다. 매 요청마다 새롭게 페이지를 렌더링하기 때문에 요청 시에 넘겨받는 데이터(cookies, url params)들을 활용할 수 있습니다.
+
+>[!tip] **Switching to Dynamic Rendering**
+>
+>&nbsp;&nbsp;`Next.js`는 별다른 설정 없이  `Dynamic Rendering`을
+
 
 <br>
 
