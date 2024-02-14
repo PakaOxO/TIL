@@ -96,9 +96,13 @@
 
 &nbsp;&nbsp;`Streaming`은 `Next 13`부터 추가되어, `App router`에 기본적으로 내장된 기능입니다. `Streaming`은 렌더링까지 오래걸리는 요소의 렌더링을 지연시키고 대체 요소를 보여주는 기술로 `Streaming`을 사용하면 개발자는 `TTV(Time to view) & TTI(Time to interact)`를 크게 개선할 수 있습니다.
 
+<br>
+
 ![Streaming|600](../images/server-rendering-with-streaming.avif)
 
 &nsbp;&nbsp;위 그림에서 화면 전체의 `Layout` 중 게시글이 표시될 영역은 가장 `fetching time`이 긴 요소이며 전체 렌더링을 지연시키는 컴포넌트입니다. 해당 컴포넌트의 렌더링을 미루고 대체 컴포넌트(`loading.tsx` 등)을 보여 줌으로써 사용자는 빠르게 UI를 확인할 수 있으며, 지연된 UI 이외에는 UI 확인과, 상호작용이 가능하므로 상대적으로 기다린다는 느낌을 줄일 수 있습니다.
+
+<br>
 
 &nbsp;&nbsp;특정한 컴포넌트에 대해서 `Streaming`은 `React`의 `Suspense`를 통해 구현할 수 있습니다. `Suspense`는 `children prop`으로 화면에 표시할 `JSX` 혹은 `컴포넌트`를 가지며, 해당 요소가 준비되기 전에 화면에 대신 띄워줄 `fallback`을 `prop`으로 받습니다. `React Suspense`에 관한 자세한 내용은 이전에 작성된 `React` 관련 포스트에서 확인할 수 있습니다.
 
@@ -170,11 +174,12 @@ export default async function RevenueChart() { // Make component async, remove t
   );
 }
 ```
+
 <br>
 
 >[!tip] **Next.js `loading.tsx`**
 >
->&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 상위의 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다.
+>&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 디렉토리 상위에 위치한 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다.
 
 <br>
 
