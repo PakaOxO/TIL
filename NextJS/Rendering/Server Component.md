@@ -195,6 +195,10 @@ export default async function RevenueChart() { // Make component async, remove t
 1. **Data fetching**: `Server Component`는 클라이언트에 비해 상대적으로 DB에 가까지 위치한 서버에서 데이터를 요청하므로 데이터를 `fetching` 해오는 시간이 빠릅니다. 또한 클라이언트가 서버에 요청하는 요청의 횟수 또한 감소합니다.
 2. **Security**: `Server Component`는 `token`이나 `API key` 등 민감한 정보를 클라이언트에 노출시키지 않습니다.
 3. **Caching**: 서버에서 렌더링되고 캐싱되기 때문에 여러 사용자로부터 발생하는 요청에 대해 마지막 요청에 의해 캐싱된 최신 UI를 제공할 수 있습니다. 사용자의 모든 요청마다 불필요하게 렌더링되는 것을 방지할 수 있습니다.
+4. **Bundle sizes**: `Server Component`는 클라이언트의 입장에서 JS 번들을다운받지 않아도 되므로  네트워크 지연에 의존하는 렌더링 속도 저하를 방지할 수 있습니다.
+5. **Initial page load and FCP(First contentful paint)**: 사용자는 서버에서 생성된 HTML을 받아 파싱하여 화면에 띄우기만 하면 되므로 JS 번들이 다운로드 되고, 파싱 후 실행되는 것을 기다릴 필요없이 즉시 화면에 표시됩니다.
+6. **SEO 최적화**: 서버에서 렌더링된 HTML은 검색 엔진 봇에 의해 더욱 더 자주 인덱싱되므로 검색 사이트에 노출되기 쉽습니다.
+7. **Streaming**: `Server Component`는 렌더링을 위해 `chunk`들로 나뉘고 `stream`에 의해 모든 페이지의 렌더링이 완료되기까지 기다리지 않아도 먼저 렌더링된 화면을 보고, 상호작용할 수 있습니다.
 
 <br>
 
