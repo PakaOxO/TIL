@@ -44,8 +44,20 @@
 
 **Next.js에서의 SSR**
 
-&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 것입니다. 하지만 실제 `Next.js`는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있습니다.
+&nbsp;&nbsp;전통적인 `SSR`은 사실 사전에 서버에서 렌더링된 HTML과 JS 번들을 클라이언트에 전달하고, 클라이언트는 브라우저 환경에서 이 둘을 결합하는 `Hydrating`의 과정을 거치는 단순한 구조입니다. 하지만 실제 `Next.js` 프로젝트는 `RSC(React Server Component)` 뿐만 아니라 `RCC(React Client Component)`가 섞인 복합적인 구조로 이루어져 있죠. `RSC`와 `RCC`의 관계를 정의하고, 이를 통해 DOM Tree를 작성하기 위한 데이터가 `RSC Payload`입니다.
 
+&nbsp;&nbsp;아래는 `RSC Payload`를 설명하기 위한 예시로, 만약 `RSC`와 `RCC`가 뒤섞여 있는 페이지를 사용자가 요청했다고 가정하고 `RSC Payload`가 어떻게 동작하는지 설명하고 있습니다.
+
+1. 사용자의 요청에 따라 서버는 `Root`부터 컴포넌트 트리를 작성하기 시작합니다.
+2. 컴포넌트 트리는 브라우저에게 전달하기 위해 `직렬화(serialization)`과정을 거쳐 `json`의 형태로 변환됩니다.
+3. `RCC`는 함수로 `직렬화`가 불가능하기 때문에 `placeholder`의 형태로 해당 위치에 `RCC`가 렌더링되는 위치임을 나타내는 Reference로서 담깁니다. 이것이 `RSC Payload` 입니다.
+4. 클라이언트는 `RSC Payload`와 
+
+<br>
+
+>[!tip] **직렬화(Serialization)**
+>
+>&nbsp;&nbsp;
 
 <br>
 
