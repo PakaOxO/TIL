@@ -9,20 +9,26 @@
 
 <br>
 
-### Server Component 렌더링 과정
+### Next.js Component 렌더링 과정
 
-&nbsp;&nbsp;`Next.js`에서 `Server Component`의 렌더링은 `File system`에 의한 `Routing` 구조 혹은, `Suspense boundaries`에 의해 쪼개진 `chunk` 단위로 이루어집니다.
+&nbsp;&nbsp;`Next.js`에서 렌더링은 `File system`에 의한 `Routing` 구조 혹은, `Suspense boundaries`에 의해 쪼개진 `chunk` 단위로 이루어집니다.
 
 각각의  `chunk`는 서버에서 다음의 2단계 과정을 거쳐 렌더링됩니다.
 
 1. `React`는 `Server Component`를 `Server Component Payload(RSC Payload)`라는 특별한 데이터 포맷으로 변환합니다.
-2. `Next.js`는 `RSC Payload`와 `Client Component`의 Javascript 지시문을 통해 서버 상에서 HTML을 렌더링합니다.
+2. `Next.js`는 `RSC Payload`와 `Client Component`의 Javascript 지시문을 통해 서버 상에서 HTML을 렌더링합니다. 이때 `RCC(React Client Component)`는 렌더링되지 않습니다.
 
 이후 클라이언트에 전달된 HTML은 다음의 과정을 거칩니다.
 
-1. Server에서 렌더링되어 전달받은 HTML를 통해 초기 페이지를 그립니다. 이 페이지를 인터렉티브한 상호작용이 불가능합니다.
+1. Server에서 렌더링되어 전달받은 HTML를 통해 초기 페이지를 그립니다. 이 페이지는 인터렉티브한 상호작용이 불가능하지만 zero-bundle size(no javascript)로 빠른 렌더링이 가능합니다.
 2. `RSC Payload`는 `Server Component Tree`와 `Client Component Tree`를 조정하며, 이를 통해 DOM을 새롭게 업데이트합니다.
-3. `Client Component`는  Javascript 지시문에 의한 `Hydrating` 과정을 통해 어플리케이션이 인터렉티브하게 동작할 수 있게 됩니다.
+3. `Client Component`는 클라이언트 환경에서 렌더링된 후,  Javascript 지시문에 의한 `Hydrating` 과정을 통해 어플리케이션이 인터렉티브하게 동작할 수 있게 됩니다.
+
+<br>
+
+**RSC Payload**
+
+&nbsp;&nbsp
 
 <br>
 

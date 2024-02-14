@@ -1,5 +1,5 @@
 
 ### Contents
 - [[Rendering Environment]]
-- [[Server Component]]
+- [[Server]]
 - [[Client Component]]
