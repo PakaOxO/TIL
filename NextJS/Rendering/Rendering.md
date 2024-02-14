@@ -25,7 +25,38 @@
 
 <br>
 
->[!tip] 
+>[!tip] `process.browser`
+>
+>&nbsp;&nbsp;`Node.js`는  서버와 클라이언트 렌더링 환경을 구분하기 위해 `process.browser` 변수를 제공합니다. 이 변수는 서버 환경에서는 `false`, 클라이언트 환경에서는 `true` 값을 가집니다.
+
+<br>
+
+&nbsp;&nbsp;컴포넌트의 렌더링 환경에 따라 `Server Component`와 `Client Component`로 구분할 수 있습니다. 만약 어떤 컴포넌트의 렌더링 환경을 지정하기 위해서 `Next.js`에서는 다음과 같은 방법을 제공합니다.
+
+```javascript
+// 서버 컴포넌트
+import { useServer } from 'next/server'
+
+function ServerOnlyComponent() {
+  useServer();
+  
+  return (<>
+    // JSX...
+  </>);
+}
+
+// 클라이언트 컴포넌트
+import { useClient } from 'next/client'
+
+function ClientOnlyComponent() {
+  useClient();
+  
+  return (<>
+    // JSX...
+  </>);
+}
+```
+
 
 <br>
 
