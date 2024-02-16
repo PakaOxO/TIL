@@ -90,7 +90,7 @@
 
 <br>
 
-**3. Streaming (Progressive Rendering))*
+**3. Streaming (Progressive Rendering))**
 
 &nbsp;&nbsp;사용자가 보는 페이지의 `UI Loading time`은 사실 가장 오래 걸리는 `data fetching` 시간에 의존합니다. 다른 모든 데이터를 가져오는데 100ms가 걸리지 않았더라도 남은 하나의 `fetching time`이 3s라면 사용자가 해당 페이지를 보기까지 걸리는 시간은 최소 3s 이상일테니깐요.
 
@@ -100,7 +100,7 @@
 
 ![Streaming|600](../images/server-rendering-with-streaming.avif)
 
-&nsbp;&nbsp;위 그림에서 화면 전체의 `Layout` 중 게시글이 표시될 영역은 가장 `fetching time`이 긴 요소이며 전체 렌더링을 지연시키는 컴포넌트입니다. 해당 컴포넌트의 렌더링을 미루고 대체 컴포넌트(`loading.tsx` 등)을 보여 줌으로써 사용자는 빠르게 UI를 확인할 수 있으며, 지연된 UI 이외에는 UI 확인과, 상호작용이 가능하므로 상대적으로 기다린다는 느낌을 줄일 수 있습니다.
+&nbsp;&nbsp;위 그림에서 화면 전체의 `Layout` 중 게시글이 표시될 영역은 가장 `fetching time`이 긴 요소이며 전체 렌더링을 지연시키는 컴포넌트입니다. 해당 컴포넌트의 렌더링을 미루고 대체 컴포넌트(`loading.tsx` 등)을 보여 줌으로써 사용자는 빠르게 UI를 확인할 수 있으며, 지연된 UI 이외에는 UI 확인과, 상호작용이 가능하므로 상대적으로 기다린다는 느낌을 줄일 수 있습니다.
 
 <br>
 
@@ -184,13 +184,13 @@ export default async function RevenueChart() { // Make component async, remove t
 
 >[!tip] **Next.js `loading.tsx`**
 >
->&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 디렉토리 상위에 위치한 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다.
+>&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 디렉토리 상위에 위치한 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다. `loading.tsx는 별도의 `Suspense`를 지정하지 않아도 페이지(`page.tsx`)의 렌더링이 지연되면 대체 컴포넌트로써 동작합니다.
 
 <br>
 
 ### Server Rendering의 장점
 
-&nbsp;&nbsp;지금까지 `Server Component`와 `Server Rendering`에 대해 살펴보면서 먼 길을 왔습니다. 마지막으로 `Server Rendering`을 했을 때 얻을 수 있는 장점들을 살펴보고 포스트를 마무리하겠습니다.
+&nbsp;&nbsp;지금까지 `Server Component`와 `Server Rendering`에 대해 살펴보았습니다. 마지막으로 `Server Rendering`을 했을 때 얻을 수 있는 장점들을 살펴보고 포스트를 마무리하겠습니다.
 
 1. **Data fetching**: `Server Component`는 클라이언트에 비해 상대적으로 DB에 가까지 위치한 서버에서 데이터를 요청하므로 데이터를 `fetching` 해오는 시간이 빠릅니다. 또한 클라이언트가 서버에 요청하는 요청의 횟수 또한 감소합니다.
 2. **Security**: `Server Component`는 `token`이나 `API key` 등 민감한 정보를 클라이언트에 노출시키지 않습니다.
