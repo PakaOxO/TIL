@@ -1,0 +1,9 @@
+
+&nbsp;&nbsp;`Next.js`의 컴포넌트(정확히 `app` 하위에 위치한) 컴포넌트들은 기본적으로 `Server Component`입니다. 하지만 때로 사용자와의 인터렉션이 필요하거나, 브라우저 API(document 등)을 사용해야 한다면 `Client`에 컴포넌트 렌더링을 위임해야 합니다.
+
+&nbsp;&nbsp;이번 포스트에서는 `Client Component`를 사용하는 방법과, 장점, 그리고 어떤 상황에서 사용하는 것이 좋은지 정리해보도록 하겠습니다.
+
+<br>
+
+### Next.js에서의 Client Component
+
