@@ -82,6 +82,31 @@
 
 &nbsp;&nbsp;`Dynamic Rendering`은 사용자가 요청을 보낼 때마다 새롭게 서버에서 렌더링되는 방식입니다. 만약 같은 페이지지만 사용자마다 다른 UI를 보아야 한다면 `Dynamic Rendering`을 할 수 있습니다. 매 요청마다 새롭게 페이지를 렌더링하기 때문에 요청 시에 넘겨받는 데이터(cookies, url params)들을 활용할 수 있습니다.
 
+&nbsp;&nbsp;`noStore`는 `Next.js`에서 제공하는 기능으로 데이터를 `fetching`하는 함수로 하여금 요청에 대한 응답이 캐싱되지 않도록 해 매 호출마다 새로운 데이터를 가져옵니다. 아래 fetching 함수는 `Next.js`의 `noStore()`를 통해 자신을 호출하는 컴포넌트가 `Dynamic Rendering`를 따르도록 하고 있습니다.
+
+```javascript
+import { unstable_noStore as noStore } from 'next/cache';
+
+export async function fetchRevenue() {
+  // Add noStore() here to prevent the response from being cached.
+  // This is equivalent to in fetch(..., {cache: 'no-store'}).
+  noStore();
+  try {
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const data = await sql<Revenue>`SELECT * FROM revenue`;
+    console.log('Data fetch completed after 3 seconds.');
+    
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+}
+```
+
 >[!tip] **Switching to Dynamic Rendering**
 >
 >&nbsp;&nbsp;`Next.js`는 자동으로 컴퍼넌트 내부 `Dynamic function`의 유무와 데이터의 `캐싱`여부를  통해 해당 컴포넌트를 `Static Rendering`을 할지 `Dynamic Rendering`을 할지 결정합니다. 만약 `Dynamic function`이 존재하거나 `캐싱`되지 않은 데이터가 있다면 `Next.js`는 컴포넌트를 동적으로 렌더링합니다.
