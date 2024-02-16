@@ -5,5 +5,6 @@
 
 <br>
 
-### Next.js에서의 Client Component
+### Client Component
 
+&nbsp;&nbsp;`Next.js`에서 컴포넌트는 기본적으로 `Server Component`로 동작하기 때문에 `Client Component`로 지정하기 위해서는 `"use client"`라는 특별한 지시문을 컴포넌트 파일 상단에 넣어주어야 합니다. `"use client"` 지시문이 들어간 컴포넌트는 `Next.js`에 의해 `client bundle`로 인식되어 사용자의 페이지 요청 시 다운로드 되는 번들에 포함되어 다운로드 됩니다.
