@@ -177,6 +177,19 @@ const MyComponent = () => {
 
 <br>
 
+&nbsp;&nbsp;사용해본 입장에서  `Suspense`는 정말 좋은 기능이라고 생각합니다. 하지만 그럼에도 불구하고 `Suspense`는 `React`에서 아직 실험적으로 사용하는 입장입니다. 아래 인용문은 [리액트 공식문서](https://react-ko.dev/reference/react/Suspense#displaying-a-fallback-while-content-is-loading)에서 발췌한 내용입니다. 다음 주의사항을 인식하고, 코드를 작성하는 것이 좋을 것 같습니다.
+
+>[!caution] `Suspense` 도입 시 주의사항
+>
+>&nbsp;&nbsp;**오직 Suspense를 도입한 데이터 소스에서만 Suspense 컴포넌트를 활성화할 수 있습니다.** 여기에는 다음이 포함됩니다:
+>
+>-  Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials) [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) 및 [Next.js](https://nextjs.org/docs/getting-started/react-essentials)와 같은 Suspense 도입 프레임워크를 사용한 데이터 페칭
+>  - Lazy-loading component code with [`lazy`](https://react-ko.dev/reference/react/lazy) [`lazy`](https://react-ko.dev/reference/react/lazy)를 사용한 지연 로딩 컴포넌트 코드
+>    
+>&nbsp;&nbsp;Suspense **does not** detect when data is fetched inside an Effect or event handler. Suspense는 Effect나 이벤트 핸들러 내부에서 페칭하는 경우를 감지하지 않습니다.
+
+<br>
+
 **References**
 - [React Docs, Code Splitting & Lazy loading](https://legacy.reactjs.org/docs/code-splitting.html)
 - [React Docs, startTransition](https://react.dev/reference/react/startTransition)
