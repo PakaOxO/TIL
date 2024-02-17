@@ -41,4 +41,6 @@
 
 **Subsequent rendering**
 
-&nbsp;&nbsp;하지만 `Navigation`에 의해 화면이 렌더링 
+&nbsp;&nbsp;하지만 `Navigation`에 의해 화면이 렌더링 될 때에 `Client Component`의 렌더링은 전적으로 클라이언트 상에서 발생합니다. 기존에 `RSC Payload`에 담긴 정보를 통해 렌더링 되었던 `Client Component`는 `js bundle`로써 클라이언트에 다운로드되고, 파싱되어 모든 번들이 준비되었을 떄 `RSC Payload`의 `Reference`를 통해 `Server Component`와 `Client Component`로 이루어진 `DOM Tree`를 새롭게 업데이트합니다.
+
+<br>
