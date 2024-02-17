@@ -17,4 +17,28 @@
 
 ### Client Component 렌더링
 
-&nbsp;&nbsp;`Next.js`에서 `Client Component`는 전체 페이지가 렌더링될 때와, 
+&nbsp;&nbsp;`Next.js`에서 `Client Component`는 전체 페이지가 렌더링될 때와, 후속 `Navigation`에 의한 렌더링될 때의 렌더링 되는 과정이 상이합니다.
+
+<br>
+
+**Full page rendering**
+
+&nbsp;&nbsp;전체 페이지가 렌더링될 때는 이전에 `Server Component`에서 다루었던 것처럼 다음과 같이 서버에서의 pre-rendering과 클라이언트에 다운로드된 이후 `js bundle`과의 `hydrating`과정을 거쳐 사용자와 상호작용이 가능한 페이지로 렌더링 됩니다.
+
+<br>
+
+1. `React`는 `Server Component`를 `Server Component Payload(RSC Payload)`라는 특별한 데이터 포맷으로 변환합니다.
+2. `Next.js`는 `RSC Payload`와 `Client Component`의 Javascript 지시문을 통해 서버 상에서 HTML을 렌더링합니다.
+
+이후 클라이언트에 전달된 HTML은 다음의 과정을 거칩니다.
+
+1. Server에서 렌더링되어 전달받은 HTML를 통해 초기 페이지를 그립니다. 이 페이지는 인터렉티브한 상호작용이 불가능하지만 zero-bundle size(no javascript)로 빠른 렌더링이 가능합니다.
+2. `RSC Payload`는 `Server Component Tree`와 `Client Component Tree`를 조정하며, 이를 통해 DOM을 새롭게 업데이트합니다.
+3. 서버에서 렌더링된 `Client Component`의 HTML은  Javascript 코드와 결합되는 `Hydrating` 과정을 통해 어플리케이션이 인터렉티브하게 동작할 수 있게 됩니다.
+
+
+<br>
+
+**Subsequent rendering**
+
+&nbsp;&nbsp;하지만 `Navigation`에 의해 화면이 렌더링 
