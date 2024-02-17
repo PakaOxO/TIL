@@ -55,6 +55,7 @@
 >[!caution] Composition patterns
 >
 >&nbsp;&nbsp;살펴보았듯 `Client Component`는 `"use client"` 지시문을 통해 지정가능하며, `Client Component`에서 호출되는 모듈이나 컴포넌트는 모두 클라이언트 번들로써 취급되어 다운로드 됩니다. 하지만 때로는 번들 사이즈를 줄이거나 어떠한 이유로 데이터 패칭을 서버 상에서 하기 위해 `Client Component`에 `nesting`된 Server Component`를 가지고 싶을 수도 있습니다. 다음 포스팅에서는 `Client Component`와 `Server Component`의 복합적인 구조에서 `Client Component`에 `nesting`된 `Server Component`에서 서버 액션을 취할 수 있는 방법에 대해 살펴보겠습니다.
+
 <br>
 
 **References**
