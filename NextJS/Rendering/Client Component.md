@@ -17,4 +17,4 @@
 
 ### Client Component 렌더링
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;`Next.js`에서 `Client Component`는 전체 페이지가 렌더링될 때와, 
