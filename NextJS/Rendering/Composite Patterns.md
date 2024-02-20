@@ -74,6 +74,7 @@ export async function getData() {
 <br>
 **3. Using Third-party Packages and Providers
 
+&nbsp;&nbsp;`Server Component`가 등장한 이후, 새로운 서드 파티 패키지에는 `"use client"` 지시문이 추가되어 릴리즈되어 나오고 있습니다. 이 경우, 서버 환경에서는 해당 패키지를 사용할 수 없으므로 서버 컴포넌트가 패키지를 사용하려고 하면 빌드 타임에 오류를 통해 이를 검출할 수 있습니다.
 
 
 <br>
