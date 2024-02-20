@@ -186,7 +186,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 &nbsp;&nbsp;이 부분이 저에겐 가장 인상깊은 내용이었습니다. `Server Component`와 `Client Component`가 어떻게 `props`를 주고 받는 지에 대해 의문이 있었는데 이 의문을 해결해주는 내용이 담겨 있었습니다.
 
-&nbsp;&nbsp;`Server Component`와 `Client Component` 사이에 주고받는 `props`는 [Serializable](https://developer.mozilla.org/ko/docs/Glossary/Serialization) 해야 합니다. `직렬화`가 가능한 데이터 만이 `props`를 통해 전달될 수 있으며, 대표적으로 함수가 `실행 컨텍스트`를 포함하고 있기 때문에 `직렬화`가 불가능한 요소입니다.
+&nbsp;&nbsp;`Server Component`와 `Client Component` 사이에 주고받는 `props`는 [Serializable](https://developer.mozilla.org/ko/docs/Glossary/Serialization) 해야 합니다. `직렬화`가 가능한 데이터 만이 `props`를 통해 전달될 수 있으며, 대표적으로 JS 함수는 `실행 컨텍스트`로 인한 `클로저(Closure)`라는 독특한 특성을 포함하고 있기 때문에 `직렬화`가 불가능한 요소입니다.
 
 &nbsp;&nbsp;`직렬화`가 불가능한 요소를 `Client Component` 에서 사용하고 싶다면, 서드파티 라이브러리를 통해 `Client Component`에서 직접 `fetch`해오거나 `Next.js`에서 제공하는  [Route Handler](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)를 사용하는 방법이 있습니다. `Route Handler`에 대해서는 이후 포스트에서 다뤄보도록 하겠습니다.
  
@@ -194,15 +194,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 ### Interleaving Server and Client Components
 
-&nbsp;&nbsp;`Interleaving`의 사전적인 의미는 `끼워넣기`입니다. `Server Component`와 `Client Component`의 복합적인 구조에서 일반적으로 `Next.js`의 렌더링은 `Server Component`인 `root layout`을 부모로 컴포넌트 트리를 만들며 중간에 등장하는 `Client Component`에 의해 `Subtree`가 만들어집니다. 
+&nbsp;&nbsp;`Interleaving`의 사전적인 의미는 `끼워넣기`입니다. `Server Component`와 `Client Component`의 복합적인 구조에서 일반적으로 `Next.js`의 렌더링은 `Server Component`인 `root layout`을 부모로 갖는 컴포넌트 트리를 만들며 중간에 등장하는 `Client Component`에 의해 `Subtree`가 만들어집니다. 
 
 &nbsp;&nbsp;`Subtree` 내부에는 `Server Component`가 포함될 수 있으며, `Server Action`을 호출할 수 있지만 다음과 같은 사항을 유의해야합니다.
 
-1. `Request-Response` 라이프사이클 중에 작성된 코드는 `Server`에서 `Client`로 흐릅니다: 데이터는 서버에서 클라이언트로만 이동할 수 있음을 의미합니다. 클라이언트에서 데이터가 필요하다면 `Server Action` 등을 통해 서버에서 데이터 요청을 발생시킨 뒤, 클라이언트는 서버로부터 결과를 받아 사용해야 합니다. 반대로 데이터가 `Client`에서 `Server`로 이동할 수는 없습니다.
+1. `Request-Response` 라이프사이클 환경에서 작성된 코드는 `Server`에서 `Client`로 흐릅니다: 데이터는 서버에서 클라이언트로만 이동할 수 있음을 의미합니다. 클라이언트에서 데이터가 필요하다면 `Server Action` 등을 통해 서버에서 데이터 요청을 발생시킨 뒤, 클라이언트는 서버로부터 결과를 받아 사용해야 합니다. 반대로 데이터가 `Client`에서 `Server`로 이동할 수는 없습니다.
 
-2. 새로운 요청이 발생하면 가장 먼저 모든 `Server Component`가 렌더링 됩니다. 렌더링된 결과로 생성된 `RSC Payload`는 `Client Component reference`를 가지고 있으므로, 클라이언트의 `React`는 `RSC Payload`를 통해 `Server`와 `Client Component`를 단일 트리로 만듭니다.
+2. 새로운 요청이 발생하면 가장 먼저 모든 `Server Component`가 렌더링 됩니다. 렌더링된 결과로 생성된 `RSC Payload`는 `Client Component reference`를 가지고 있으므로, 클라이언트의 `React`는 `RSC Payload`를 통해 `Server`와 `Client Component`를 단일 트리로 만드는 과정을 거칩니다.
 
 3. `Client Component`는 `Server Component`의 렌더링이 끝난 뒤 렌더링되기 때문에 `Client Component` 내부에서 `Server Component`를 `import`해 사용하는 것은 불가능합니다. `Client Component` 내부에서 `Server Component`를 사용하려면 `children prop`으로 받아 사용할 수 있습니다.
+
+<br>
+
+**Not Supported Pattern**
 
 ```javascript
 // Not Supported Pattern
@@ -227,7 +231,12 @@ export default function ClientComponent({
 }
 ```
 
+<br>
+
+**Supported Pattern**
+
 ```javascript
+// client-component.tsx
 'use client'
 import { useState } from 'react'
  
@@ -243,6 +252,22 @@ export default function ClientComponent({
       <button onClick={() => setCount(count + 1)}>{count}</button>
       {children}
     </>
+  )
+}
+
+// app.tsx
+// This pattern works:
+// You can pass a Server Component as a child or prop of a
+// Client Component.
+import ClientComponent from './client-component'
+import ServerComponent from './server-component'
+ 
+// Pages in Next.js are Server Components by default
+export default function Page() {
+  return (
+    <ClientComponent>
+      <ServerComponent />
+    </ClientComponent>
   )
 }
 ```
