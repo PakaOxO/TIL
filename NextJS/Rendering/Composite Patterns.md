@@ -128,7 +128,28 @@ export default function Page() {
 
 **Context Providers**
 
-&nbsp;&nbsp;전역 상태를 위한 `Context API`의 `Provider`는 많은 경우 `root`에 인접하게 렌더링됩니다. 하지만 `Server Component`는 `Provider`를 지원하지 않으므로 오류를 발생시킬 수 있습니다. 이 경우 `Context`를 설계할 때 ``
+&nbsp;&nbsp;전역 상태를 위한 `Context API`의 `Provider`는 많은 경우 `root`에 인접하게 렌더링됩니다. 하지만 `Server Component`는 `Provider`를 지원하지 않으므로 오류를 발생시킬 수 있습니다. 이 경우 `Context`를 설계할 때 `Provider`를 별도의 `Client Component` 내부에 렌더링되도록 할 수 있습니다.
+
+```javascript
+// app/theme-provider/tsx
+'use client'
+import { createContext } from 'react'
+export const ThemeContext = createContext({})
+ 
+export default function ThemeProvider({ children }: {
+  children: React.ReactNode
+}) {
+  return <ThemeContext.Provider value="dark">{children}</ThemeContext.Provider>
+}
+```
+
+  &nbsp;&nbsp;이렇게 하면 `Server Component`는 `Provider` 컴포넌트를 `Client Component`로써 렌더링합니다. 만약 `<ThemeProvider />`가 `root`에 렌더링 되었다면 `root` 하위의 모든 `Client Component`는 `<ThemeProvider />`의 전역 상태에 접근할 수 있습니다.
+
+<br>
+
+### Client Components
+
+
 
 <br>
 
