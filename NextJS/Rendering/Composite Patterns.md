@@ -149,7 +149,13 @@ export default function ThemeProvider({ children }: {
 
 ### Client Components
 
+&nbsp;&nbsp;`Next.js`에서 컴포넌트는 기본적으로 `Server Component`로 동작하는 만큼 `Client Component`는 `Server Component` 자식 컴포넌트로 사용되는 경우가 많습니다. 때문에 `Client Component`를 사용하기 위해서는 다음과 같은 사항들에 대해 고려하는 것이 좋습니다.
 
+<br>
+
+**1. Moving Client Components Down the Tree**
+
+&nbsp;&nbsp;`Client Component` 내부에서 사용되는 모듈들은 `Client bundle`로써 클라이언트에게 다운로드됩니다. ㅂ
 
 <br>
 
