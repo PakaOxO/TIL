@@ -31,3 +31,42 @@
 
 <br>
 
+**2. Keeping Server-only code out of the Client Environment
+
+&nbsp;&nbsp;어떤 코드는 서버 환경에서만 실행하기를 원할 수 있습니다. 다음 코드에서 `API KEY`는 클라이언트에 노출되지 않기 위해 서버 환경에서만 해당 코드를 호출하고 싶지만 원치 않게 `Client Component`에서 호출될 수 있습니다. 또한, 클라이언트 환경에서 `NEXT_PUBLIC`은 접근할 수 없으므로 원칙적으로 `''(빈 문자열)`을 반환하므로 실제로 요청이 정상적으로 처리되지 않습니다.
+
+```javascript
+export async function getData() {
+  const res = await fetch('https://external-service.com/data', {
+    headers: {
+      authorization: process.env.API_KEY,
+    },
+  })
+ 
+  return res.json()
+}
+```
+
+<br>
+
+위의 `getData`가 클라이언트에서 호출되는 것을 방지하기 위해 `server-only`를 사용할 수 있습니다. `server-only`를 사용하면 `getData`가 원치 않게 클라이언트 코드에서 실행되는 것을 빌드 타임에 오류를 통해 확인할 수 있습니다.
+
+```bash
+npm install server-only
+```
+
+```javascript
+import 'server-only'
+ 
+export async function getData() {
+  const res = await fetch('https://external-service.com/data', {
+    headers: {
+      authorization: process.env.API_KEY,
+    },
+  })
+ 
+  return res.json()
+}
+```
+
+&nbsp;&nbsp;`server-only`와 비슷하게 어떤 코드는 클라이언트 환경에서만 실행되기를 웒
