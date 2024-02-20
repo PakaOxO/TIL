@@ -155,8 +155,41 @@ export default function ThemeProvider({ children }: {
 
 **1. Moving Client Components Down the Tree**
 
-&nbsp;&nbsp;`Client Component` 내부에서 사용되는 모듈들은 `Client bundle`로써 클라이언트에게 다운로드됩니다. ㅂ
+&nbsp;&nbsp;`Client Component` 내부에서 사용되는 모듈들은 `Client bundle`로써 클라이언트에게 다운로드됩니다. 다운로드되는 JS 번들 사이즈를 줄이기 위해서는 `Client Component`는 컴포넌트 트리 상에서 아래에 위치시키는 것이 좋습니다.
 
+&nbsp;&nbsp;아래 코드에서 `<SearchBar />`는 사용자와의 상호작용 로직이 포함된 `Client Component`입니다. 반면 `Logo`는 모든 사용자에게 동일하게 보여질 `static Component`입니다. 만약 `Layout`을 `Server Component`로써 사용하면 `Logo`는 불필요하게 클라이언트에 다운로드 되지 않고, 서버 상에서 렌더링 되며, 오직 `SearchBar`와 내부에서 사용되는 모듈만 번들로 다운로드 됩니다.
+
+```javascript
+// app.tsx
+// SearchBar is a Client Component
+import SearchBar from './searchbar'
+// Logo is a Server Component
+import Logo from './logo'
+ 
+// Layout is a Server Component by default
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <nav>
+        <Logo />
+        <SearchBar />
+      </nav>
+      <main>{children}</main>
+    </>
+  )
+}
+```
+
+<br>
+
+**Passing props from Server to Client Components (Serialization)**
+
+&nbsp;&nbsp;이 부분이 저에겐 가장 인상깊은 내용이었습니다. `Server Component`와 `Client Component`가 어떻게 `props`를 주고 받는 지에 대해 의문이 있었는데 이 의문을 해결해주는 내용이 담겨 있었습니다.
+
+&nbsp;&nbsp;`Server Component`와 `Client Component` 사이에 주고받는 `props`는 [Serializable](https://developer.mozilla.org/ko/docs/Glossary/Serialization) 해야 합니다. `직렬화`가 가능한 데이터 만이 `props`를 통해 전달될 수 있으며, 대표적으로 함수가 `실행 컨텍스트`를 포함하고 있기 때문에 `직렬화`가 불가능한 요소입니다.
+
+&nbsp;&nbsp;`직렬화`가 불가능한 요소를 `proops`
+ 
 <br>
 
 **References**
