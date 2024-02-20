@@ -23,4 +23,11 @@
 
 &nbsp;&nbsp;만약 여러 `Server Component`에서 동일한 서버 데이터에 접근해야 하는 상황이라면 어떨까요? 클라이언트에서와 달리 `Server Component`는 `Context API`와 같은 전역 상태관리 라이브러리를 사용할 수 없습니다. 그러면 각 컴포넌트는 각자 필요한 데이터를 `중복`해서 서버에 요청해야 할까요?
 
-&nbsp;&nbsp;`React`의 `fetch`는 확ㅈ
+>[!tip] **React `fetch`**
+>
+>&nbsp;&nbsp;React extends `fetch` to automatically memoize data requests, and the `cache` function can be used when `fetch` is not available.
+
+&nbsp;&nbsp;`React`의 `fetch`는 내부적으로 요청 이후 데이터가 캐싱되는 로직이 포함되어 있습니다. 따라서 여러 컴포넌트에서 중복된 데이터를 요청하더라도 이전 요청에 의해 캐싱된 데이터가 있다면 중복된 요청은 발생하지 않을 수 있습니다. `React fetch`가 데이터를 캐싱하는 방식에 대해서는 [다음](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) 내용을 참고할 수 있습니다.
+
+<br>
+
