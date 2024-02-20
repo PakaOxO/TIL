@@ -192,7 +192,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
  
 <br>
 
+### Interleaving Server and Client Components
 
+&nbsp;&nbsp;`Interleaving`의 사전적인 의미는 `끼워넣기`입니다. `Server Component`와 `Client Component`의 복합적인 구조에서 일반적으로 `Next.js`의 렌더링은 `Server Component`인 `root layout`을 부모로 컴포넌트 트리를 만들며 중간에 등장하는 `Client Component`에 의해 `Subtree`가 만들어집니다. 
+
+&nbsp;&nbsp;`Subtree` 내부에는 `Server Component`가 포함될 수 있으며, `Server Action`을 호출할 수 있지만 다음과 같은 사항을
+
+
+<br>
 
 **References**
 - [Composite patterns, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
