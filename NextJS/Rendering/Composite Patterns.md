@@ -69,4 +69,16 @@ export async function getData() {
 }
 ```
 
-&nbsp;&nbsp;`server-only`와 비슷하게 어떤 코드는 클라이언트 환경에서만 실행되기를 웒
+&nbsp;&nbsp;`server-only`와 비슷하게 어떤 코드는 클라이언트 환경에서만 실행되기를 원할 수 있습니다. `client-only` 패키지를 사용하면 클라이언트 코드가 서버 코드에서 실행되는 것을 빌드 타임 시에 오류를 통해 확인할 수 있습니다.
+
+<br>
+**3. Using Third-party Packages and Providers
+
+
+
+<br>
+
+**References**
+- [Composite patterns, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
+- [React Fetchs](https://nextjs.org/docs/app/building-your-application/caching#request-memoization)
+- 
