@@ -188,9 +188,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 &nbsp;&nbsp;`Server Component`와 `Client Component` 사이에 주고받는 `props`는 [Serializable](https://developer.mozilla.org/ko/docs/Glossary/Serialization) 해야 합니다. `직렬화`가 가능한 데이터 만이 `props`를 통해 전달될 수 있으며, 대표적으로 함수가 `실행 컨텍스트`를 포함하고 있기 때문에 `직렬화`가 불가능한 요소입니다.
 
-&nbsp;&nbsp;`직렬화`가 불가능한 요소를 `proops`
+&nbsp;&nbsp;`직렬화`가 불가능한 요소를 `Client Component` 에서 사용하고 싶다면, 서드파티 라이브러리를 통해 `Client Component`에서 직접 `fetch`해오거나 `Next.js`에서 제공하는  [Route Handler](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)를 사용하는 방법이 있습니다. `Route Handler`에 대해서는 이후 포스트에서 다뤄보도록 하겠습니다.
  
 <br>
+
+
 
 **References**
 - [Composite patterns, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
