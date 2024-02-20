@@ -196,12 +196,61 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 &nbsp;&nbsp;`Interleaving`의 사전적인 의미는 `끼워넣기`입니다. `Server Component`와 `Client Component`의 복합적인 구조에서 일반적으로 `Next.js`의 렌더링은 `Server Component`인 `root layout`을 부모로 컴포넌트 트리를 만들며 중간에 등장하는 `Client Component`에 의해 `Subtree`가 만들어집니다. 
 
-&nbsp;&nbsp;`Subtree` 내부에는 `Server Component`가 포함될 수 있으며, `Server Action`을 호출할 수 있지만 다음과 같은 사항을
+&nbsp;&nbsp;`Subtree` 내부에는 `Server Component`가 포함될 수 있으며, `Server Action`을 호출할 수 있지만 다음과 같은 사항을 유의해야합니다.
 
+1. `Request-Response` 라이프사이클 중에 작성된 코드는 `Server`에서 `Client`로 흐릅니다: 데이터는 서버에서 클라이언트로만 이동할 수 있음을 의미합니다. 클라이언트에서 데이터가 필요하다면 `Server Action` 등을 통해 서버에서 데이터 요청을 발생시킨 뒤, 클라이언트는 서버로부터 결과를 받아 사용해야 합니다. 반대로 데이터가 `Client`에서 `Server`로 이동할 수는 없습니다.
+
+2. 새로운 요청이 발생하면 가장 먼저 모든 `Server Component`가 렌더링 됩니다. 렌더링된 결과로 생성된 `RSC Payload`는 `Client Component reference`를 가지고 있으므로, 클라이언트의 `React`는 `RSC Payload`를 통해 `Server`와 `Client Component`를 단일 트리로 만듭니다.
+
+3. `Client Component`는 `Server Component`의 렌더링이 끝난 뒤 렌더링되기 때문에 `Client Component` 내부에서 `Server Component`를 `import`해 사용하는 것은 불가능합니다. `Client Component` 내부에서 `Server Component`를 사용하려면 `children prop`으로 받아 사용할 수 있습니다.
+
+```javascript
+// Not Supported Pattern
+'use client'
+// You cannot import a Server Component into a Client Component.
+import ServerComponent from './Server-Component'
+ 
+export default function ClientComponent({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [count, setCount] = useState(0)
+ 
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+ 
+      <ServerComponent />
+    </>
+  )
+}
+```
+
+```javascript
+'use client'
+import { useState } from 'react'
+ 
+export default function ClientComponent({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [count, setCount] = useState(0)
+ 
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+      {children}
+    </>
+  )
+}
+```
 
 <br>
 
 **References**
 - [Composite patterns, Vercel Docs](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 - [React Fetchs](https://nextjs.org/docs/app/building-your-application/caching#request-memoization)
-- 
+- [Serialization](https://developer.mozilla.org/ko/docs/Glossary/Serialization)
+- [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
