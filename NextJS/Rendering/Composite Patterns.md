@@ -74,8 +74,61 @@ export async function getData() {
 <br>
 **3. Using Third-party Packages and Providers
 
+**Third-party Packages**
+
 &nbsp;&nbsp;`Server Component`가 등장한 이후, 새로운 서드 파티 패키지에는 `"use client"` 지시문이 추가되어 릴리즈되어 나오고 있습니다. 이 경우, 서버 환경에서는 해당 패키지를 사용할 수 없으므로 서버 컴포넌트가 패키지를 사용하려고 하면 빌드 타임에 오류를 통해 이를 검출할 수 있습니다.
 
+&nbsp;&nbsp;하지만 여전히 많은 패키지는 `"use client"` 지시문이 포함되어 있지 않습니다. 때문에 서버 환경에서 패키지에 접근해도 별다른 오류를 띄우지 않아 문제를 미리 파악할 수 없습니다. 하나의 패키지를 예시로 들어보겠습니다.
+
+<br>
+
+```javascript
+// app/page.tsx
+import { Carousel } from 'acme-carousel'
+ 
+export default function Page() {
+  return (
+    <div>
+      <p>View pictures</p>
+ 
+      {/* Error: `useState` can not be used within Server Components */}
+      <Carousel />
+    </div>
+  )
+}
+```
+
+&nbsp;&nbsp;`acme-carousel` 패키지에는 `Carousel` 컴포넌트가 포함되어 있으며, 이 컴포넌트는 `useState` 훅을 사용합니다. 하지만 `"use client"` 지시문이 없기 때문에 서버 컴포넌트에서 `Carousel` 컴포넌트를 사용해도 별다른 오류를 사전에 확인할 수 없습니다.
+
+&nbsp;&nbsp;이 경우, 서드파티 컴포넌트를 새로운 컴포넌트로 만든 뒤, `"use client"` 지시문을 포함시키는 방법을 사용할 수 있습니다. 클라이언트 환경에서 동작하는 패키지는 대부분 이 방법으로 해결할 수 있습니다.
+
+```javascript
+// app/carousel.tsx
+'use client'
+import { Carousel } from 'acme-carousel'
+ 
+export default Carousel
+
+// app/pages.tsx
+import Carousel from './carousel'
+ 
+export default function Page() {
+  return (
+    <div>
+      <p>View pictures</p>
+ 
+      {/*  Works, since Carousel is a Client Component */}
+      <Carousel />
+    </div>
+  )
+}
+```
+
+<br>
+
+**Context Providers**
+
+&nbsp;&nbsp;전역 상태를 위한 `Context API`의 `Provider`는 많은 경우 `root`에 인접하게 렌더링됩니다. 하지만 `Server Component`는 `Provider`를 지원하지 않으므로 오류를 발생시킬 수 있습니다. 이 경우 `Context`를 설계할 때 ``
 
 <br>
 
