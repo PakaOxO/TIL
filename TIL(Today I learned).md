@@ -3,7 +3,7 @@
 
 ### Contents
 - [[Algorithm]]
-- [[Computer structure & OS]]
+- [[Computer Structure & OS/Computer structure & OS]]
 - [[Network]]
 - [[Web]]
 - [[Javascript]]
