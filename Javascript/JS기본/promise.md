@@ -112,7 +112,7 @@ const promise2 = setTimeoutPromise(500);
 
 **3. Promise.all**
 
-&nbsp;&nbsp;`Promise.all`은 프로미스 배열을 인자로 전달받습니다. 비동기 로직을 처리할 프로미스를 만든 뒤 모든 비동기 로직이 모두 `fulfilled` 상태가 되었다면 각 결과를 `resolve`하는 프로미스들을 배열로 반환합니다. 반환되는 프로미스 배열의 순서는 완료 순서와 무관하게 초기에 인자로 전달한 프로미스 배열 순서와 동일합니다. 만약 전달받은 프로미스 중 하나라도 `reject` 상태가 된다면 나머지 프로미스가 `fulfilled` 상태가 되는 것을 기다리지 않고 바로 종료됩니다.
+&nbsp;&nbsp;`Promise.all`은 프로미스 배열을 인자로 전달받습니다. 비동기 로직을 처리할 프로미스를 만든 뒤 모든 비동기 로직이 모두 `fulfilled` 상태가 되었다면 각 결과를 `resolve`하는 프로미스들을 배열로 반환합니다. 반환되는 프로미스 배열의 순서는 완료 순서와 무관하게 초기에 인자로 전달한 프로미스 배열 순서와 동일합니다. 만약 전달받은 프로미스 중 하나라도 `rejected` 상태가 된다면 나머지 프로미스가 `fulfilled` 상태가 되는 것을 기다리지 않고 바로 종료됩니다.
 
 &nbsp;&nbsp;`Promise.all`은 서로 무관한 비동기 로직을 병렬적으로 실행하기 위해 사용할 수 있습니다.
 
@@ -126,10 +126,11 @@ const results = Promise.all([
 
 **4. Promise.race**
 
-&nbsp;&nbsp;`Promise.race`는 `Promise.all`과 마찬가지로 프로미스 요소들을 갖는 배열 등의 이터러블을 인자로 받습니다. 이 메서드는 가장 먼저 `fulfilled` 상태로 전환되는 비동기 로직의 결과를 `resolve`한 결과 프로미스를 반환합니다. 만약 프로미스가 하나라도 `reject` 상태가 되면 `Promise.all`과 동일하게 동작합
+&nbsp;&nbsp;`Promise.race`는 `Promise.all`과 마찬가지로 프로미스 요소들을 갖는 배열 등의 이터러블을 인자로 받습니다. 이 메서드는 가장 먼저 `fulfilled` 상태로 전환되는 비동기 로직의 결과를 `resolve`한 결과 프로미스를 반환합니다. 만약 프로미스가 하나라도 `rejected` 상태가 되면 `Promise.all`과 동일하게 동작합니다.
 
 **5. Promise.allSettled**
 
+&nbsp;&nbsp;`Promise.all`은 전달된 프로미스 중 하나라도 `reject`가 되면 중간에 중단되었지만 `allSettled`는 모두 `settled`, 즉 `pending`이 아닌 `fulfilled`, `rejected` 상태가 될때까지 기다립니다. 반환되는 배열에는 각 프로미스의 결과에 대한 상태(`fulfilled/rejected`)와 `resolve`된 경우 그 결과를 `value`로 포함하고 있으며, `reject` 되었을 경우에는 원인을 `reason` 프로퍼티에 담은 객체를 반환합니다.
 
 <br>
 
