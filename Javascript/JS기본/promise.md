@@ -53,7 +53,7 @@ promise1
 
 &nbsp;&nbsp;Promise 객체 내부의 함수에서 실행된 비동기 코드의 실행 성공 여부에 따라 `.then` 블록과 `.catch` 블록이 실행됩니다. 예시에서 `setTimeout`이 성공적으로 실행이 완료되면 3초 뒤에 '{ name: "Lee" }'라는 객체가 출력될 것입니다. `resolve`에 의해 전달된 data를 활용하여 `.then` 블록에서 요청한 데이터를 활용해 처리할 로직을 수행할 수 있습니다. 중요한 점은 `console.log(data)`가 출력되는 시점은 promise1을 선언한 선언문에서 `Promise` 객체가 생성된 후, 3초 뒤로 비동기 호출은 `Promise` 객체가 생성된 시점에 이루어집니다.
 
-&nbsp;&nbsp;예시에서는 그럴 일이 없지만 모종의 이유로 오류가 발생하여 `catch` 블록이 실행되면 `reject`에 의해 발생한 `Error` 객체가 전달되고 `.catch` 블록에서 넘겨받은 오류 정보를 출력합니다.
+&nbsp;&nbsp;만약 모종의 이유로 오류가 발생하여 `catch` 블록이 실행되면 `reject`에 의해 발생한 `Error` 객체가 전달되고 `.catch` 블록에서 넘겨받은 오류 정보를 출력합니다.
 
 <br>
 
