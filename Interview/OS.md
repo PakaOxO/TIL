@@ -122,5 +122,22 @@
 
 <br>
 
-### 
+### CPU 스케줄링이란? 그리고 종류는?
 
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;모든 프로세스는 CPU 자원을 필요로 하기 때문에 각 프로세스가 CPU를 사용할 순서를 정하기 위해 `CPU 스케줄링`을 통해 합리적으로 CPU 자원을 배분합니다.
+  <br>
+  &nbsp;&nbsp;CPU 스케줄링의 종류로는 대표적으로 `선입선처리(FCFS, First-come First-served)`, `최단작업(SJF, Shortest job first)`, `라운드로빈(Round-Robin)`, `다단계 피드백 큐` 스케줄링이 있습니다.
+</details>
+
+<br>
+
+### CPU 스케줄링 종류별 설명
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;모든 프로세스는 CPU 자원을 필요로 하기 때문에 각 프로세스가 CPU를 사용할 순서를 정하기 위해 `CPU 스케줄링`을 통해 합리적으로 CPU 자원을 배분합니다.
+  <br>
+  &nbsp;&nbsp; `선입선처리(FCFS, First-come First-served)`, `최단작업(SJF, Shortest job first)`, `라운드로빈(Round-Robin)`, `다단계 피드백 큐` 스케줄링이 있습니다.
+</details>
