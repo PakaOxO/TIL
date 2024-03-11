@@ -6,9 +6,7 @@
 
 ### Web API
 
-<figure align="center" style="width: 100%">
-  <img src="../images/js_engine.gif" style="width: 600px" />
-</figure>
+![|](../images/js_engine.gif)
 
 &nbsp;&nbsp;브라우저는 자바스크립트 런타임 환경으로 우리가 알고 있는 Javascript인 `ECMAScript`와 `이벤트 루프`, `콜백 큐`, `Web API` 등을 가지고 있습니다. 일반적인 자바스크립트 코드는 순차적으로 `호출 스택(Call Stack)`에 담아 처리됩니다.
 
