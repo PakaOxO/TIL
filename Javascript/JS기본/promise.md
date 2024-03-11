@@ -16,7 +16,7 @@ const promise1 = new Promise((resolve, reject) => {
 
 &nbsp;&nbsp;`Promise`는 비동기 작업을 위해 사용되는 객체로 여러가지 생성방법이 있으나 가장 정석적인 방법은 `new` 리터럴을 사용한 생성방법입니다. `Promise` 생성자 내부에는 `Executor`라는 이름의 콜백함수가 위치하며 이 콜백함수는 `resolve`와 `reject`라는 매개변수를 가집니다.
 
-&nbsp;&nbsp;`resolve`와 `reject`는 각각 비동기 코드가 실행한뒤 성공했을 경우와, 실패했을 경우를 나타내기 위해 Promise에서 제공하는 함수입니다. 이 둘은 각각 매개변수를 가지는데 비동기 코드의 성공/실패시 필요한 값을 받아서 넘겨줄 수 있습니다.
+&nbsp;&nbsp;`resolve`와 `reject`는 각각 비동기 코드가 실행한뒤 성공했을 경우와, 실패했을 경우를 나타내기 위해 Promise에서 제공하는 함수입니다. 이 둘은 각각 매개변수를 가지는데 비동기 코드의 성공/실패시 필요한 값을 받아서 Promise 객체의 `상태(status)`와 `결과(result)`에 바인딩합니다.
 
 <br>
 
@@ -33,7 +33,7 @@ const promise1 = new Promise((resolve, reject) => {
       const data = { name: "Lee" }; // 3초 뒤에 데이터를 가져왔다고 가정합니다.
       console.log(data); // 3초 뒤에 data를 출력합니다.
       resolve(data);
-    });
+    }, 3000);
   } catch((err)) {
     reject(err);
   }
@@ -96,9 +96,28 @@ const promise2 = setTimeoutPromise(500);
 
 <br>
 
-### Promise의 사용 의의
+### Promise 정적 메서드
 
-&nbsp;&nbsp;`Promise`객체를 활용하여 비동기 작업을 수행했을 때의 가장 큰 의의는 비동기 작업의 실행(`new Promise()`)과 실행이 완료되었을 때의 동작 지정 부분(`then`, `catch`)을 분리함으로써 보다 유연한 설계를 가능하게 합니다.
+&nbsp;&nbsp;`Promise` 역시 객체이므로 내부적으로 정적 메서드를 가집니다. `Promise`는 5개의 메서드를 가지는데 지금부터 각 메서드에 대해 살펴보겠습니다.
+
+<br>
+
+**1. Promise.resolve**
+
+**2.Promisereject**
+
+**3. Promise.all**
+
+**4. Promise.race**
+
+**5. Promise.allSettled**
+
+
+<br>
+
+### Review
+
+&nbsp;&nbsp;`Promise`객체를 활용하여 비동기 작업을 수행했을 때의 가장 큰 의의는 비동기 작업의 실행(`new Promise()`)과 실행이 완료되었을 때의 동작 지정 부분(`then`, `catch`)을 분리함으로써 보다 유연한 설계를 가능하게 하는 점이라고 생각합니다.
 
 <br>
 
