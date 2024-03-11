@@ -98,15 +98,21 @@ const promise2 = setTimeoutPromise(500);
 
 ### Promise 정적 메서드
 
-&nbsp;&nbsp;`Promise` 역시 객체이므로 내부적으로 정적 메서드를 가집니다. `Promise`는 5개의 메서드를 가지는데 지금부터 각 메서드에 대해 살펴보겠습니다.
+`Promise` 역시 객체이므로 내부적으로 정적 메서드를 가집니다.
 
 <br>
 
 **1. Promise.resolve**
 
-**2.Promisereject**
+&nbsp;&nbsp;어떤 값을 래핑한 프로미스 객체를 만들기 위해 사용됩니다. 제 경우, 주로 클라이언트 타입과 다른 객체를 서버로 반환 받았을 때 타입스크립트의 사용자 타입에 맞춘 객체를 반환하기 위해 응답 데이터를 변환해 프로미스로 반환했습니다.
+
+**2.Promise.reject**
+
+&nbsp;&nbsp;`Promise.resolve`가 전달받은 값을 `resolve`하는 프로미스를 반환했다면, `Promise.reject`는 전달받은 값으로 `reject`하는 프로미스를 반환합니다.
 
 **3. Promise.all**
+
+&nbsp;&nbsp;`Promise.all`은 프로미스 배열을 인자로 전달받습니다. 비동기 로직을 처리할 프로미스를 만든 뒤 모든 비동기 로직이 완료(`fulfilled`)되었다면 각 결과 프로미스를 배열로 반환합니다. 반환되는 프로미스 배열의 순서는 완료 순서와 무관하게 초기에 인자로 전달한 프로미스 배열 순서와 동일합니다.
 
 **4. Promise.race**
 
