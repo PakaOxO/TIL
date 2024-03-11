@@ -214,5 +214,13 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;`First fit`은 메모리를 처음부터 검사한 뒤 처음으로 크기가 충분한 영역에 할당하는 방식입니다. `Next fit`은 마지막으로 참조한 메모리 영역 다음부터 검사를 시작해 크기가 충분한 영역에 할당합니다. `Best fit`은 모든 메모리 영역을 검사한 뒤 메모리에 할당할 수 있는 공간 중 가장 작은 영역에 할당하는 방식입니다. Worst fit`은 남은 메모리 영역 중 가장 큰 영역에 할당하는 방식입니다.
+</details>
+
+<br>
+
+### 외부 단편화와 내부 단편화?
+
+<details>
+  <summary></summary>
 </details>
