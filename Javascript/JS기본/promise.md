@@ -22,7 +22,7 @@ const promise1 = new Promise((resolve, reject) => {
 
 > 💡 **Promise 3가지 상태**
 >
-> &nbsp;&nbsp;`Promise`는 ` 대기(pending)`, `이행(fulfilled)`, `거부(rejected)`의 3가지 상태를 가집니다. 처음 `Promise` 객체가 생성되어 비동기 작업이 완료되기 전 상태가 `대기`, 성공적으로 비동기 작업이 완료된 이후의 상태가 `이행`, 모종의 이유로 작업이 실패한 상태가 `거부`이며 앞에서 '이행'상태일때 `.then`에서 등록된 동작이 '거부'상태일때 `.catch`에서 등록된 동작이 수행됩니다.
+> &nbsp;&nbsp;`Promise`는 ` 대기(pending)`, `이행(fulfilled)`, `거부(rejected)`의 3가지 상태를 가집니다. 처음 `Promise` 객체가 생성되어 비동기 작업이 완료되기 전 상태가 `대기`, 성공적으로 비동기 작업이 완료된 이후의 상태가 `이행`, 모종의 이유로 작업이 실패한 상태가 `거부`이며 앞에서 '이행'상태일때 `.then`에서 등록된 동작이 '거부'상태일때 `.catch`에서 등록된 동작이 수행됩니다. 3가지 상태 중 `fulfilled`와 `rejected`는 하나로 묶어 `settled` 상태로 부릅니다.
 
 <br>
 
