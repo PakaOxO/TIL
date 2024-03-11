@@ -159,4 +159,18 @@
 
 <br>
 
-### 
+### 인터럽트란?
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;`인터럽트(Interrupt)`는 CPU가 명령어를 실행하는 도중 입출력 혹은 예외 상황을 처리하기 위해 실행하던 프로그램을 중간에 중단하고 바로 작업해야할 내용을 처리하도록 하는 것을 의미합니다.
+</details>
+
+<br>
+
+### 시스템 콜이란?
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;`시스템 콜(System Call)`는 운영체제의 서비스를 이용할 수 있도록 `커널 모드`로 전환하기 위한 
+</details>
