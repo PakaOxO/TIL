@@ -5,7 +5,7 @@
 
 ### DATE_FORMAT
 
-```mysql
+```sql
 SELECT animal_id,
        name,
        DATE_FORMAT(datetime, '%Y-%m-%d, %HH-%MM-%ss') as datetime
@@ -17,13 +17,15 @@ ORDER BY animal_id
 
 **포맷**
 
-| No. | Type  | Format | Result       |
-| --- | ----- | ------ | ------------ |
-| 1   | Year  | %Y     | 2023         |
-| 2   | Year  | %y     | 23           |
-| 3   | Month | %M     | 01           |
-| 4   | Month | %m     | Jan          |
-| 5   | Day   | %D     | 01           |
-| 6   | Day   | %d     | 1st          |
-| 7   | Hour  | %H     | 13(24시간 표기법) |
-| 8   |       |        |              |
+| No. | Type  | Format | Result        |
+| --- | ----- | ------ | ------------- |
+| 1   | Year  | '%Y'   | 2023          |
+| 2   | Year  | '%y'   | 23            |
+| 3   | Month | '%M'   | 01            |
+| 4   | Month | '%m'   | Jan           |
+| 5   | Day   | '%D'   | 01            |
+| 6   | Day   | '%d'   | 1st           |
+| 7   | Hour  | '%H시'  | 13시(24시간 표기법) |
+| 8   | Hour  | '%h시'  | 1시(12시간 표기법)  |
+| 9   | Min   | '%i분'  | 12분           |
+| 10  | Sec   | '%S'   | 43초           |

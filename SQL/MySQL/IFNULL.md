@@ -7,7 +7,7 @@
 
 &nbsp;&nbsp;`IFNULL` 문법은 `NVL`과 동일합니다. NVL 괄호 내부에 좌측엔 필드명을, 우측엔 해당 필드의 값이 `Null`일 경우 치환해줄 값을 넣어주면 됩니다.
 
-```mysql
+```sql
 SELECT animal_type,
        IFNLL(name, 'No name') as name,
        age
