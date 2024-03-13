@@ -9,4 +9,5 @@
 - [[Javascript]]
 - [[React.js]]
 - [[NextJS]]
+- [[SQL/SQL|SQL]]
 - [[Unity]]
