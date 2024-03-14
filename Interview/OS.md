@@ -99,6 +99,7 @@
 </details>
 
 <br>
+
 ### 경쟁상태와 임계영역
 
 <details>
