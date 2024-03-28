@@ -12,8 +12,48 @@
 ### Transcompiling
 
 ```javascript
+const plugin = require('tailwindcss/plugin'); // before
+
 // the modern ESModule import syntax:
-import plugin from 'tailwindcss/plugin'
+import plugin from 'tailwindcss/plugin' // after
 ```
 
-&nbsp;&nbsp;프로젝트를 진행하면서 기계적으로 모듈을 가져다 쓰다보니 간과한 사실이 있었습니다. `React`든 `Typescript`든 브라우저에서 동작하기 위해서는 `JS Module`로 변환하는 과정을 거쳐야 하고 그 과정이 `Transcompiling`에
+&nbsp;&nbsp;프로젝트를 진행하면서 기계적으로 모듈을 가져다 쓰다보니 간과한 사실이 있었습니다. `React`든 `Typescript`든 브라우저에서 동작하기 위해서는 `JS Module`로 변환하는 과정을 거쳐야 하고 그 과정은 `Transcompiler`에 이루어집니다.
+
+&nbsp;&nbsp;JS 프레임워크로 작성된 코드는 `ES`와 `CommonJS` 두 가지 타입 모듈로 변환될 수 있습니다. 두 모듈은 `import/export` 문법이 다른데, 여기서 문제가 발생했던 것이었습니다.
+
+<br>
+
+### tsconfig.json
+
+&nbsp;&nbsp;사용하는 프로젝트마다 다르겠지만 저의 경우 `typescript`를 사용했기 때문에 `tsconfig.json`에는 작성한 코드를 어떤 모듈 타입으로 변환할 것인지에 대한 설정값을 지정할 수 있습니다.
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext", // <-- 여기
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{
+      "name": "next"
+    }],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+&nbsp;&nbsp;저의 경우 `ES`방식으로 컴파일이 되고 있었기 때문에 `require`구문을 사용한 `CommonJS`방식으로 모듈을 가져오려 하니 문제가 발생했던 것이었습니다.
