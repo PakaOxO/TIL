@@ -18,7 +18,7 @@
 
 ### Skeleton UI와 사용자 경험
 
-&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요? 결론부터 이야기하자면 "그렇지 않다"입니다. [카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서 인용한 UX 리서치 그룹(닐슨 노먼 그룹)의 [Progress indicators](https://www.nngroup.com/articles/progress-indicators/) 지침을 아래와 같이 정리할 수 있습니다.
+&nbsp;&nbsp;그렇다면 항상 `Skeleton UI`를 사용하는 것이 좋은 `사용자 경험`을 제공하는데 도움이 될까요? 결론부터 이야기하자면 "그렇지 않다"입니다. [카카오 기술블로그](https://tech.kakaopay.com/post/skeleton-ui-idea/)에서 인용한 UX 리서치 그룹(닐슨 노먼 그룹)의 [Progress indicators](https://www.nngroup.com/articles/progress-indicators/) 지침을 가져와봤습니다.
 
 > [!tip] Use a progress indicator for any action that takes longer than about 1.0 second.
 >1. Looped animation: Use only for fast actions.
@@ -95,7 +95,7 @@ return (
 
 ### 후기
 
-&nbsp;&nbsp;`Skeleton UI`는 사용자 경험을 향상시키기 위한 장치로 이를 적절하게 활용하는 것이 프론트엔드 개발자의 역량이라 생각합니다. 하지만 모든 것이 그렇듯 `Skeleton UI`를 남용하는 것은 오히려 사용자 경험을 저해하는 요인이 될 수 있는 만큼 개발하는 서비스/기능에 맞게 적절한 `Skeleton UI`를 적용하고, 관리하는 것이 중요할 것 입니다.
+&nbsp;&nbsp;`Skeleton UI`는 사용자 경험을 향상시키기 위한 장치로 이를 적절하게 활용할 수 있어야 할 것입니다. 하지만 모든 것이 그렇듯 `Skeleton UI`를 남용하는 것은 오히려 사용자 경험을 저해하는 요인이 될 수 있는 만큼 개발하는 서비스 또는 기능에 맞게 적절한 `Skeleton UI`를 적용하고, 관리하는 것이 중요할 것 입니다.
 
 <br>
 
