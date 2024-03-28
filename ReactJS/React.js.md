@@ -3,6 +3,6 @@
 - [[hook]]
 - [[globalState]]
 - [[Optimization]]
-- [[troubleshooting]]
+- [[ReactJS/troubleshooting/troubleshooting]]
 
 <br>
