@@ -58,11 +58,13 @@ import plugin from 'tailwindcss/plugin' // after, ES module
 
 &nbsp;&nbsp;저의 경우 `ES`방식으로 컴파일이 되고 있었기 때문에 `require`구문을 사용한 `CommonJS`방식으로 모듈을 가져오려하니 모듈을 제대로 읽어오지 못했던 것이었습니다. 결과적으로 앞서 작성했던 것처럼 `import`를 사용한 구문으로 수정하는 방식으로 해결되었습니다.
 
-&nbsp;&nbsp;우선 문제는 `ES`와 `CommonJS`에서 모듈을 `import/export`하는 방식이 다르다는 점과, type
+&nbsp;&nbsp;우선 문제는 "`ES`와 `CommonJS`에서 모듈을 `import/export`하는 방식이 다르다는 점과, typescript를 하나의 모듈 타입으로 컴파일하면서 발생했었다" 정도로 정리하고 해결했습니다. 다만 `CommonJS`와 `ES` 타입의 모듈이 무엇인지, 어떻게 등장하게 되었고 무엇이 다른지에 대해서는 나중에 기회가 되면 다시 한번 다뤄보려고 합니다. 이 글을 작성하면서 참고한 레퍼런스에 관련 글이 있어 아래 [링크](https://yceffort.kr/2020/08/commonjs-esmodules)를 달아두었습니다.
 
 <br>
 
 **References**
+- [Stackoverflow, require return is not typed properly is any](https://stackoverflow.com/questions/76502241/require-return-is-not-typed-properly-is-any)
+- [require vs import 문법 비교](https://inpa.tistory.com/entry/NODE-%F0%9F%93%9A-require-%E2%9A%94%EF%B8%8F-import-CommonJs%EC%99%80-ES6-%EC%B0%A8%EC%9D%B4-1)
 - [CommonJS와 ES Modules은 왜 함께 할 수 없는가?](https://yceffort.kr/2020/08/commonjs-esmodules)
 - [NodeJS 공식문서, import](https://nodejs.org/api/esm.html#esm_package_entry_points)
 - [삽질 기록/24.03.28](https://www.notion.so/Tailwind-16812d11e69c4c4e9ad95e674b6d75e0)
