@@ -103,3 +103,4 @@ return (
 - [더 나은 UX를 위한 React에서 스켈레톤 컴포넌트 만들기](https://ui.toast.com/weekly-pick/ko_20201110)
 - [무조건 스켈레톤 화면을 보여주는게 사용자 경험에 도움이 될까요?](https://tech.kakaopay.com/post/skeleton-ui-idea/)
 - [Progress indicators, Nielsen Norman Group](https://www.nngroup.com/articles/progress-indicators/)
+- [이슈관리 노션 페이지](https://www.notion.so/71a170e5cc254e559e310f194ad5605e?v=05c428962b414fbb989f95504ee596a2&p=31eaff1a6d0841858e4703d9df953189&pm=s)
