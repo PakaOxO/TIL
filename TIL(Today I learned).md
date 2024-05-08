@@ -7,6 +7,7 @@
 - [[Network]]
 - [[Web]]
 - [[Javascript]]
+- [[Typescript]]
 - [[React.js]]
 - [[NextJS]]
 - [[SQL/SQL|SQL]]
