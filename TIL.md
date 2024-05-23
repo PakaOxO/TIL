@@ -8,6 +8,7 @@
 - [[Network]]
 - [[Web]]
 - [[Javascript]]
+- [[Javascript]]
 - [[Typescript]]
 - [[React.js]]
 - [[NextJS]]
