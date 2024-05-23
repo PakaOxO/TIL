@@ -3,6 +3,7 @@
 
 ### Contents
 - [[Algorithm]]
+- [[AWS]]
 - [[Computer Structure & OS/Computer structure & OS]]
 - [[Network]]
 - [[Web]]

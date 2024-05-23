@@ -5,7 +5,7 @@
 
 &nbsp;&nbsp;'Jenkins 관리'의 'System'에서 Jenkins URL을 변경된 주소로 수정합니다.
 
-![Jenkins URL 변경|](./images/jenkins_url.png)
+![Jenkins URL 변경|](jenkins_url.png)
 
 <br>
 
