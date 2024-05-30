@@ -63,6 +63,18 @@
 
 <br>
 
+## Preload Scanner 리소스 힌트
+
+&nbsp;&nbsp;`Preload Scanner`에 작업을 지시하는 구문에는 크게 3가지 힌트를 사용해 리소스에 대해 구체적인 지시를 내릴 수 있습니다.
+
+<br>
+
+### 1. Preload
+
+&nbsp;&nbsp;`preload`는 서비스에서 해당 리소스의 우선 순위가 높아 리소스가 활용되기 이전에 우선적으로 가져와야 할 때 사용됩니다. 초기 페이지 렌더링 시에 필요한 크리티컬한 CSS나 JS, 이미지 등을 로드하기 위해 사용되며 `fetchpriority` 어트리
+
+<br>
+
 **References**
 - [MDN Docs, 브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/How_browsers_work)
 - [브라우저의 프리로드 스캐너와 파싱 동작의 이해](https://yceffort.kr/2022/06/preload-scanner)
