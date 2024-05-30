@@ -110,8 +110,15 @@
 
 <br>
 
+>[!caution] `preconnect` vs `dns-prefetch`
+>
+>&nbsp;&nbsp;`preconnect`는 CPU 자원을 활용하는데 보안 연결을 위해 `TLS`가 추가되는 경우 연결에 사용되는 CPU 사용량이 더욱 증가합니다. `TCP`를 포함해서 일반적으로 연결 후 10초 이상 사용되지 않는 연결은 끊어질 수 있습니다. 만일 사전 연결이 실제로 사용되지 않는다면 이는 불필요한 자원 낭비로 이어집니다. 또한 `dns-prefetch`가 더 광범위한 브라우저에서 지원되므로 때로는 `dns-prefetch`를 사용하는 것이 더 좋을 수 있습니다.
+
+<br>
+
 **References**
 - [MDN Docs, 브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/How_browsers_work)
 - [브라우저의 프리로드 스캐너와 파싱 동작의 이해](https://yceffort.kr/2022/06/preload-scanner)
 - [MDN Docs, rel=preconnect](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect)
+- [Chrome for developers, preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect?hl=ko#improve-page-load-speed-with-preconnect)
 - [Dns-prefetch & Preconnect: 7 Tips, Tricks and Pitfalls](https://medium.com/expedia-group-tech/dns-prefetch-preconnect-7-tips-tricks-and-pitfalls-82d633c7f210)
