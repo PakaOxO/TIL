@@ -65,7 +65,7 @@
 
 <br>
 
-## Preload Scanner 리소스 힌트
+## Resource Hints
 
 &nbsp;&nbsp;`Preload Scanner`에 작업을 지시하는 구문에는 크게 3가지 힌트를 사용해 리소스에 대해 구체적인 지시를 내릴 수 있습니다.
 
@@ -100,13 +100,13 @@
 
 >[!tip] `dns-prefetch`
 >
->&nbsp;&nbsp;어떤 외부 서버와 연결하기 위해서는  `DNS`와 `TCP handshake`의 과정이 선행되어야 합니다. `dns-prefetch`를 사용하면  DNS 확인을 사전에 진행할 수 있습니다. `dns-prefetch`를 사용하면 이후 DNS 확인 없이 타 도메인에 바로 요청을 보낼 수 있어 빠른 응답을 기대할 수 있습니다.
+>&nbsp;&nbsp;어떤 외부 서버와 연결하기 위해서는  `DNS lookup`, `TCP handshake`의 과정(대부분의 경우 `TLS negotiation`도 포함)이 선행되어야 합니다. `dns-prefetch`를 사용하면  DNS 확인을 사전에 진행할 수 있어 후속 페이지에서 발생하는 타 서버와의 통신에 대해 빠른 응답을 기대할 수 있습니다.
 
 <br>
 
 ### 3. Preconnect
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;`preconnect`는 실제 요청이 발생하기 전 다른 서버와 미리 연결을 진행하기 위해 사용되는 힌트입니다. 만약 외부 `CDN`서버를 통해 다양한 이미지를 가져올 예정이라면 CDN 서버와 미리 연결을 진행해 빠르게 이미지를 다운로드 받을 수 있습니다.
 
 <br>
 
@@ -114,3 +114,4 @@
 - [MDN Docs, 브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/How_browsers_work)
 - [브라우저의 프리로드 스캐너와 파싱 동작의 이해](https://yceffort.kr/2022/06/preload-scanner)
 - [MDN Docs, rel=preconnect](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect)
+- [Dns-prefetch & Preconnect: 7 Tips, Tricks and Pitfalls](https://medium.com/expedia-group-tech/dns-prefetch-preconnect-7-tips-tricks-and-pitfalls-82d633c7f210)
