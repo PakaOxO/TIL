@@ -88,9 +88,19 @@
 
 ### 2. Prefetch
 
+&nbsp;&nbsp;`prefetch`는 이후 사용자가 방문할 가능성이 높은 후속 페이지에서 사용되는 리소스를 로드하기 위해 사용될 수 있습니다. 가령 메인 페이지에서 상세 페이지로 넘어가는 구조의 서비스에서는 메인 페이지를 렌더링하면서 유저 플로우가 상세 페이지로 넘어갈 가능성이 높기 때문에 상세 페이지에서 활용되는 폰트, 이미지, 스크립트 등을 미리 로드해 이후 페이지의 성능을 개선할 수 있습니다. `prefetch`는 `preload`에 비해 낮은 우선순위를 가지므로 `preload`되는 리소스보다 이후에 로드됩니다.
+
+```html
+<link rel="prefetch" href="detail.css" as="style">
+<linkn rel="prefetch" href="product_detail.png" as="image">
+<link rel="prefetch" href="font/Roboto-regular.woff2" as="font">
+```
+
 <br>
 
 ### 3. Preconnect
+
+
 
 <br>
 
