@@ -98,12 +98,19 @@
 
 <br>
 
+>[!tip] `dns-prefetch`
+>
+>&nbsp;&nbsp;어떤 외부 서버와 연결하기 위해서는  `DNS`와 `TCP handshake`의 과정이 선행되어야 합니다. `dns-prefetch`를 사용하면  DNS 확인을 사전에 진행할 수 있습니다. `dns-prefetch`를 사용하면 이후 DNS 확인 없이 타 도메인에 바로 요청을 보낼 수 있어 빠른 응답을 기대할 수 있습니다.
+
+<br>
+
 ### 3. Preconnect
 
-
+&nbsp;&nbsp;
 
 <br>
 
 **References**
 - [MDN Docs, 브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/How_browsers_work)
 - [브라우저의 프리로드 스캐너와 파싱 동작의 이해](https://yceffort.kr/2022/06/preload-scanner)
+- [MDN Docs, rel=preconnect](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect)
