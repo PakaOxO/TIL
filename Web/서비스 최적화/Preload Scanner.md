@@ -39,6 +39,8 @@
   <link rel="preload" href="script.js" as="script">  
   <!-- Preloading Image -->  
   <link rel="preload" href="image.jpg" as="image">  
+  <!-- Preloading Font -->
+  <link rel="preload" href="fonts/Roboto-regular.woff2" as="font">
   <!-- Actual CSS file -->  
   <link rel="stylesheet" href="styles.css">  
   </head>  
@@ -71,7 +73,24 @@
 
 ### 1. Preload
 
-&nbsp;&nbsp;`preload`는 서비스에서 해당 리소스의 우선 순위가 높아 리소스가 활용되기 이전에 우선적으로 가져와야 할 때 사용됩니다. 초기 페이지 렌더링 시에 필요한 크리티컬한 CSS나 JS, 이미지 등을 로드하기 위해 사용되며 `fetchpriority` 어트리
+&nbsp;&nbsp;`preload`는 서비스에서 해당 리소스의 우선 순위가 높아 리소스가 활용되기 이전에 우선적으로 가져와야 할 때 사용됩니다. 초기 페이지 렌더링 시에 필요한 크리티컬한 CSS나 JS, 이미지 등을 로드하기 위해 사용되며 `fetchpriority` 어트리뷰트를 통해 로드 우선순위를 지정할 수 있습니다.
+
+&nbsp;&nbsp;`fetchpriority`는 크게 `auto(default)`, `low`, `high`를 값으로 가질 수 있습니다. 주로 이미지의 우선순위를 지정하기 위해 사용되며 사용자에게 우선적으로 보여져야 하는 사이트 배너, 주요 컨텐츠 등의 이미지에 활용될 수 있습니다. 반면 스크롤에 가려 한눈에 보이지 않는 이미지는 `fetchpriority="low"`로 상대적인 우선순위를 낮춰 사용자 경험에 기여할 수 있습니다.
+
+```html
+<link rel="preload" href="style.css" as="style">
+<link rel="preload" href="main.js" as="script">
+<link rel="preload" href="banner.webp" as="image" fetchpriority="high">
+<link rel="preload" href="product.png" as="image" fetchpriority="low">
+```
+
+<br>
+
+### 2. Prefetch
+
+<br>
+
+### 3. Pre
 
 <br>
 
