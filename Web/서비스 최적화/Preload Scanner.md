@@ -5,7 +5,38 @@
 
 ## Preload Scanner란?
 
-&nbsp;&nbsp;`Preload Scanner`는 사용자에 의해 발생된 요청에 대한 리소스를 사전에 메모리, 혹은 캐시에 가져오기 위한 도구입니다. `Preload Scanner`를 사용하면 메인 쓰레드에서 이루어지는 작업 뒤에서 리소스 요청 처리를 수행할 수 있습니다.
+&nbsp;&nbsp;`Preload Scanner`는 사용자에 의해 발생된 요청에 대한 리소스를 사전에 메모리, 혹은 캐시에 가져오기 위한 도구입니다. `Preload Scanner`를 사용하면 메인 쓰레드에서 이루어지는 작업 뒤에서 리소스 요청을 처리할 수 있습니다. 다음 코드를 살펴보겠습니다.
+
+<br>
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+  <head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Preload Example</title>  
+  <!-- Preloading CSS file -->  
+  <link rel="preload" href="styles.css" as="style">  
+  <!-- Preloading JavaScript file -->  
+  <link rel="preload" href="script.js" as="script">  
+  <!-- Preloading Image -->  
+  <link rel="preload" href="image.jpg" as="image">  
+  <!-- Actual CSS file -->  
+  <link rel="stylesheet" href="styles.css">  
+  </head>  
+  <body>  
+    <h1>Hello, World!</h1>  
+    <p>
+      This is an example HTML file demonstrating preloading of resources.
+    </p>  
+    <!-- Actual JavaScript file -->  
+    <script src="script.js"></script>  
+    <!-- Actual Image -->  
+    <img src="image.jpg" alt="Preloaded Image">  
+  </body>  
+</html>
+```
 
 
 
