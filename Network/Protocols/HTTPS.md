@@ -55,7 +55,22 @@
 
 ### SSL/TLS Handshake
 
-&nbsp;&nbsp;앞서 ㅅ
+&nbsp;&nbsp;이제 실제로 어떻게 클라이언트와 서버 간에 전송되는 메시지가 암호화 되는지 살펴보겠습니다. 메시지의 암호화는 앞서 살펴보았던 `대칭키 암호화`와 `공개키 암호화` 방식인 `비대칭키 암호화`를 모두 사용해 이루어지는데 상호 메시지를 암호화하고 복호화하는데 사용될 키를 생성하기 위해 `인증서`를 교환하는 `SSL/TLS Handshake` 단계를 거칩니다.`SSL/TLS Handshake`는 먼저 클라이언트와 서버가 통신을 하기 위해 필요한 `TCP Handshake`가 종료된 이후에 발생합니다.
+
+<br>
+
+**SSL/TLS Handshake**
+
+1. `TCP Handshake`
+2. `Client Hello` : 클라이언트가 웹 서버에 접속하며 아래의 정보를 담아 메시지를 보냅니다.
+    - 브라우저가 사용하는 SSL 또는 TLS의 버전 정보
+    - 브라우저가 지원하는 암호화 방식(Cipher suite)
+    - 브라우저가 생성한 임의의 난수
+    - 이전에 SSL Handshake가 완료되었다면 그때 생성된 `Session ID`
+    - 그 외 기타 정보
+3. `Server Hello` : 웹 서버는 `Client Hello`에 응답하면서 아래의 정보를 담아 메시지를 보냅니다.
+    - 브라우저 암호화 방식 정보 중에 서버가 지원하고 선택한 암호화 방식(Cipher suite)
+    - 서버의 공개키가 담겨 있으며 `CA`의 `` `SSL 인증서`
 
 
 <br>
