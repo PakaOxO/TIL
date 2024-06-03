@@ -24,7 +24,17 @@ Accept-Language: en
 
 ### HTTPS?
 
-&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을 까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP보다 보안적인 요소가 추가된 프로토콜이라 할 수 있습니다. 기존에 HTTP에서는 메시지에서 문자로 된 내용을 제 3자가 확인해 
+&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을 까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP보다 보안적인 요소가 추가된 프로토콜이라 할 수 있습니다. 기존에 HTTP에서는 메시지에서 문자로 된 내용을 제 3자가 확인할 수 있었다면 HTTPS에서의 메시지는 암호화를 거친 뒤 전송되기 때문에 중간에 탈취가 발생하더라도 메시지에 담긴 내용을 확인하기 어렵습니다.
+
+```cmd
+t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcqmSW1+3xXGsERHg9YDmpYk0VVDiRvw1H5miNieJeJ/FNUjgH0BmVRWII6+T4MnDwmCMZUI/orxP3HGwYCSIvyzS3MpmmSe4iaWKCOHQ==
+```
+
+<br>
+### 메시지 암호화
+
+&nbsp;&nbsp;
+
 
 <br>
 
