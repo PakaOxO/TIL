@@ -24,7 +24,7 @@ Accept-Language: en
 
 ### HTTPS?
 
-&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을 까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP보다 보안적인 요소가 추가된 프로토콜이라 할 수 있습니다. 기존에 HTTP에서는 메시지에서 문자로 된 내용을 제 3자가 확인할 수 있었다면 HTTPS에서의 메시지는 암호화를 거친 뒤 전송되기 때문에 중간에 탈취가 발생하더라도 메시지에 담긴 내용을 확인하기 어렵습니다.
+&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP보다 보안적인 요소가 추가된 프로토콜이라 할 수 있습니다. 기존에 HTTP에서는 메시지에서 문자로 된 내용을 제 3자가 확인할 수 있었다면 HTTPS에서의 메시지는 암호화를 거친 뒤 전송되기 때문에 중간에 탈취가 발생하더라도 메시지에 담긴 내용을 확인하기 어렵습니다.
 
 ```cmd
 t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcqmSW1+3xXGsERHg9YDmpYk0VVDiRvw1H5miNieJeJ/FNUjgH0BmVRWII6+T4MnDwmCMZUI/orxP3HGwYCSIvyzS3MpmmSe4iaWKCOHQ==
@@ -33,7 +33,13 @@ t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcq
 <br>
 ### 메시지 암호화
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;`HTTPS`의 메시지 암호화는 `SSL/TLS`라는 `공개키 암호화` 방식을 채택하고 있습니다. 클라이언트와 서버는 `공개키`와 `개인키`를 통해 메시지를 암호화하고, 복호화합니다. 이때 공개키는 `CA(Certificate Authority)`라는 인증기관을 통해 공유되고 클라이언트는 CA의 존재를 통해 방문하려는 웹 사이트가 신뢰할 만한 곳인지 확인할 수 있습니다.
+
+<br>
+
+**HTTPS 메시지 암호화 과정**
+
+1. 
 
 
 <br>
