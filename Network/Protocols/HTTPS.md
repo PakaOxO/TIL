@@ -32,22 +32,18 @@ t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcq
 
 <br>
 
-### 메시지 암호화
+## 메시지 암호화
 
-&nbsp;&nbsp;`HTTPS`의 메시지 암호화는 `SSL/TLS`라는 `공개키 암호화` 방식을 채택하고 있습니다. 클라이언트와 서버는 `공개키`와 `개인키`를 통해 메시지를 암호화하고, 복호화합니다. 이때 공개키는 `CA(Certificate Authority)`라는 인증기관을 통해 공유되고 클라이언트는 CA의 존재를 통해 방문하려는 웹 사이트가 신뢰할 만한 곳인지 확인할 수 있습니다.
-
-&nbsp;&nbsp;`CA`는 서버의 공개키를 가지고 있으며 클라이언트에게 특정 서버에 대한 인증을 요청받으면 `SSL/TLS` 인증서에 자신이 가진 `개인키`를 통해 암호화된 서버의 `공개키`를 담아 클라이언트에게 전달합니다. 이후부터 클라이언트와 서버는 `공개키`를 기반으로 메시지를 암호화하고 `개인키`로 복호화해 메시지를 확인합니다.
+&nbsp;&nbsp;`HTTPS`에서 메시지를 암호화하는 데에는 다양한 기술들이 활용됩니다. 이제부터 통신과정에서 어떻게 메시지가 암호화 되는지 차근차근 살펴보도록 하겠습니다.
 
 <br>
 
-**HTTPS 메시지 암호화 과정**
+### 대칭키/비대칭키 암호화
 
-1. 클라이언트는 메시지에 전달할 데이터를 담아 서버에 전송합니다.
-2. 서버 측에서는 이에 대한 응답과 함께 암호화 방식과 `SSL 인증서`를 클라이언트에 보냅니다.
-3. 클라이언트는 서버로부터 받은 인증서가 CA에 의해 발급되어 있는지 확인하고 CA의 공개키로 인증서를 복호화합니다.
-4. 인증서가 확인되면 클라이언트는 클라이언트와 서버의 랜덤한 데이터를 조합해 `premaster secret`이라는 특별한 값을 생성하고 이를 통해 `세션키`인 `마스커 키`를 생성해 가지고 있습니다. 그리고 `premaster secret`은 인증서에 담겨있던 서버의 `공캐키`로 암호화해 서버에 전달합니다.
-5. 서버는 자신의 `개인키`로 메시지를 복호화한 후 받은 `premaster secret`으로 `세션키`를 생성합니다.
-6. 이후의 통신에 대해서는 서로 공유하고 있는 
+&nbsp;&nbsp;메시지 암호화를 이해하기 위해서는 먼저 대표적인 암호화 방식인 `대칭키 암호화` 방식과 `비대칭키 암호화` 방식을 알고 있어야 합니다. `HTTPS`는 이 둘 모두를 사용하기 때문인데 각각의 특징을 간단하게 살펴보면 다음과 같습니다.
+
+<br>
+
 
 
 <br>
@@ -56,3 +52,4 @@ t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcq
 - [Cloudflare, Why use HTTPS](https://www.cloudflare.com/ko-kr/learning/ssl/why-use-https/)
 - [Cloudflare, Why is HTTP not secure](https://www.cloudflare.com/ko-kr/learning/ssl/why-is-http-not-secure/)
 - [Cloudflare, What is SSL?](https://www.cloudflare.com/ko-kr/learning/ssl/what-is-ssl/)
+- [안전한 웹을 위해 HTTPS 이해하기](https://yozm.wishket.com/magazine/detail/1852/)
