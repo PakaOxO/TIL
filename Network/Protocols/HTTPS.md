@@ -7,7 +7,7 @@
 
 ### HTTP의 한계
 
-&nbsp;&nbsp;`HTTP`에 담긴 데이터는 일련의 텍스트입니다. 그렇기 때문에 사용자가 웹 사이트에 계좌번호, 카드 정보, 집 주소 등 민감한 정보를 보낸다면 이는 제 3자에 의해 탈취되거나 읽혀질 수 있습니다. 아래는 클라이언트가 서버에 보내는 `GET` 요청의 한 예시로 서버에게 `hello.txt` 파일을 요청하고 있음을 알 수 있습니다. 이렇듯 HTTP를 통한 메시지 전송은 메시지에 대한 보안적인 측면에서 좋지 않습니다.
+&nbsp;&nbsp;`HTTP`에 담긴 데이터는 일련의 텍스트로 이루어진 평문입니다. 그렇기 때문에 사용자가 웹 사이트에 계좌번호, 카드 정보, 집 주소 등 민감한 정보를 보낸다면 이는 제 3자에 의해 탈취되거나 읽혀질 수 있습니다. 아래는 클라이언트가 서버에 보내는 `GET` 요청의 한 예시로 서버에게 `hello.txt` 파일을 요청하고 있음을 알 수 있습니다. 이렇듯 HTTP를 통한 메시지 전송은 메시지에 대한 보안적인 측면에서 좋지 않습니다.
 
 ```cmd
 GET /hello.txt HTTP/1.1
@@ -22,13 +22,17 @@ Accept-Language: en
 
 <br>
 
-### HTTPS?
+### SSL/TLS
 
-&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP보다 보안적인 요소가 추가된 프로토콜이라 할 수 있습니다. 기존에 HTTP에서는 메시지에서 문자로 된 내용을 제 3자가 확인할 수 있었다면 HTTPS에서의 메시지는 암호화를 거친 뒤 전송되기 때문에 중간에 탈취가 발생하더라도 메시지에 담긴 내용을 확인하기 어렵습니다.
+&nbsp;&nbsp;그렇다면 `HTTPS`는 어떻게 `HTTP`가 가진 문제점을 해결할 수 있었을까요? 우선 HTTPS의 'S'는 보안을 뜻하는 'Secure'를 뜻하는 약자로 기존의 HTTP에 `SSL(Secure Socket Layer)`과 `TLS(Transport Layer Security)`라는 전송 기술이 합쳐져 안전한 계층을 웹 통신과정에 추가해 메시지를 안전하게 전달할 수 있습니다.
 
-```cmd
-t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcqmSW1+3xXGsERHg9YDmpYk0VVDiRvw1H5miNieJeJ/FNUjgH0BmVRWII6+T4MnDwmCMZUI/orxP3HGwYCSIvyzS3MpmmSe4iaWKCOHQ==
-```
+&nbsp;&nbsp;`SSL/TLS 인증서`는 웹 서버에 설치되어 있다가 클라이언트의 요청이 들어오면 서버는 응답에 인증서를 담아 전달하고, 클라이언트는 다시 웹 브라우저 내부에 관리되고 있는 인증서 정보를 통해 서버에게 받은 인증서가 신뢰할 만한 것인지 판단합니다.
+
+<br>
+
+>[!tip] SSL과 TLS
+>
+>&nbsp;&nbsp;`TLS`는 `SSL`의 개선된 버전입니다. `SSL`은 netscape에 의해 
 
 <br>
 
@@ -36,11 +40,6 @@ t8Fw6T8UV81pQfyhDkhebbz7+oiwldr1j2gHBB3L3RFTRsQCpaSnSBZ78Vme+DpDVJPvZdZUZHpzbbcq
 
 &nbsp;&nbsp;`HTTPS`에서 메시지를 암호화하는 데에는 다양한 기술들이 활용됩니다. 이제부터 통신과정에서 어떻게 메시지가 암호화 되는지 차근차근 살펴보도록 하겠습니다.
 
-<br>
-
-### 대칭키/비대칭키 암호화
-
-&nbsp;&nbsp;메시지 암호화를 이해하기 위해서는 먼저 대표적인 암호화 방식인 `대칭키 암호화` 방식과 `비대칭키 암호화` 방식을 알고 있어야 합니다. `HTTPS`는 이 둘 모두를 사용하기 때문인데 각각의 특징을 간단하게 살펴보면 다음과 같습니다.
 
 <br>
 
