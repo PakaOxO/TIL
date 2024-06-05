@@ -2,7 +2,7 @@
 - [[ReactJS/basic/basic]]
 - [[hook]]
 - [[globalState]]
-- [[Optimization]]
+- [[optimization]]
 - [[ReactJS/troubleshooting/troubleshooting]]
 
 <br>
