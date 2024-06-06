@@ -17,6 +17,8 @@
 
 &nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 아래와 같이 만들었고, 각각의 API 요청을 `ApiTester`가 처리할 예정입니다.
 
+**ApiTester.tsx**
+
 ```tsx
 const ApiTester = () => {
   const { loading, data, fetch } = useFetch(); // fetch 요청을 처리할 커스텀 훅
@@ -39,11 +41,48 @@ const ApiTester = () => {
 
 export default ApiTester;
 ```
+
+<br>
+
+**useFetch.ts**
+
+```typescript
+import { useCallback, useState } from 'react';
+  
+const useFetch = () => {
+const [loading, setLoading] = useState<boolean>(false);
+const [data, setData] = useState<any>();
+
+const fetch = useCallback((url: string) => {
+  setLoading(true);
+  
+  setTimeout(() => {
+      setLoading(false);
+      setData({});
+  }, 2000);
+    
+    console.log(url);
+  }, []);
+  
+  return { loading, data, fetch }
+};
+
+  
+
+export default useFetch;
+```
+
 <br>
 
 ## 가상 응답 환경설정 : MSW
 
-&nbsp;&nbsp;이제 API 요청을 처리할 `ApiTester`가 준비되었습니다. `ApiTester`는 `fetch` 함수를 통해 API 요청을 보낼 것이고, 요청이 완료되기 전까지는 로딩 화면을 요청이 완료된 뒤에는 
+&nbsp;&nbsp;이제 API 요청을 처리할 `ApiTester`가 준비되었습니다. `ApiTester`는 `fetch` 함수를 통해 API 요청을 보낼 것이고, 요청이 완료되기 전까지는 로딩 화면을, 요청이 완료된 뒤에는 응답에 따른 결과(`data`)를 보여줍니다.
+
+<br>
+
+### MSW
+
+&nbsp;&nbsp;이번 프로젝트에서는 `MSW`를 사용해 API 요청에 따른 가상의 응답을 반환할 예정입니다. MSW는 서비스 워커를 통해 클라이언트에서 보낸 요청을 중간에 가로채는 것이 가능합니다. MSW는 이전에 
 
 <br>
 
