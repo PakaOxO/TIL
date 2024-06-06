@@ -8,12 +8,14 @@
 ## 목차
 1. [프로젝트 생성](##프로젝트%20생성)
 2. [가상 응답 환경설정 : MSW](##가상%20응답%20환경설정)
-3. 커스텀 재요청 라이브러리 구현 - javascript
-4. 후기
+3. [커스텀 재요청 라이브러리 구현](##커스텀%20재요청%20라이브러리%20구현)
+4. [후기](##후기)
 
 <br>
 
 ## 프로젝트 생성
+
+&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 생성해주었습니다.
 
 <br>
 
@@ -23,7 +25,15 @@
 
 ## 커스텀 재요청 라이브러리 구현
 
+<br>
+
 ## 후기
 
 
 <br>
+
+**References**
+- [자바스크립트를 이용한 재시도 로직 구현하기 - 번역](https://velog.io/@tap_kim/implement-retry-logic-using-javascript)
+- [자바스크립트를 이용한 재시도 로직 구현하기 - 원문](https://anu95.medium.com/implement-retry-logic-using-javascript-e502693e0b5c)
+- [Mock Service Worker](https://mswjs.io/docs/getting-started)
+- [MSW](./MSW.md)
