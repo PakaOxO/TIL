@@ -15,15 +15,15 @@
 
 ## 프로젝트 생성
 
-&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 만들었고, 각각의 API 요청을 `ApiTester`가 처리할 예정입니다.
+&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 아래와 같이 만들었고, 각각의 API 요청을 `ApiTester`가 처리할 예정입니다.
 
 ```tsx
 const ApiTester = () => {
-  const { loading, fetch } = useFetch(); // fetch 요청을 처리할 커스텀 훅
+  const { loading, data, fetch } = useFetch(); // fetch 요청을 처리할 커스텀 훅
   
   useEffect(() => {
     fetch('');
-  }, []);
+  }, [fetch]);
   
   const refreshHandler = () => {
     fetch('');
@@ -31,7 +31,7 @@ const ApiTester = () => {
   
   return (
     <StyledContainer>
-      {loading ? <ApiResultSkeleton /> : <ApiResult />}
+      {loading ? <ApiResultSkeleton /> : <ApiResult data={data} />}
       <ApiRefresher onRefresh={refreshHandler} />
     </StyledContainer>
   );
@@ -42,6 +42,8 @@ export default ApiTester;
 <br>
 
 ## 가상 응답 환경설정 : MSW
+
+&nbsp;&nbsp;이제 API 요청을 처리할 `ApiTester`가 준비되었습니다. `ApiTester`는 `fetch` 함수를 통해 API 요청을 보낼 것이고, 요청이 완료되기 전까지는 로딩 화면을 요청이 완료된 뒤에는 
 
 <br>
 
