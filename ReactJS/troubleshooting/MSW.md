@@ -28,6 +28,21 @@
 
 <br>
 
+&nbsp;&nbsp;`MSW`와 같은 `Mocking` 도구의 장단점을 정리하면 다음과 같습니다.
+
+**장점**
+1. 개발과정 중 현실적인 API 처리
+2. 개발 및 테스트 환경 분리
+3. 코드 관리 용이
+4. 유연한 응답 제어
+
+**단점**
+1. 별도의 서버 구축이나 응답 처리와 관련된 로직 구현으로 인한 추가 리소스 발생
+2. 실제 서버 환경과의 차이
+3. 별도의 러닝 커브 요구
+
+<br>
+
 ## MSW
 
 >[!tip] Mock Service Worker (MSW) is an API mocking library for browser and Node.js. With MSW, you can intercept outgoing requests, observe them, and respond to them using mocked responses.
