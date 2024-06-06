@@ -89,9 +89,9 @@ npx msw init <PUBLIC_DIR> --save
 
 ```javascript
 /* src/mock/browser.js */
-const { setupWorker } from "msw";
-const handlers from "./handlers";
-export const worker = setupWorker(...handlers);
+import { setupServer } from 'msw/node';
+import handlers from './handlers';
+export const worker = setupServer(...handlers);
 
 /* src/mock/handlers.js */
 import { HttpResponse, http } from "msw";
