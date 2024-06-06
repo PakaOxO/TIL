@@ -15,10 +15,29 @@
 
 ## 프로젝트 생성
 
-&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 생성해주었습니다.
+&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 만들었고, 각각의 `A`
 
-```react
+```tsx
+const ApiTester = () => {
+  const { loading, fetch } = useFetch(); // fetch 요청을 처리할 커스텀 훅
+  
+  useEffect(() => {
+    fetch('');
+  }, []);
+  
+  const refreshHandler = () => {
+    fetch('');
+  };
+  
+  return (
+    <StyledContainer>
+      {loading ? <ApiResultSkeleton /> : <ApiResult />}
+      <ApiRefresher onRefresh={refreshHandler} />
+    </StyledContainer>
+  );
+};
 
+export default ApiTester;
 ```
 <br>
 
