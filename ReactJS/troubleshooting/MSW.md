@@ -3,11 +3,20 @@
 
 <br>
 
-### 도입 계기
+### 목차
+1. [도입 계기](#도입%20계기)
+2. [MSW](#MSW)
+3. [후기](#후기)
+
+
+
+## 도입 계기
 
 &nbsp;&nbsp;몇 번의 서비스 개발을 진행하면서 느낀 점은 프론트엔드와 백엔드의 개발 진척상황 차이와 서비스의 특성상 불가피하게 프론트엔드의 개발 프로세스가 백엔드에 의존하게 된다는 점입니다. 프론트엔드는 서버로부터 받은 데이터를 토대로 화면을 그려야 하는데 이전에 프로젝트를 진행했을 때에는 만약 해당 API가 아직 개발이 완료되지 않았다면, 비즈니스 로직 사이에 더미 데이터(Mock)를 만들어 화면에 표시하곤 했습니다.
 
-**이상적인 개발 프로세스**
+<br>
+
+### 이상적인 개발 프로세스
 
 &nbsp;&nbsp;아래 이미지는 카카오 기술 블로그에 한 개발자 분이 `Mocking`과 관련한 포스팅에서 참조했습니다. 그림과 같이 이상적인 개발은 백엔드의 개발이 완료되고, 프론트엔드가 서버 사이드로부터 API를 통해 데이터를 받아 렌더링하는 것이 좋습니다. 하지만 실제 개발은 백엔드와 프론트엔드가 병렬적으로 진행되는 경우가 많죠.
 
@@ -19,7 +28,7 @@
 
 <br>
 
-### MSW
+## MSW
 
 >[!tip] Mock Service Worker (MSW) is an API mocking library for browser and Node.js. With MSW, you can intercept outgoing requests, observe them, and respond to them using mocked responses.
 
@@ -27,7 +36,7 @@
 
 <br>
 
-**MSW 구조, Feat. Service Worker**
+### MSW 구조, Feat. Service Worker
 
 ![MSW Architecture | ](../images/msw_architecture.webp)
 
@@ -151,7 +160,7 @@ fetch("/api/characters?code=400")
 
 <br>
 
-### 후기
+## 후기
 
 &nbsp;&nbsp;이번 프로젝트는 `Mock`을 본격적으로 도입해 사용한 첫 번째 프로젝트가 될 것 같습니다. 한동안은 `MSW`를 프로젝트에서 본격적으로 활용하기 위해 사용자 시나리오를 가져와 이것저것 시도해보려고 합니다. 자세한 후기는 프로젝트를 진행하면서 느낀점을 토대로 추가해보도록 하겠습니다.
 
