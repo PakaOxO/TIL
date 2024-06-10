@@ -20,15 +20,15 @@
 **ApiTester.tsx**
 
 ```tsx
-const ApiTester = () => {
-  const { loading, data, fetch } = useFetch(); // fetch 요청을 처리할 커스텀 훅
+const ApiTester: React.FC<IProps> = ({ type, target, retry = 0 }) => {
+  const { loading, data, fetch } = useFetch();
   
   useEffect(() => {
-    fetch('');
-  }, [fetch]);
+    fetch(type, target, retry);
+  }, [fetch, type, target, retry]);
   
   const refreshHandler = () => {
-    fetch('');
+    fetch(type, target, retry);
   };
   
   return (
@@ -44,30 +44,41 @@ export default ApiTester;
 
 <br>
 
+&nbsp;&nbsp;`fetch` 함수의 `retry` 파라미터는 요청에 대해 원하는 응답을 받지 못했을 경우 재요청을 보낼 횟수를 나타냅니다.
+
 **useFetch.ts**
 
 ```typescript
+import axios, { AxiosResponse } from 'axios';
 import { useCallback, useState } from 'react';
-  
-const useFetch = () => {
-const [loading, setLoading] = useState<boolean>(false);
-const [data, setData] = useState<any>();
 
-const fetch = useCallback((url: string) => {
-  setLoading(true);
-  
-  setTimeout(() => {
-      setLoading(false);
-      setData({});
-  }, 2000);
+const useFetch = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<any>();
     
-    console.log(url);
+  const fetch = useCallback(async (type: 'get' | 'post', url: string, retry: number) => {
+    let result: AxiosResponse<any> | undefined;
+    setLoading(true);
+    
+    try {
+      if (type === 'post') {
+        result = await axios.post(url);
+      }
+      if (type === 'get') {
+        result = await axios.get(url);
+      }
+    } catch (err) {
+      setLoading(false);
+      setData(err);
+      return;
+    }
+    
+    setLoading(false);
+    setData(result?.data);
   }, []);
   
-  return { loading, data, fetch }
+  return { loading, data, fetch };
 };
-
-  
 
 export default useFetch;
 ```
@@ -88,7 +99,7 @@ export default useFetch;
 
 ### MSW Handler 리스너 등록
 
-&nbsp;&nbsp;...
+&nbsp;&nbsp;`handler`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 ``
 
 <br>
 
@@ -101,7 +112,7 @@ const handlers: any[] = [
   http.get('/api/code=200', async () => {
     await timeBuffer(2000); // 강제로 응답시간을 늦춤
     return HttpResponse.json(
-    { imgSrc: 'https://w/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
+    { imgSrc: 'https://www.myCDN.com/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
     { status: 200 }
     );
   }),
