@@ -105,7 +105,7 @@ export default useFetch;
 
 ### MSW Handler 리스너 등록
 
-&nbsp;&nbsp;`handler.ts`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 `queryString`의 `code`에 맞는 응답을 반환하도록 해주었습니다.
+&nbsp;&nbsp;`handler.ts`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 요청 뒤에 `success`가 포함되면 무조건 성공, `fail`이 포함되면 실패, 아무것도 없다면 30%의 확률로 
 
 <br>
 
@@ -115,30 +115,33 @@ import { HttpResponse, http } from 'msw';
 
 const timeBuffer = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
 
+const requestRandomSuccess = () => Math.random() <= 0.3;
+
 const handlers: any[] = [
-  http.get('/api', async ({ request }) => {
-    const url = new URL(request.url);
-    const queryString = new Map();
-    url.search.replace('?', '').split('&')
-      .forEach((param) => {
-        const [key, value] = param.split('=');
-        queryString.set(key, value);
-      });
-    const code = queryString.get('code');
+  http.get('/api', async () => {
+    const isRequestSuccess = requestRandomSuccess(); // 30% 확률로 성공
     
-    await timeBuffer(2000); // 강제로 응답시간을 늦춤
-    if (code === '200') {
-      return HttpResponse.json(
-        { imgSrc: 'https://www.myCDN.com/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
-        { status: 200 }
-      );
-    } else if (code === '400') {
-      return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
-    } else if (code === '500') {
-      return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
+    await timeBuffer(1000); // 강제로 응답시간을 늦춤
+    
+    if (!isRequestSuccess) {
+      return HttpResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
     
-    return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
+    return HttpResponse.json(
+      { imgSrc: 'https://i.pinimg.com/564x/93/a6/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
+      { status: 200 }
+    );
+  }),
+  http.get('/api/success', async () => {
+    await timeBuffer(1000); // 강제로 응답시간을 늦춤
+    return HttpResponse.json(
+      { imgSrc: 'https://i.pinimg.com/564x/93/a6/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
+      { status: 200 }
+    );
+  }),
+  http.get('/api/fail', async () => {
+    await timeBuffer(1000); // 강제로 응답시간을 늦춤
+    return HttpResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }),
 ];
 
