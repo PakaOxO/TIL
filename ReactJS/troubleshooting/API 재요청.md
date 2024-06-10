@@ -105,7 +105,7 @@ export default useFetch;
 
 ### MSW Handler 리스너 등록
 
-&nbsp;&nbsp;`handler.ts`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 요청 뒤에 `success`가 포함되면 무조건 성공, `fail`이 포함되면 실패, 아무것도 없다면 30%의 확률로 
+&nbsp;&nbsp;`handler.ts`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 요청 뒤에 `success`가 포함되면 `200`을, `fail`이 포함되면 `500`, 아무것도 없다면 30%의 확률로 `200`을 반환하도록 헀습니다.
 
 <br>
 
@@ -150,7 +150,9 @@ export default handlers;
 
 <br>
 
-&nbsp;&nbsp;`App` 컴포넌트는 아래와 같이 4개의 `ApiTest`를 가지고 있으며 요청이 정상적으로 처리되면 이미지의 경로를 반환합니다. 아직 `handler.ts`에 로직이 구현되어 있진 않지만 `500` 요청은 가상의 서버 오류를 가정하기 위한 요청이기 때문에 서버가 `500` 요청을 동일한 사용자로부터 3번 받았을 때에는 `200` 요청과 동일한 결과를 반환하도록 할 예정입니다. 
+## 커스텀 재요청 라이브러리 구현
+
+&nbsp;&nbsp;`App` 컴포넌트는 아래와 같이 6개의 `ApiTest`를 가지고 있으며 요청이 정상적으로 처리되면 이미지의 경로를 반환합니다. 코드를 통해 앞으로 구현할 재전송 로직을 미리 살펴보면 크게 고정된 주기로 재요청을 보내는 `고정 지연`과, 요청 실패마다 재요청 주기를 늘려가는 `피보나치 백오프`, 랜덤한 주기로 재요청을 실시하는 `무작위 재시도`, 마지막으로 응답을 받는 즉시 재전송을 보내는  `즉시 재시도` 방식
 
 **App.tsx**
 
@@ -159,20 +161,18 @@ function App() {
   return (
     <div className="App">
       <StyledFlexbox>
-        <ApiTester type="get" target="/api?code=200" />
-        <ApiTester type="get" target="/api?code=400" />
-        <ApiTester type="get" target="/api?code=500" retry={2} />
-        <ApiTester type="get" target="/api?code=500" retry={3} />
+        <ApiTester title="성공" type="get" target="/api/success" />
+        <ApiTester title="실패" type="get" target="/api/fail" />
+        <ApiTester title="고정 지연" type="get" target="/api" retry={5} />
+        <ApiTester title="피보나치 백오프" type="get" target="/api" retry={5} />
+        <ApiTester title="무작위 재시도" type="get" target="/api" retry={5} />
+        <ApiTester title="즉시 재시도" type="get" target="/api" retry={5} />
       </StyledFlexbox>
     </div>
   );
 }
 ```
 
-
-<br>
-
-## 커스텀 재요청 라이브러리 구현
 
 <br>
 
