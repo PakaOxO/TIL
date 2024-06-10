@@ -95,21 +95,26 @@ export default useFetch;
 ```ts
 import { HttpResponse, http } from 'msw';
 
+const timeBuffer = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
+  
 const handlers: any[] = [
-  http.get('/api/code=200', ({}) => {
+  http.get('/api/code=200', async () => {
+    await timeBuffer(2000); // 강제로 응답시간을 늦춤
     return HttpResponse.json(
-      { imgSrc: 'https://www.myCDN.com/19/5c6369751090deec8fdc4b34b6fe5c45.jpg' },
-      { status: 200 }
-      );
+    { imgSrc: 'https://w/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
+    { status: 200 }
+    );
   }),
-  http.get('/api/code=400', ({}) => {
+  http.get('/api/code=400', async () => {
+    await timeBuffer(2000);
     return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
   }),
-  http.get('/api/code=500', ({}) => {
+  http.get('/api/code=500', async () => {
+    await timeBuffer(2000);
     return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
   }),
 ];
-
+  
 export default handlers;
 ```
 
