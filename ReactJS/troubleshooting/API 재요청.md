@@ -20,15 +20,15 @@
 **ApiTester.tsx**
 
 ```tsx
-const ApiTester: React.FC<IProps> = ({ type, target, retry = 0 }) => {
+const ApiTester: React.FC<IProps> = ({ target, type, retry = 0 }) => {
   const { loading, data, fetch } = useFetch();
   
   useEffect(() => {
-    fetch(type, target, retry);
+    fetch(target, type, retry);
   }, [fetch, type, target, retry]);
   
   const refreshHandler = () => {
-    fetch(type, target, retry);
+    fetch(target, type, retry);
   };
   
   return (
@@ -62,17 +62,14 @@ const useFetch = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<any>();
     
-  const fetch = useCallback(async (type: 'get' | 'post', url: string, retry: number) => {
+  const fetch = useCallback(async (url: string, type: string, retry: number) => {
     let result: AxiosResponse<any> | undefined;
     setLoading(true);
     
     try {
-      if (type === 'post') {
-        result = await axios.post(url);
-      }
-      if (type === 'get') {
-        result = await axios.get(url);
-      }
+      // 이후 재요청 type에 따라 코드가 달라짐
+      console.log(type, retry);
+      result = await axios.get(url);
     } catch (err) {
       setLoading(false);
       setData(err);
@@ -152,9 +149,13 @@ export default handlers;
 
 ### 재전송 방식
 
-&nbsp;&nbsp;재전송 방식을 구별하기 위해`App` 컴포넌트는 아래와 같이 6개의 `ApiTest`를 가지도록 했습니다. 코드를 통해 앞으로 라이브러리로 구현할 재전송 로직의 방식은 크게 고정된 주기로 재요청을 보내는 `고정 지연`과, 요청 실패마다 재요청 주기를 늘려가는 `피보나치 백오프`, 랜덤한 주기로 재요청을 실시하는 `무작위 재시도`, 마지막으로 응답을 받는 즉시 재전송을 보내는  `즉시 재시도` 로 구성될 예정입니다.
+&nbsp;&nbsp;재전송 방식을 구별하기 위해`App` 컴포넌트는 아래와 같이 6개의 `ApiTest`를 가지도록 했습니다. 코드를 통해 앞으로 라이브러리로 구현할 재요청 로직의 방식은 크게 고정된 주기로 재요청을 보내는 `고정 지연`과, 요청 실패마다 재요청 주기를 늘려가는 `피보나치 백오프`, 랜덤한 주기로 재요청을 실시하는 `무작위 재시도`, 마지막으로 응답을 받는 즉시 재요청을 보내는  `즉시 재시도` 로 구성될 예정입니다.
+
+<br>
 
 **App.tsx**
+
+&nbsp;&nbsp;아까 `handler`를 작성할 때 살펴보았듯, `/api`로 들어오는 요청은 30%의 확률로만 정상 응답을 받을 수 있습니다. 가상의 서버 오류를 가정하고 나머지 70%의 확률로 `500`에러를 받았다면 `type`에 지정된 재요청 방식에 따라 
 
 ```tsx
 function App() {
