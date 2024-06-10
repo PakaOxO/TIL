@@ -44,11 +44,13 @@ export default ApiTester;
 
 <br>
 
-&nbsp;&nbsp;`ApiTester`는 아래
+&nbsp;&nbsp;`ApiTester`는 화면에 아래와 같이 그려집니다. 상단의 박스에는 요청에 대한 결과로 `MSW`로부터 반환될 이미지가, 하단의 버튼은 API 요청/재요청에 대한 결과를 다시 살펴보기 위한 버튼이 그려집니다.
+
+![ApiTest design](../images/apitester_design.png)
 
 <br>
 
-&nbsp;&nbsp;`fetch` 함수의 `retry` 파라미터는 요청에 대해 원하는 응답을 받지 못했을 경우 재요청을 보낼 횟수를 나타냅니다.
+&nbsp;&nbsp;`useFetch`는 클라이언트의 API 요청 처리를 구현한 커스텀 훅입니다. `useFetch`는 요청이 처리 중인지를 나타내는 `loading`과 요청에 대한 결과값을 담을 `data`, 그리고 컴포넌트가 API 요청을 처리할 수 있도록 하는 `fetch` 함수 등을 반환합니다. `fetch` 함수의 `retry` 파라미터는 요청에 대해 원하는 응답을 받지 못했을 경우 재요청을 보낼 횟수를 의미합니다.
 
 **useFetch.ts**
 
@@ -107,6 +109,7 @@ export default useFetch;
 
 <br>
 
+**handler.ts**
 ```ts
 import { HttpResponse, http } from 'msw';
 
