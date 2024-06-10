@@ -15,7 +15,7 @@
 
 ## 프로젝트 생성
 
-&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 아래와 같이 만들었고, 각각의 API 요청을 `ApiTester`가 처리할 예정입니다.
+&nbsp;&nbsp;API 재요청 라이브러리를 전 테스트 환경 구축을 위해 리액트 프로젝트를 생성해주었습니다. 이 프로젝트에서는 각종 응답 상황과 재요청 방식 등을 구별해 테스트를 진행하기 `ApiTester` 컴포넌트를 아래와 같이 만들었고, 각각의 API 요청은 `ApiTester`가 처리할 예정입니다.
 
 **ApiTester.tsx**
 
@@ -41,6 +41,10 @@ const ApiTester: React.FC<IProps> = ({ type, target, retry = 0 }) => {
 
 export default ApiTester;
 ```
+
+<br>
+
+&nbsp;&nbsp;`ApiTester`는 아래
 
 <br>
 
@@ -99,7 +103,7 @@ export default useFetch;
 
 ### MSW Handler 리스너 등록
 
-&nbsp;&nbsp;`handler`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 ``
+&nbsp;&nbsp;`handler`에는 클라이언트가 보낼 요청에 대해 어떤 응답을 반환할지 각 API 요청 별로 로직을 작성했습니다. 기본적으로 모든 요청은 `/api`로 들어온다고 가정하고 `queryString`의 `code`에 맞는 응답을 반환하도록 해주었습니다.
 
 <br>
 
@@ -107,25 +111,32 @@ export default useFetch;
 import { HttpResponse, http } from 'msw';
 
 const timeBuffer = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
-  
+
 const handlers: any[] = [
-  http.get('/api/code=200', async () => {
+  http.get('/api', async ({ request }) => {
+    const url = new URL(request.url);
+    const queryString = new Map();
+    url.search.replace('?', '').split('&')
+      .forEach((param) => {
+        const [key, value] = param.split('=');
+        queryString.set(key, value);
+      });
+    const code = queryString.get('code');
+    
     await timeBuffer(2000); // 강제로 응답시간을 늦춤
-    return HttpResponse.json(
-    { imgSrc: 'https://www.myCDN.com/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
-    { status: 200 }
-    );
-  }),
-  http.get('/api/code=400', async () => {
-    await timeBuffer(2000);
-    return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
-  }),
-  http.get('/api/code=500', async () => {
-    await timeBuffer(2000);
-    return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
+    if (code === '200') {
+      return HttpResponse.json(
+        { imgSrc: 'https://www.myCDN.com/98/93a6981f87aa7ba217ad7f38f24b0af9.jpg' },
+        { status: 200 }
+      );
+    } else if (code === '400') {
+      return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
+    } else if (code === '500') {
+      return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
   }),
 ];
-  
+
 export default handlers;
 ```
 
