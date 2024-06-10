@@ -50,7 +50,7 @@ export default ApiTester;
 
 <br>
 
-&nbsp;&nbsp;`useFetch`는 클라이언트의 API 요청을 구현한 커스텀 훅입니다. `useFetch`는 요청이 처리 중인지를 나타내는 `loading`과 요청에 대한 결과값을 담을 `data`, 그리고 컴포넌트가 API 요청을 처리할 수 있도록 하는 `fetch` 함수 등을 반환합니다. `fetch` 함수의 `retry` 파라미터는 요청에 대해 `500`에러(서버 에러)를 받았을 경우, 정상적인 응답을 받을 때까지 재요청을 보낼 횟수를 의미합니다.
+&nbsp;&nbsp;`useFetch`는 클라이언트의 API 요청을 구현한 커스텀 훅입니다. `useFetch`는 요청이 처리 중인지를 나타내는 `loading`과 요청에 대한 결과값을 담을 `data`, 그리고 컴포넌트가 API 요청을 처리할 수 있도록 하는 `fetch` 함수 등을 반환합니다. `fetch` 함수의 `type` 파라미터는 재요청 주기를 결정하는 인자이며, `retry` 파라미터는 요청에 대해 `500`에러(서버 에러)를 받았을 경우, 정상적인 응답을 받을 때까지 재요청을 보낼 횟수를 의미합니다.
 
 **useFetch.ts**
 
@@ -96,7 +96,7 @@ export default useFetch;
 
 ### MSW란?
 
-&nbsp;&nbsp;이번 프로젝트에서는 `MSW`를 사용해 API 요청에 따른 가상의 응답을 반환할 예정입니다. MSW는 서비스 워커를 통해 클라이언트에서 보낸 요청을 중간에 가로채는 것이 가능합니다. MSW는 기본적으로 `Mocking`을 위한 도구로 개발 환경을 개선하기 위해 사용됩니다. MSW 및 Mocking에 대한 내용과 프로젝트에서 요청을 가로채기 위해 MSW를 세팅하는 과정은 [다음](./MSW.md) 포스트에서 다루고 있습니다.
+&nbsp;&nbsp;이번 프로젝트에서는 `MSW`를 사용해 API 요청에 따른 가상의 응답을 반환할 예정입니다. MSW는 서비스 워커를 통해 클라이언트에서 보낸 요청을 중간에 가로채는 것이 가능합니다. MSW는 기본적으로 `Mocking`을 위한 도구로 개발 환경을 개선하기 위해 사용됩니다. MSW 및 Mocking에 대한 내용과 프로젝트에서 요청을 가로채기 위해 MSW를 세팅하는 과정은 [다음](./MSW.md) 포스트에서 다루었습니다.
 
 <br>
 
@@ -155,25 +155,32 @@ export default handlers;
 
 **App.tsx**
 
-&nbsp;&nbsp;아까 `handler`를 작성할 때 살펴보았듯, `/api`로 들어오는 요청은 30%의 확률로만 정상 응답을 받을 수 있습니다. 가상의 서버 오류를 가정하고 나머지 70%의 확률로 `500`에러를 받았다면 `type`에 지정된 재요청 방식에 따라 
+&nbsp;&nbsp;아까 `handler`를 작성할 때 살펴보았듯, `/api`로 들어오는 요청은 30%의 확률로만 정상 응답을 받을 수 있습니다. 가상의 서버 오류를 가정하고 나머지 70%의 확률로 `500`에러를 받았다면 `type`에 지정된 재요청 방식에 따라 정상적인 응답을 받을 때까지 `retry`에 지정된 횟수만큼 재요청을 보냅니다.
 
 ```tsx
 function App() {
   return (
     <div className="App">
       <StyledFlexbox>
-        <ApiTester title="성공" type="get" target="/api/success" />
-        <ApiTester title="실패" type="get" target="/api/fail" />
-        <ApiTester title="고정 지연" type="get" target="/api" retry={5} />
-        <ApiTester title="피보나치 백오프" type="get" target="/api" retry={5} />
-        <ApiTester title="무작위 재시도" type="get" target="/api" retry={5} />
-        <ApiTester title="즉시 재시도" type="get" target="/api" retry={5} />
+        <ApiTester title="성공" type="success" target="/api/success" />
+        <ApiTester title="실패" type="fail" target="/api/fail" />
+        <ApiTester title="고정 지연" type="fixed-delay" target="/api" retry={5} />
+        <ApiTester title="피보나치 백오프" type="fibonacci-backoff" target="/api" retry={5} />
+        <ApiTester title="무작위 재시도" type="randomised-retry" target="/api" retry={5} />
+        <ApiTester title="즉시 재시도" type="immediate-retry" target="/api" retry={5} />
       </StyledFlexbox>
     </div>
   );
 }
 ```
 
+![App 구조](../images/app.png)
+
+<br>
+
+### 재전송 구현
+
+&nbsp;&nbsp;...
 
 <br>
 
