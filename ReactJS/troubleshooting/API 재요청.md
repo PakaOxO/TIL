@@ -137,11 +137,35 @@ const handlers: any[] = [
     } else if (code === '500') {
       return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
+    
+    return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
   }),
 ];
 
 export default handlers;
 ```
+
+<br>
+
+&nbsp;&nbsp;`App` 컴포넌트는 아래와 같이 4개의 `ApiTest`를 가지고 있습니다. 
+
+**App.tsx**
+
+```tsx
+function App() {
+  return (
+    <div className="App">
+      <StyledFlexbox>
+        <ApiTester type="get" target="/api?code=200" />
+        <ApiTester type="get" target="/api?code=400" />
+        <ApiTester type="get" target="/api?code=500" retry={2} />
+        <ApiTester type="get" target="/api?code=500" retry={3} />
+      </StyledFlexbox>
+    </div>
+  );
+}
+```
+
 
 <br>
 
