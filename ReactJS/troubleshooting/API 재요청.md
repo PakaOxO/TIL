@@ -162,12 +162,12 @@ function App() {
   return (
     <div className="App">
       <StyledFlexbox>
-        <ApiTester title="성공" type="success" target="/api/success" />
-        <ApiTester title="실패" type="fail" target="/api/fail" />
-        <ApiTester title="고정 지연" type="fixed-delay" target="/api" retry={5} />
-        <ApiTester title="피보나치 백오프" type="fibonacci-backoff" target="/api" retry={5} />
-        <ApiTester title="무작위 재시도" type="randomised-retry" target="/api" retry={5} />
-        <ApiTester title="즉시 재시도" type="immediate-retry" target="/api" retry={5} />
+        <ApiTester title="성공" target="/api/success" type="success" />
+        <ApiTester title="실패" target="/api/fail" type="fail" />
+        <ApiTester title="고정 지연" target="/api" type="constant-delay" retry={5} />
+        <ApiTester title="피보나치 백오프" target="/api" type="fibonacchi-backoff" retry={5} />
+        <ApiTester title="무작위 재시도" target="/api" type="random-retry" retry={5} />
+        <ApiTester title="즉시 재시도" target="/api" type="instant-retry" retry={5} />
       </StyledFlexbox>
     </div>
   );
