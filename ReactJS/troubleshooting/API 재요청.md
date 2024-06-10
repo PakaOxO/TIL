@@ -86,9 +86,32 @@ export default useFetch;
 
 <br>
 
-### MSW Handler 로직 구현
+### MSW Handler 리스너 등록
 
 &nbsp;&nbsp;...
+
+<br>
+
+```ts
+import { HttpResponse, http } from 'msw';
+
+const handlers: any[] = [
+  http.get('/api/code=200', ({}) => {
+    return HttpResponse.json(
+      { imgSrc: 'https://www.myCDN.com/19/5c6369751090deec8fdc4b34b6fe5c45.jpg' },
+      { status: 200 }
+      );
+  }),
+  http.get('/api/code=400', ({}) => {
+    return HttpResponse.json({ error: 'Bad request' }, { status: 400 });
+  }),
+  http.get('/api/code=500', ({}) => {
+    return HttpResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }),
+];
+
+export default handlers;
+```
 
 <br>
 
