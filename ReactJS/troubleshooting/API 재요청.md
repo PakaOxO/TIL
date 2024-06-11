@@ -248,8 +248,8 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
     if (retries === 0) throw Error('All retries failed');
     // 재요청 횟수에 따른 depth를 계산해 depth번째 피보나치 수 반환
     const fibonacci = calculateFibonacci(baseRetries - retries);
-    console.warn(`Fibonacci backoff: ${fibonacci * baseDelay}초 후 재요청`);
     await timeBuffer(fibonacci * baseDelay);
+    console.warn(`Fibonacci backoff: ${fibonacci * baseDelay}ms 후 재요청`);
     result = await fetchWithFibonacciBackoff(url, retries - 1, baseDelay, baseRetries);
   }
   
