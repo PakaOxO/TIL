@@ -167,7 +167,7 @@ function App() {
         <ApiTester title="고정 지연" target="/api" type="constant-delay" retry={5} />
         <ApiTester title="피보나치 백오프" target="/api" type="fibonacci-backoff" retry={5} />
         <ApiTester title="무작위 재시도" target="/api" type="random-retry" retry={5} />
-        <ApiTester title="즉시 재시도" target="/api" type="instant-retry" retry={5} />
+        <ApiTester title="즉시 재시도" target="/api" type="immediate-retry" retry={5} />
       </StyledFlexbox>
     </div>
   );
@@ -265,7 +265,7 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
 &nbsp;&nbsp;때로는 요청 주기를 랜덤하게 하는 편이 좋을 수도 있습니다. 랜덤한 요청은 요청 시도를 골고루 분포시켜 많은 사용자에 의해 한번에 발생할 수 있는 동시 접속에 의한 서버 부하를 줄일 수 있습니다.
 
 ```ts
-type TFnRandomDelay = (url: string, retries: number, maxDelay: number) => Promise<AxiosResponse<any, any>>;
+type TFnRandomRetry = (url: string, retries: number, maxDelay: number) => Promise<AxiosResponse<any, any>>;
 
 export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries: number, maxDelay: number) => {
   let result: AxiosResponse<any, any>;
@@ -285,6 +285,9 @@ export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries:
   return result;
 };
 ```
+
+![random retry test](../images/random-retry.gif)
+
 <br>
 
 **4. 즉시 재시도**
