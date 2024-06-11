@@ -208,7 +208,7 @@ export const fetchWithConstantDelay: (url: string, retries: number, delay: numbe
 
 **2. 피보나치 백오프**
 
-&nbsp;&nbsp;피보나치 백오프 재요청 방식은 점차적으로 증가하는 `지수 백오프` 방식과 
+&nbsp;&nbsp;피보나치 백오프 재요청 방식은 지연시간이 피보나치 수열에 따라 이전 
 <br>
 
 **3. 무작위 재시도**
