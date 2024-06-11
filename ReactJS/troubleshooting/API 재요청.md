@@ -317,8 +317,29 @@ export const fetchWithImmediateRetry: TFnImmediateRetry = async (url: string, re
 
 <br>
 
+### 이슈 처리
+
+&nbsp;&nbsp;지금까지 작성한 재요청 로직은 정상적으로 동작하지만 문제점이 한 가지 있습니다. 버튼을 눌러 이미 요청 처리가 시작되었을 때에도 버튼을 다시 클릭하면 요청 로직이 한번 더 돌아갑니다. 이미 요청이 처리 중인지는 `ApiTester` 컴포넌트가 `useFetch`에게 받는 `loading`으로 확인이 가능하므로 `loading`값이 `true`이면 `refreshHandler`의 동작을 막도록 코드를 추가했습니다.
+
+```ts
+const ApiTester: React.FC<IProps> = ({ title, target, type, retry = 0 }) => {
+  const { loading, data, fetch } = useFetch();
+  // ...생략
+  
+  const refreshHandler = () => {
+    if (loading) return;
+    fetch(target, type, retry);
+  };
+  
+  // ...생략
+};
+```
+
+<br>
+
 ## 후기
 
+&nbsp
 
 <br>
 
