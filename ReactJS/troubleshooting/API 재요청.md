@@ -257,6 +257,7 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
 };
 ```
 
+![fibonacci backoff test](../images/fibonacci-backoff.gif)
 <br>
 
 **3. 무작위 재시도**
