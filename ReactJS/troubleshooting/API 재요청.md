@@ -262,6 +262,29 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
 
 **3. 무작위 재시도**
 
+&nbsp;&nbsp;때로는 요청 주기를 랜덤하게 하는 편이 좋을 수도 있습니다. 랜덤한 요청은 요청 시도를 골고루 분포시켜 많은 사용자에 의해 한번에 발생할 수 있는 동시 접속에 의한 서버 부하를 줄일 수 있습니다.
+
+```ts
+type TFnRandomDelay = (url: string, retries: number, maxDelay: number) => Promise<AxiosResponse<any, any>>;
+
+export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries: number, maxDelay: number) => {
+  let result: AxiosResponse<any, any>;
+  const baseDelay = 1;
+  
+  try {
+    result = await axios.get(url);
+  } catch (err) {
+  if (retries === 0) throw Error('All retries failed');
+  // 랜덤한 재요청 시간
+  const randomDelay = Math.floor(Math.random() * (maxDelay - baseDelay) + baseDelay);
+  console.warn(`Random delay: ${randomDelay}초 후 재요청`);
+  await timeBuffer(randomDelay);
+  result = await fetchWithRandomRetry(url, retries - 1, maxDelay);
+  }
+  
+  return result;
+};
+```
 <br>
 
 **4. 즉시 재시도**
