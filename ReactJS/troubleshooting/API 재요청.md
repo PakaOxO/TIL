@@ -248,8 +248,8 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
     if (retries === 0) throw Error('All retries failed');
     // 재요청 횟수에 따른 depth를 계산해 depth번째 피보나치 수 반환
     const fibonacci = calculateFibonacci(baseRetries - retries);
-    await timeBuffer(fibonacci * baseDelay);
     console.warn(`Fibonacci backoff: ${fibonacci * baseDelay}ms 후 재요청`);
+    await timeBuffer(fibonacci * baseDelay);
     result = await fetchWithFibonacciBackoff(url, retries - 1, baseDelay, baseRetries);
   }
   
@@ -276,7 +276,7 @@ export const fetchWithRandomRetry: TFnRandomRetry = async (url: string, retries:
   } catch (err) {
     if (retries === 0) throw Error('All retries failed');
     // 랜덤한 재요청 시간
-    const randomDelay = Math.floor(Math.random() * (maxDelay - baseDelay) + baseDelay);
+    const randomDelay = Math.floor(Math.random() * (maxDelay - baseDelay)) + baseDelay;
     console.warn(`Random delay: ${randomDelay}초 후 재요청`);
     await timeBuffer(randomDelay);
     result = await fetchWithRandomRetry(url, retries - 1, maxDelay);
