@@ -202,6 +202,7 @@ export const fetchWithConstantDelay: TFnconstantDelay = async (
     result = await axios.get(url);
   } catch (err) {
     if (retries === 0) throw Error('All retries failed');
+    console.warn(`Contant delay: ${delay}초 후 재요청`);
     await timeBuffer(delay);
     result = await fetchWithConstantDelay(url, retries - 1, delay);
   }
@@ -210,6 +211,7 @@ export const fetchWithConstantDelay: TFnconstantDelay = async (
 };
 ```
 
+![constant delay test](../images/constant-delay.gif)
 <br>
 
 **2. 피보나치 백오프**
@@ -246,6 +248,7 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
     if (retries === 0) throw Error('All retries failed');
     // 재요청 횟수에 따른 depth를 계산해 depth번째 피보나치 수 반환
     const fibonacci = calculateFibonacci(baseRetries - retries);
+    console.warn(`Fibonacci backoff: ${fibonacci * baseDelay}초 후 재요청`);
     await timeBuffer(fibonacci * baseDelay);
     result = await fetchWithFibonacciBackoff(url, retries - 1, baseDelay, baseRetries);
   }
