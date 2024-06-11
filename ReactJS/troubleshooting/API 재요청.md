@@ -185,6 +185,9 @@ function App() {
 <br>
 
 **1. 고정 지연**
+
+&nbsp;&nbsp;고정된 지연값을 가지는 재요청의 경우, 항상 일정한 리듬(`delay time`)에 맞춰 재요청을 실시합니다. 요청에 대해 잘못된 응답이 반환을 때 초기에 입력된 `delay`값의 시간이 지난 후 재요청을 실시합니다. 만약 남은 재요청 횟수(`retries`)가 0이었다면 오류를 발생시킵니다.
+
 ```ts
 export const fetchWithConstantDelay: (url: string, retries: number, delay: number) => Promise<AxiosResponse<any, any>> = async (url: string, retries: number, delay: number) => {
   let result: AxiosResponse<any, any>;
@@ -193,7 +196,7 @@ export const fetchWithConstantDelay: (url: string, retries: number, delay: numbe
     result = await axios.get(url);
   } catch (err) {
     if (retries === 0) throw Error('All retries failed');
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    await timeBuffer(delay);
     result = await fetchWithConstantDelay(url, retries - 1, delay);
   }
   
@@ -205,6 +208,7 @@ export const fetchWithConstantDelay: (url: string, retries: number, delay: numbe
 
 **2. 피보나치 백오프**
 
+&nbsp;&nbsp;피보나치 백오프 재요청 방식은 점차적으로 증가하는 `지수 백오프` 방식과 
 <br>
 
 **3. 무작위 재시도**
