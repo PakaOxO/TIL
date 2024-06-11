@@ -274,12 +274,12 @@ export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries:
   try {
     result = await axios.get(url);
   } catch (err) {
-  if (retries === 0) throw Error('All retries failed');
-  // 랜덤한 재요청 시간
-  const randomDelay = Math.floor(Math.random() * (maxDelay - baseDelay) + baseDelay);
-  console.warn(`Random delay: ${randomDelay}초 후 재요청`);
-  await timeBuffer(randomDelay);
-  result = await fetchWithRandomRetry(url, retries - 1, maxDelay);
+    if (retries === 0) throw Error('All retries failed');
+    // 랜덤한 재요청 시간
+    const randomDelay = Math.floor(Math.random() * (maxDelay - baseDelay) + baseDelay);
+    console.warn(`Random delay: ${randomDelay}초 후 재요청`);
+    await timeBuffer(randomDelay);
+    result = await fetchWithRandomRetry(url, retries - 1, maxDelay);
   }
   
   return result;
