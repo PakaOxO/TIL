@@ -186,20 +186,18 @@ function App() {
 
 **1. 고정 지연**
 ```ts
-export const fetchWithConstantDelay: (url: string,
-retries: number,
-delay: number
-) => Promise<AxiosResponse<any, any>> = async (url: string, retries: number, delay: number) => {
+export const fetchWithConstantDelay: (url: string, retries: number, delay: number) => Promise<AxiosResponse<any, any>> = async (url: string, retries: number, delay: number) => {
   let result: AxiosResponse<any, any>;
+  
   try {
-  result = await axios.get(url);
+    result = await axios.get(url);
   } catch (err) {
-  if (retries === 0) throw Error('All retries failed');
-  await new Promise((resolve) => setTimeout(resolve, delay));
-  result = await fetchWithConstantDelay(url, retries - 1, delay);
+    if (retries === 0) throw Error('All retries failed');
+    await new Promise((resolve) => setTimeout(resolve, delay));
+    result = await fetchWithConstantDelay(url, retries - 1, delay);
   }
   
-return result;
+  return result;
 };
 ```
 
