@@ -214,10 +214,22 @@ export const fetchWithConstantDelay: TFnconstantDelay = async (
 
 **2. 피보나치 백오프**
 
-&nbsp;&nbsp;피보나치 백오프 재요청 방식은 지연시간이 피보나치 수열에 따라 이전 
+&nbsp;&nbsp;피보나치 백오프 재요청 방식은 지연시간이 피보나치 수열에 따라 증가하는 방식으로 재요청 횟수가 증가할 수록 재요청 대기시간이 증가하지만 여기에서는 다루지 않은 `지수 백오프` 방식에 비해 너무 빠르지도, 너무 느리지도 않은 지연을 제공할 수 있습니다.
 
 ```ts
 type TFnFibonacciBackoff = (url: string, retries: number, delay: number, baseRetries?: number | undefined) => Promise<AxiosResponse<any, any>>;
+
+const calculateFibonacci: (depth: number) => number = (depth: number) => {
+  let previous = 0, current = 1, temp;
+    
+  for (let i = 0; i <= depth; i++) {
+    temp = previous + current;
+    previous = current;
+    current = temp;
+  }
+  
+  return current;
+};
 
 export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
   url: string,
@@ -232,6 +244,7 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
     result = await axios.get(url);
   } catch (err) {
     if (retries === 0) throw Error('All retries failed');
+    // 재요청 횟수에 따른 depth를 계산해 depth번째 피보나치 수 반환
     const fibonacci = calculateFibonacci(baseRetries - retries);
     await timeBuffer(fibonacci * baseDelay);
     result = await fetchWithFibonacciBackoff(url, retries - 1, baseDelay, baseRetries);
