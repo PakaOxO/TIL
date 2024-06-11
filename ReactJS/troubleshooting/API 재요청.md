@@ -267,7 +267,7 @@ export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
 ```ts
 type TFnRandomRetry = (url: string, retries: number, maxDelay: number) => Promise<AxiosResponse<any, any>>;
 
-export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries: number, maxDelay: number) => {
+export const fetchWithRandomRetry: TFnRandomRetry = async (url: string, retries: number, maxDelay: number) => {
   let result: AxiosResponse<any, any>;
   const baseDelay = 1;
   
@@ -292,6 +292,28 @@ export const fetchWithRandomRetry: TFnRandomDelay = async (url: string, retries:
 
 **4. 즉시 재시도**
 
+&nbsp;&nbsp;때로는 빠르게 문제를 해결할 필요가 있습니다. 즉시 재요청을 보내는 방식은 원치 않은 응답을 받았을 때 즉시 재요청을 보냄으로 신속하게 문제를 해결할 수 있습니다.
+
+```ts
+type TFnImmediateRetry = (url: string, retries: number) => Promise<AxiosResponse<any, any>>;
+
+export const fetchWithImmediateRetry: TFnImmediateRetry = async (url: string, retries: number) => {
+  let result: AxiosResponse<any, any>;
+  
+  try {
+    result = await axios.get(url);
+  } catch (err) {
+    if (retries === 0) throw Error('All retries failed');
+    // delay 없이 바로 재요청
+    console.warn(`Immediate delay: 즉시 재요청`);
+    result = await fetchWithImmediateRetry(url, retries - 1);
+  }
+  
+  return result;
+};
+```
+
+![immediate retry test](../images/immediate-retry.gif)
 
 <br>
 
