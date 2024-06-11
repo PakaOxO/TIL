@@ -165,7 +165,7 @@ function App() {
         <ApiTester title="성공" target="/api/success" type="success" />
         <ApiTester title="실패" target="/api/fail" type="fail" />
         <ApiTester title="고정 지연" target="/api" type="constant-delay" retry={5} />
-        <ApiTester title="피보나치 백오프" target="/api" type="fibonacchi-backoff" retry={5} />
+        <ApiTester title="피보나치 백오프" target="/api" type="fibonacci-backoff" retry={5} />
         <ApiTester title="무작위 재시도" target="/api" type="random-retry" retry={5} />
         <ApiTester title="즉시 재시도" target="/api" type="instant-retry" retry={5} />
       </StyledFlexbox>
@@ -189,7 +189,13 @@ function App() {
 &nbsp;&nbsp;고정된 지연값을 가지는 재요청의 경우, 항상 일정한 리듬(`delay time`)에 맞춰 재요청을 실시합니다. 요청에 대해 잘못된 응답이 반환을 때 초기에 입력된 `delay`값의 시간이 지난 후 재요청을 실시합니다. 만약 남은 재요청 횟수(`retries`)가 0이었다면 오류를 발생시킵니다.
 
 ```ts
-export const fetchWithConstantDelay: (url: string, retries: number, delay: number) => Promise<AxiosResponse<any, any>> = async (url: string, retries: number, delay: number) => {
+type TFnconstantDelay = (url: string, retries: number, delay: number) => Promise<AxiosResponse<any, any>>;
+
+export const fetchWithConstantDelay: TFnconstantDelay = async (
+  url: string,
+  retries: number,
+  delay: number
+) => {
   let result: AxiosResponse<any, any>;
   
   try {
@@ -209,6 +215,32 @@ export const fetchWithConstantDelay: (url: string, retries: number, delay: numbe
 **2. 피보나치 백오프**
 
 &nbsp;&nbsp;피보나치 백오프 재요청 방식은 지연시간이 피보나치 수열에 따라 이전 
+
+```ts
+type TFnFibonacciBackoff = (url: string, retries: number, delay: number, baseRetries?: number | undefined) => Promise<AxiosResponse<any, any>>;
+
+export const fetchWithFibonacciBackoff: TFnFibonacciBackoff = async (
+  url: string,
+  retries: number,
+  baseDelay: number,
+  baseRetries?: number
+) => {
+  let result: AxiosResponse<any, any>;
+  baseRetries = baseRetries || retries;
+  
+  try {
+    result = await axios.get(url);
+  } catch (err) {
+    if (retries === 0) throw Error('All retries failed');
+    const fibonacci = calculateFibonacci(baseRetries - retries);
+    await timeBuffer(fibonacci * baseDelay);
+    result = await fetchWithFibonacciBackoff(url, retries - 1, baseDelay, baseRetries);
+  }
+  
+  return result;
+};
+```
+
 <br>
 
 **3. 무작위 재시도**
