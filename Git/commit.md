@@ -35,6 +35,7 @@ git commit --amend
 ```
 
 - 마지막 커밋을 수정합니다. 커밋 메시지나 포함된 파일을 변경할 때 유용합니다.
+- 주의해야 할 점은 이미 원격 저장소나 다른 사용자와 공유된 커밋은 기존 커밋과 다른 해시를 가질 수 있으므로 충돌과 같은 이슈를 발생시킬 수 있습니다.
 
 <br>
 
@@ -44,19 +45,26 @@ git commit --amend
 
 - `-a, --all`: 변경된 파일을 자동으로 스테이징합니다. 단, 새로 추가된 파일은 포함되지 않습니다.
 
-\"git commit -a -m 'Commit message'\"
+```sh
+git commit -a -m 'Commit message'
+```
 
 ### 수정 및 병합 옵션
 
-- `--amend`: 마지막 커밋을 수정합니다.
+- `--amend`: 마지막 커밋을 수정합니다. 실행하면 메시지를 수정할 수 있는 편집기가 열리고 커밋 메시지를 수정하거나 그대로 사용할 수 있습니다.
 
-\"git commit --amend\"
+```sh
+git commit --amend
+```
 
 - `--no-edit`: `--amend` 옵션과 함께 사용되어 이전 커밋 메시지를 그대로 사용합니다.
 
-\"git commit --amend --no-edit\"
+```sh
+git commit --amend --no-edit
+```
 
 ### 파일 및 경로 관련 옵션
+
 
 - `--include <file>`: 지정된 파일을 포함하여 커밋합니다.
 - `--only <file>`: 지정된 파일만 커밋합니다.
