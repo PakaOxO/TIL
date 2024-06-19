@@ -1,5 +1,7 @@
 
-# Git Commit 명령어 사용법
+&nbsp;&nbsp;본문은 `git commit`과 관련된 내용을 전체적으로 정리한 내용을 담고 있습니다.
+
+<br>
 
 ## 기본 사용법
 
@@ -20,15 +22,21 @@ git commit -m 'Your commit message'
 
 ### 3. 메시지 없이 커밋
 
-\"git commit\"
+```sh
+git commit
+```
 
 - 편집기가 열리고, 메시지를 작성할 수 있습니다.
 
 ### 4. 커밋 수정
 
-\"git commit --amend\"
+```sh
+git commit --amend
+```
 
 - 마지막 커밋을 수정합니다. 커밋 메시지나 포함된 파일을 변경할 때 유용합니다.
+
+<br>
 
 ## 커밋 옵션 종류
 
