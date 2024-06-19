@@ -101,3 +101,5 @@ a
 
 <br>
 
+**References**
+- [Git Docs](https://git-scm.com/docs/git-commit)
