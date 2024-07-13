@@ -1,4 +1,3 @@
-## this
 
 &nbsp;&nbsp;Java에서 `this`는 인스턴스 자신을 가리키는 참조변수이지만, Javaecript에서는 `this`에 바인딩 되는 객체는 함수의 호출 방식에 따라 달라집니다.
 
@@ -110,7 +109,7 @@ function func(name) {
   console.log(this); // { name: "Kim" }
 }
 
-const me = func("Kim");
+const me = new func("Kim");
 console.log(me); // { name: "Kim" }
 ```
 
