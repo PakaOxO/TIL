@@ -29,10 +29,23 @@ const arePropsEqual = (prevProps, nextProps) => { /* 함수 내용 */ }
 
 &nbsp;&nbsp;일반적인 리액트 컴포넌트는 부모 컴포넌트의 상태가 변경되었다면 모든 자식 컴포넌트에도 리렌더링이 발생합니다. 하지만 `memo`를 사용하면 주어진 `props`의 변경되지 않았을 경우, 부모 컴포넌트가 리렌더링 되는 상황에도 메모이제이션된 컴포넌트의 리렌더링이 발생하지 않습니다.
 
-```javascript
-const Parent = () => {
-  useState<boolean>
-}
+```ts
+const App = () => {
+  const [state, setState] = useState<boolean>(false);
+
+  return (
+    <div>
+      <button onClick={() => setState((prev) => !prev)}>click</button>
+      <MemoizedGreeting name={name} />
+    </div>
+  );
+};
+
+const Greeting = ({ name }) => {
+  return `Hello, ${name}!`;
+};
+
+const MemoizedGreeting = memo(<Child />);
 ```
 
 <br>
