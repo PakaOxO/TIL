@@ -164,8 +164,9 @@ const App = () => {
 
 ```ts
 const App = () => {
-  const users = getUserlist();
-  const [limit, setLimit] = useState<number>(0);
+  const [users, setUsers] = useState<User[]>([]);
+
+  c
 
   const filtereUserdByAge = useCallback(() => {
     return users.filter((user) => user.age <= limit);
