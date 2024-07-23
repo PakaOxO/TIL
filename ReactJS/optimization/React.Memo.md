@@ -63,11 +63,23 @@ const MemoizedGreeting = memo(<Child />);
 
 ```ts
 const App = () => {
-  const [greetingType, setGreetingType] = useState<boolean>("Hello");
+  const [name, setName] = useState<boolean>("");
 
   return (
     <div>
-      <GreetingSelector />
+      <input type="text" value={name} onChange={e => setName(e.currentTarget.value)} />
+      <Greeting name={name} />
+    </div>
+  );
+}
+
+const Greeting = ({ name }) => {
+  const [greeting, setGreeting] = useState<boolean>("Hello,");
+
+  return (
+    <div>
+      <p>{greeting} {name}!</p>
+      <GreetingSelector value={greeting} onChange={setGreeting} />
     </div>
   );
 }
@@ -76,8 +88,12 @@ const GreetingSelector = ({ onChange }) => {
   return (
     <>
       <label>
-        <input type="radio" checked={value === "Hello"} onChange={onChange} />
+        <input type="radio" checked={value === "Hello,"} onChange={e => onChange("Hello, ")} />
         Greeting Hello
+      </label>
+      <label>
+        <input type="radio" checked={value === "Welcome,"} onChange={e => onChange("Welcome, ")} />
+        Greeting Welcome
       </label>
     </>
   );
