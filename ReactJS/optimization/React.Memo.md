@@ -59,45 +59,38 @@ const MemoizedGreeting = memo(<Child />);
 
 **2. 자신 상태값의 변경**
 
-&nbsp;&nbsp;다른 일반적인 컴포넌트와 마찬가지로 관리하고 있는 상태값에 변경이 발생하면 리렌더링이 이루어집니다.
+&nbsp;&nbsp;다른 일반적인 컴포넌트와 마찬가지로 관리하고 있는 상태값에 변경이 발생하면 리렌더링이 이루어집니다. [전체 코드](https://codesandbox.io/p/devbox/react-memo-kltjp5?file=%2Fsrc%2FApp.tsx%3A1%2C1-71%2C1)
 
 ```ts
 const App = () => {
-  const [name, setName] = useState<boolean>("");
-
+  const [name, setName] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+    
   return (
     <div>
-      <input type="text" value={name} onChange={e => setName(e.currentTarget.value)} />
+      <label>
+      name:
+        <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.currentTarget.value)}
+        />
+      </label>
+      <br />
+      <label>
+      address:
+        <input
+        type="text"
+        value={address}
+        onChange={(e) => setAddress(e.currentTarget.value)}
+        />
+      </label>
       <Greeting name={name} />
     </div>
   );
-}
+};
 
-const Greeting = ({ name }) => {
-  const [greeting, setGreeting] = useState<boolean>("Hello,");
-
-  return (
-    <div>
-      <p>{greeting} {name}!</p>
-      <GreetingSelector value={greeting} onChange={setGreeting} />
-    </div>
-  );
-}
-
-const GreetingSelector = ({ onChange }) => {
-  return (
-    <>
-      <label>
-        <input type="radio" checked={value === "Hello,"} onChange={e => onChange("Hello, ")} />
-        Greeting Hello
-      </label>
-      <label>
-        <input type="radio" checked={value === "Welcome,"} onChange={e => onChange("Welcome, ")} />
-        Greeting Welcome
-      </label>
-    </>
-  );
-}
+export default App;
 ```
 
 
