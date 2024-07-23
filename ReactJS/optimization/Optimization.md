@@ -1,6 +1,6 @@
 
 ### Contents
-- [[React.Memo]]
+- [[React.memo]]
 - [[Fetch-types]]
 - [[Lazy loading]]
 - [[Concurrent Mode]]
