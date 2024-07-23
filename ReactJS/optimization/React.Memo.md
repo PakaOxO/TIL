@@ -31,17 +31,20 @@ const arePropsEqual = (prevProps, nextProps) => { /* 함수 내용 */ }
 
 ```ts
 const App = () => {
-  const [state, setState] = useState<boolean>(false);
+  const [name, setName] = useState<boolean>("");
+  const [age, setAge] = useState<number>(0);
 
   return (
     <div>
-      <button onClick={() => setState((prev) => !prev)}>click</button>
+      <input type="text" onChange={(e) => setName(e.currentTarget.value)} />
+      <input type="number" onChange={(e) => setAge(e.currentTarget.value)} minValue="1" />
       <MemoizedGreeting name={name} />
     </div>
   );
 };
 
 const Greeting = ({ name }) => {
+  console.log("rerendering");
   return `Hello, ${name}!`;
 };
 
