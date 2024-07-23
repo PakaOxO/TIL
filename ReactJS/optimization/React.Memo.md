@@ -98,7 +98,37 @@ export default App;
 
 **3. Context 변경**
 
+&nbsp;&nbsp;`memo` 컴포넌트는 구독하고 있는 전역 상태가 변경되면 리렌더링이 발생합니다. 일반적으로 `Context.Provider` 하위 컴포넌트는 루트 컴포넌트가 가지고 있는 전역 상태에 변경이 발생하면 하위 컴포넌트에 리렌더링이 발생하지만 메모이제이션된 컴포넌트는 전역 상태를 구독하고 있지 않다면 리렌더링의 대상에서 제외됩니다. [전체 코드](https://codesandbox.io/p/devbox/react-memo-context-d9qf6s?file=%2Fsrc%2FApp.tsx%3A25%2C3)
 
+```ts
+const ThemeContext = createContext<"dark" | "light">("light");
+
+const App = () => {
+  const [theme, setTheme] = useState<"dark" | "light">("light");
+  
+  const themeToggle = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+  
+  return (
+    <ThemeContext.Provider value={theme}>
+      <button onClick={themeToggle}>{theme}</button>
+      <div
+        style={{
+        width: "30px",
+        height: "30px",
+        background: theme === "dark" ? "black" : "white",
+        }}
+>      </div>
+      <Greeting />
+    </ThemeContext.Provider>
+  );
+};
+```
+
+<br>
+
+### 렌더링 최적화
 
 <br>
 
