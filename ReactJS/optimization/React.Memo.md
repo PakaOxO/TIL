@@ -134,9 +134,9 @@ const App = () => {
 
 <br>
 
-**1. useMemo**
+**1. `props` 메모이제이션**
 
-&nbsp;&nbsp;앞서 살펴보았듯 `memo`의 `props` 비교 동작은 기본적으로 `Object.is`를 활용한 얕은 비교입니다. `Object.is({}, {})`의 결과가 `false`인 것처럼 객체(혹은 배열)를 `props`로 넘겨줄 땐 사전에 `useMemo`를 사용해 해당 객체를 메모이제이션 하는 편이 좋습니다.
+&nbsp;&nbsp;앞서 살펴보았듯 `memo`의 `props` 비교 동작은 기본적으로 `Object.is`를 활용한 얕은 비교입니다. `Object.is({}, {})`의 결과가 `false`인 것처럼 객체(혹은 배열)를 `props`로 넘겨줄 땐 사전에 `useMemo`를 사용해 해당 객체를 메모이제이션하는 편이 좋습니다.
 
 
 ```ts
@@ -154,9 +154,28 @@ const App = () => {
 
 <br>
 
-**2. useCallback**
+&nbsp;&nbsp;`javascript` 환경에서 함수는 일종의 객체로서 변수에 할당 가능하며, 앞서 본 객체와 마찬가지로 `memo`에 의해 얕은 비교가 이루어지기 때문에 `useCallback`으로 메모이제이션 합니다.
 
-&nbsp;&nbsp;`javascript` 환경에서 함수는 일종의 객체로서 변수에 할당 가능한 구조이며, 자체로 
+<br>
+
+**2. 사용자 비교 함수**
+
+&nbsp;&nbsp;때때로 메모이제이션만으로는 `props`의 변경을 최소화하는 것이 어려울 수 있습니다. 필요하다면 사용자 비교 함수를 구현해 `props`의 변경을 직접 확인할 수 있습니다.
+
+```ts
+const App = () => {
+  const users = getUserlist();
+  const [limit, setLimit] = useState<number>(0);
+
+  const filtereUserdByAge = useCallback(() => {
+    return users.filter((user) => user.age <= limit);
+  }, [limit]);
+
+  return (<>
+    <UserList users={users} />
+  </>);
+}
+```
 
 <br>
 
