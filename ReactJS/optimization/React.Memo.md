@@ -166,16 +166,24 @@ const App = () => {
 const App = () => {
   const [users, setUsers] = useState<User[]>([]);
 
-  c
-
-  const filtereUserdByAge = useCallback(() => {
-    return users.filter((user) => user.age <= limit);
-  }, [limit]);
+  const getUsers = async () => {
+    const users = await fetchUserlist();
+    setUsers(users);
+  }
 
   return (<>
+    <button onClick={getUsers}>fetch</button>
     <UserList users={users} />
   </>);
 }
+
+const UserList = ({ users }) => memo(function UserList() {
+  return (
+    <ul>
+      { users.map((user) => <User user={user} />)}
+    </ul>
+  );
+}, arePropsEqual);
 ```
 
 <br>
