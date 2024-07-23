@@ -160,7 +160,7 @@ const App = () => {
 
 **2. 사용자 비교 함수**
 
-&nbsp;&nbsp;때때로 메모이제이션만으로는 `props`의 변경을 최소화하는 것이 어려울 수 있습니다. 필요하다면 사용자 비교 함수를 구현해 `props`의 변경을 직접 확인할 수 있습니다.
+&nbsp;&nbsp;때때로 메모이제이션만으로는 `props`의 변경을 최소화하는 것이 어려울 수 있습니다. 필요한 경우 사용자 비교 함수를 구현해 `props`의 변경을 직접 체크합니다.
 
 ```ts
 const App = () => {
@@ -177,6 +177,15 @@ const App = () => {
   </>);
 }
 
+const arePropsEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.users.length === nextProps.users.length &&
+    nextProps.users.every(
+      (user, index) => user.id === prevProps.users[index].id
+    )
+  );
+};
+
 const UserList = ({ users }) => memo(function UserList() {
   return (
     <ul>
@@ -185,6 +194,12 @@ const UserList = ({ users }) => memo(function UserList() {
   );
 }, arePropsEqual);
 ```
+
+<br>
+
+&nbsp;&nbsp;주의해야 할 점은 때때로 리렌더링하는 것이 `props` 비교를 하는 과정하는 것보다 나을 수 있습니다. 브라우저 개발자 도구를 활용해 성능을 확인하는 것이 필요합니다.
+
+&nbsp;&nbsp;또한 `arePropsEqual` 함수를 직접 구현할 때에는 모든 `props`를 비교해야 합니다. 
 
 <br>
 
