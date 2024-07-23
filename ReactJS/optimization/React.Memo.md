@@ -25,7 +25,11 @@ const arePropsEqual = (prevProps, nextProps) => { /* 함수 내용 */ }
 
 ### 리렌더링
 
-**1. `props`가 변경되지 않았다면**
+&nbsp;&nbsp;`memo`로 감싸진 컴포넌트는 다음과 같은 상황에서 리렌더링이 발생합니다.
+
+<br>
+
+**1. `props` 변경**
 
 &nbsp;&nbsp;일반적인 리액트 컴포넌트는 부모 컴포넌트의 상태가 변경되었다면 모든 자식 컴포넌트에도 리렌더링이 발생합니다. 하지만 `memo`를 사용하면 주어진 `props`의 변경되지 않았을 경우, 부모 컴포넌트가 리렌더링 되는 상황에도 메모이제이션된 컴포넌트의 리렌더링이 발생하지 않습니다.
 
@@ -53,6 +57,35 @@ const MemoizedGreeting = memo(<Child />);
 
 <br>
 
+**2. 자신 상태값의 변경**
+
+&nbsp;&nbsp;다른 일반적인 컴포넌트와 마찬가지로 관리하고 있는 상태값에 변경이 발생하면 리렌더링이 이루어집니다.
+
+```ts
+const App = () => {
+  const [greetingType, setGreetingType] = useState<boolean>("Hello");
+
+  return (
+    <div>
+      <GreetingSelector />
+    </div>
+  );
+}
+
+const GreetingSelector = ({ onChange }) => {
+  return (
+    <>
+      <label>
+        <input type="radio" checked={value === "Hello"} onChange={onChange} />
+        Greeting Hello
+      </label>
+    </>
+  );
+}
+```
+
+
+<br>
 
 **References**
 - [memo, React Docs](https://ko.react.dev/reference/react/memo)
