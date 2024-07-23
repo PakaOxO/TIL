@@ -130,6 +130,34 @@ const App = () => {
 
 ### 렌더링 최적화
 
+  &nbsp;&nbsp;`memo`를 활용하면 컴포넌트의 불필요한 리렌더링을 최소화할 수 있습니다. `memo`된 컴포넌트는 `props`의 변경을 감지해 리렌더링이 발생하므로 다음과 같이 `props`의 변경을 줄이는 것이 중요합니다.
+
+<br>
+
+**1. useMemo**
+
+&nbsp;&nbsp;앞서 살펴보았듯 `memo`의 `props` 비교 동작은 기본적으로 `Object.is`를 활용한 얕은 비교입니다. `Object.is({}, {})`의 결과가 `false`인 것처럼 객체(혹은 배열)를 `props`로 넘겨줄 땐 사전에 `useMemo`를 사용해 해당 객체를 메모이제이션 하는 편이 좋습니다.
+
+
+```ts
+const App = () => {
+  const [name, setName] = useState<string>("");
+  const [age, setAge] = useState<number>("");
+
+  const person = useMemo({ name, age }, [name, age]);
+
+  return (<>
+    <MemoizedComponent person={person} />
+  </>);
+}
+```
+
+<br>
+
+**2. useCallback**
+
+&nbsp;&nbsp;`javascript` 환경에서 함수는 일종의 객체로서 변수에 할당 가능한 구조이며, 자체로 
+
 <br>
 
 **References**
