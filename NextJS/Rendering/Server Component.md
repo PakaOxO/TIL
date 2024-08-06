@@ -115,7 +115,7 @@ export async function fetchRevenue() {
 
 <br>
 
-**3. Streaming (Progressive Rendering))**
+**3. Streaming (Progressive Rendering)**
 
 &nbsp;&nbsp;사용자가 보는 페이지의 `UI Loading time`은 사실 가장 오래 걸리는 `data fetching` 시간에 의존합니다. 다른 모든 데이터를 가져오는데 100ms가 걸리지 않았더라도 남은 하나의 `fetching time`이 3s라면 사용자가 해당 페이지를 보기까지 걸리는 시간은 최소 3s 이상일테니깐요.
 
@@ -209,7 +209,7 @@ export default async function RevenueChart() { // Make component async, remove t
 
 >[!tip] **Next.js `loading.tsx`**
 >
->&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 디렉토리 상위에 위치한 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다. `loading.tsx는 별도의 `Suspense`를 지정하지 않아도 페이지(`page.tsx`)의 렌더링이 지연되면 대체 컴포넌트로써 동작합니다.
+>&nbsp;&nbsp;`Next.js`에서 `loading.tsx`는 특별한 의미를 갖는 컴포넌트입니다. `Next.js 13` 기준 `app` 하위에 위치한 페이지의 렌더링이 지연되었다면 디렉토리 상위에 위치한 `loading.tsx`가 `fallback`으로써 렌더링이 완료되기 전까지 대신 화면에 표시됩니다. `loading.tsx`는 별도의 `Suspense`를 지정하지 않아도 페이지(`page.tsx`)의 렌더링이 지연되면 대체 컴포넌트로써 동작합니다.
 
 <br>
 
