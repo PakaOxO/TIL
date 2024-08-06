@@ -9,7 +9,7 @@
 
 <br>
 
-### Next.js Component 렌더링 과정
+### Next.js Component 렌더링 과정
 
 &nbsp;&nbsp;`Next.js`에서 렌더링은 `File system`에 의한 `Routing` 구조 혹은, `Suspense boundaries`에 의해 쪼개진 `chunk` 단위로 이루어집니다.
 
