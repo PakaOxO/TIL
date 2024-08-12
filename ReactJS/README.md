@@ -11,7 +11,7 @@
 - [React 기본](./basic)
 - [리액트 훅](./hook)
 - [전역 상태 관리](./globalState)
-- [최적화](./optimization)
-- [[ReactJS/troubleshooting/troubleshooting]]
+- [리액트 서비스 최적화](./optimization)
+- [트러블 슈팅](./troubleshooting)
 
 <br>
