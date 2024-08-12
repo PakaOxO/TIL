@@ -1,5 +1,5 @@
 
-### Good to read
+### Good to read
 
 **카카오 기술 블로그**
 - [프론트엔드 SOLID 원칙](https://fe-developers.kakaoent.com/2023/230330-frontend-solid/)

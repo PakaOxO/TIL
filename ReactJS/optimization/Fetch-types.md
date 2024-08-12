@@ -5,7 +5,7 @@
 
 ### Tranditional Fetch vs Fetch with Suspense
 
-&nbsp;&nbsp;[React 공식문서](https://17.reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)에서는 React에서 컴포넌트의 렌더링 시에 비동기 작업을 처리하는 방법으로 다음 3가지를 소개하고 있습니다. 각 방법의 구현 방식과 특징에 대해 살펴보고 마지막으로 `Suspense`를 사용해 문제점을 보완한 방법을 끝으로 포스트를 마무리하겠습니다.
+&nbsp;&nbsp;[React 17 공식문서](https://17.reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)에서는 React에서 컴포넌트의 렌더링 시에 비동기 작업을 처리하는 방법으로 다음 3가지를 소개하고 있습니다. 본 포스팅을 작성하는 시점은 곧 `React 19`가 업데이트 될 예정인 시기이고, 위 참조 문서는 `outdated`되었지만 리액트에서 데이터를 `fetching`하고 렌더링하는 과정은 위 문서에서 설명하는 바와 크게 다르지 않기 때문에 각 방법의 구현 방식과 특징에 대해 살펴보고 마지막으로 `Suspense`를 사용해 문제점을 보완한 방법을 끝으로 포스트를 마무리하겠습니다.
 
 1. Fetch-on-render: Fetch in useEffect
 2. Fetch-then-render: Relay without Suspense
@@ -83,7 +83,7 @@ const CharacterStatus = ({ cuid }: { cuid: string }) => {
 
 <br>
 
-&nbsp;&nbsp;비동기 작업의 장점은 동시성을 통한 효율성이지만, 위 코드는 동시성을 포기했기 때문에 `Waterfall` 이슈가 발생하게 됩니다. CharacterStatus 컴포넌트는 Character 컴포넌트에서 호출한 fetch 함수의 결과로 응답을 받았을 때 비로소 렌더링될 수 있으며, CharacterStatus에서 fetch 요청을 보낼 수 있습니다. 결과적으로 부모 컴포넌트부터 순차적으로 렌더링 & fetch가 이루어지기 때문에 효율성이 떨어집니다.
+&nbsp;&nbsp;비동기 작업의 장점은 동시성을 통한 효율성이지만, 위 코드는 동시성을 포기했기 때문에 `Waterfall` 이슈가 발생하게 됩니다. CharacterStatus 컴포넌트는 Character 컴포넌트에서 호출한 fetch 함수의 결과로 응답을 받았을 때 비로소 렌더링될 수 있으며, CharacterStatus에서 fetch 요청을 보낼 수 있습니다. 결과적으로 부모 컴포넌트부터 순차적으로 렌더링 & fetch가 이루어지기 때문에 낮은 효율성을 가집니다.
 
 <br>
 
