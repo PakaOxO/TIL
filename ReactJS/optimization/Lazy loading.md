@@ -177,7 +177,7 @@ const MyComponent = () => {
 
 <br>
 
-&nbsp;&nbsp;사용해본 입장에서  `Suspense`는 정말 좋은 기능이라고 생각합니다. 하지만 그럼에도 불구하고 `Suspense`는 `React`에서 아직 실험적으로 사용하는 입장입니다. 아래 인용문은 [리액트 공식문서](https://react-ko.dev/reference/react/Suspense#displaying-a-fallback-while-content-is-loading)에서 발췌한 내용입니다. 다음 주의사항을 인식하고, 코드를 작성하는 것이 좋을 것 같습니다.
+&nbsp;&nbsp;사용해본 입장에서  `Suspense`는 정말 좋은 기능이라고 생각합니다. 하지만 그럼에도 불구하고 `Suspense`는 `React 18`에서 아직 실험적으로 도입된 기능입니다. 아래 인용문은 [리액트 공식문서](https://react-ko.dev/reference/react/Suspense#displaying-a-fallback-while-content-is-loading)에서 발췌한 내용입니다. 다음 주의사항을 인식하고, 코드를 작성하는 것이 좋을 것 같습니다.
 
 >[!caution] `Suspense` 도입 시 주의사항
 >
