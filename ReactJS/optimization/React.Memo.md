@@ -15,7 +15,7 @@ const memoizedComponent = memo(<MyComponent />, arePropsEqual?);
 
 <br>
 
-&nbsp;&nbsp;`arePropsEqual`은 이전 `props` 배열과 새로운 `props` 배열을 인자로 가지고 바뀌기 전/후 `props`를 비교해 일치하는 지 여부를 구현합니다. 만약 `memo`에 `arePropsEqual` 콜백을 추가하지 않았다면 리액트는 기본적으로 `Object.is`로 `props`에 대한 얕은 비교를 실시합니다.
+&nbsp;&nbsp;`arePropsEqual`은 이전 `props` 배열과 새로운 `props` 배열을 인자로 가지고 바뀌기 전/후 `props`를 비교해 일치하는 지 여부를 구현합니다. 만약 `memo`에 `arePropsEqual` 콜백을 추가하지 않았다면 리액트는 기본적으로 [Object.is](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/is)로 `props`에 대한 얕은 비교를 실시합니다.
 
 ```javascript
 const arePropsEqual = (prevProps, nextProps) => { /* 함수 내용 */ }
@@ -31,11 +31,12 @@ const arePropsEqual = (prevProps, nextProps) => { /* 함수 내용 */ }
 
 **1. `props` 변경**
 
-&nbsp;&nbsp;일반적인 리액트 컴포넌트는 부모 컴포넌트의 상태가 변경되었다면 모든 자식 컴포넌트에도 리렌더링이 발생합니다. 하지만 `memo`를 사용하면 주어진 `props`의 변경되지 않았을 경우, 부모 컴포넌트가 리렌더링 되는 상황에도 메모이제이션된 컴포넌트의 리렌더링이 발생하지 않습니다.
+&nbsp;&nbsp;일반적인 리액트 컴포넌트는 부모 컴포넌트의 상태가 변경되었다면 모든 자식 컴포넌트에도 리렌더링이 발생합니다. 하지만 `memo`를 사용하면 주어진 `props` 가 변경되지 않았을 경우, 부모 컴포넌트가 리렌더링 되는 상황에도 메모이제이션된 컴포넌트의 리렌더링이 발생하지 않습니다.
 
 ```ts
 const App = () => {
   const [name, setName] = useState<boolean>("");
+  // age가 변경되어도 MemoizedGreeting의 리렌더링이 발생하지 않습니다.
   const [age, setAge] = useState<number>(0);
 
   return (
