@@ -130,7 +130,7 @@ const CharacterStatus = ({ stats }: { stats: IStat }) => {
 
 **높은 결합도**
 
-&nbsp;&nbsp;이제는 모든 비동기 작업이 동시에 이루어집니다. 하지만 Character 컴포넌트의 역할이 커지게 되었다는 측면에서 문제가 드러나게 됩니다. 실제로 Character는 자식 컴포넌트로 장착 장비(Weapons), 장착 펫(Pets) 등을 가지고 있습니다. 모든 자식 컴포넌트의 fetch 요청을 Character가 들고 있게 되면 하위 컴포넌트는 Character에 높은 결합도가 생기고, 각 컴포넌트의 역할이 불분명해집니다. 컴포넌트의 역할을 분명하 하기 위해서는 각 컴포넌트에서 자신이 필요로 하는 작업을 처리하는 편이 더 좋아보입니다.
+&nbsp;&nbsp;이제는 모든 비동기 작업이 동시에 이루어집니다. 하지만 Character 컴포넌트의 역할이 커지게 되었다는 측면에서 문제가 드러나게 됩니다. 실제로 Character는 자식 컴포넌트로 장착 장비(Weapons), 장착 펫(Pets) 등을 가지고 있습니다. 모든 자식 컴포넌트의 fetch 요청을 Character가 들고 있게 되면 하위 컴포넌트는 Character에 높은 결합도가 생기고, 각 컴포넌트의 역할이 불분명해집니다. 컴포넌트의 역할을 분명하게 하기 위해서는 각 컴포넌트에서 자신이 필요로 하는 작업을 처리하는 편이 더 좋아보입니다.
 
 <br>
 
@@ -208,7 +208,7 @@ const App = () => {
 
 <br>
 
->[!tip] &nbsp;&nbsp;React Canary 버전에서는 새로운 hook인 `use`를 제시하고 있습니다. `use`는 인자로 `Promise`, 혹은 `Context`을 넘겨 받으며 `Promise`의 상태(status)가 `fullfilled`가 아니라면 `Suspense`의 `fallback`을 렌더링하도록 합니다. `use` hook에 대해서는 이후 포스트에서 자세하게 다뤄보도록 하겠습니다.
+>[!tip] &nbsp;&nbsp;React Canary 버전에서는 새로운 hook인 [use](https://ko.react.dev/reference/react/use)를 제시하고 있습니다. `use`는 인자로 `Promise`, 혹은 `Context`을 넘겨 받으며 `Promise`의 상태(status)가 `fullfilled`가 아니라면 `Suspense`의 `fallback`을 렌더링하도록 합니다. `use` hook에 대해서는 이후 포스트에서 자세하게 다뤄보도록 하겠습니다.
 
 <br>
 
@@ -223,7 +223,7 @@ const App = () => {
 
 ### 후기
 
-&nbsp;&nbsp;현재 진행하는 프로젝트에서는 애매한 개발 컨벤션으로 `Fetch-on-Render`와  `Fetch-then-Render` 방식이 혼재해 있어 데이터 `fetching`과 렌더링에 `Waterfall` 이슈가 있으며, 컴포넌트의 복잡성이 매우 높은 편입니다. 마감 기한으로 현재는 바로 코드 개선이 어려운 상황이지만 릴리즈 이후에 본격적으로 `Suspense`, `react-query` 등을 도입해 리팩토링과 성능 개선을 위한 시간을 가져보려고 합니다. 이후 리팩토링 기간에 직접 코드를 작성하며 `Suspense`를 사용해 컴포넌트 렌더링을 함으로써 개선한 사항들을 다룰 기회가 있다면 별도의 포스트를 남겨보도록 하겠습니다.
+&nbsp;&nbsp;현재 진행하는 프로젝트에서는 명확한 규칙이 없어 `Fetch-on-Render`와  `Fetch-then-Render` 방식이 혼재해 있어 데이터 `fetching`과 렌더링에 `Waterfall` 이슈가 있으며, 컴포넌트의 복잡성이 매우 높은 편입니다. 마감 기한으로 현재는 바로 코드 개선이 어려운 상황이지만 릴리즈 이후에 본격적으로 `Suspense`, `react-query` 등을 도입해 리팩토링과 성능 개선을 위한 시간을 가져보려고 합니다. 이후 리팩토링 기간에 직접 코드를 작성하며 `Suspense`를 사용해 컴포넌트 렌더링을 함으로써 개선한 사항들을 다룰 기회가 있다면 별도의 포스트를 남겨보도록 하겠습니다.
 
 <br>
 
@@ -231,3 +231,4 @@ const App = () => {
 - [React Docs, Suspense](https://react.dev/blog/2022/03/29/react-v18#suspense-in-data-frameworks)
 - [React Docs(v17), Suspense for Data Fetching](https://17.reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)
 - [Suspense와 선언적으로 Data fetching처리(카카오 기술블로그)](https://fe-developers.kakaoent.com/2021/211127-211209-suspense/)
+- [React.use](https://ko.react.dev/reference/react/use)
