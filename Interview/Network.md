@@ -71,7 +71,15 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;REST는 HTTP URI를 통해 자원을 명시하고 Method로 자원을 처리하도록 설계된 아키텍처입니다. 이러한 REST 아키텍처를 기반으로 만들어진 API가 REST API입니다. REST의 구성요소로는 자원(Resource), 행위(Verb), 표현(Representations)이 있습니다.
+  &nbsp;&nbsp;REST는 HTTP URI를 통해 자원을 명시하고 Method로 자원을 처리하도록 설계된 아키텍처입니다. 이러한 REST 아키텍처를 기반으로 만들어진 API가 REST API입니다. REST의 구성요소로는 자원(Resource), 행위(Verb), 표현(Representations)이 있습니다. API Method는 다음과 같습니다.
+  <br>
+  &nbsp;&nbsp;'GET'은 필요한 데이터의 요청을 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'POST'는 데이터의 추가 및 수정, 삭제를 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'PUT'은 이미 존재하는 자원을 수정하기 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'DELETE'는 존재하는 자원을 삭제하기 위해 활용됩니다.
 </details>
 
 <br>
@@ -80,7 +88,22 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;RESTful하다는 것은 REST 원리를 따르는 시스템을 의미합니다.
+  &nbsp;&nbsp;GET은 주로 자원의 조회를 위해, POST는 추가, 수정, 삭제를 위해 활용됩니다. 그렇기 때문에 GET은 멱등성GET은 캐싱이 가능한 반면 POST는 캐싱이 불가능합니다.
+</details>
+
+<br>
+
+### GET vs POST
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;'GET'은 필요한 데이터의 요청을 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'POST'는 데이터의 추가 및 수정, 삭제를 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'PUT'은 이미 존재하는 자원을 수정하기 위해 활용됩니다.
+  <br>
+  &nbsp;&nbsp;'DELETE'는 존재하는 자원을 삭제하기 위해 활용됩니다.
 </details>
 
 <br>
