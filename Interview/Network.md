@@ -22,4 +22,23 @@
 
 <br>
 
-### 
+---
+### HTTP
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;HTTP는 HyperText Transfer Protocol의 약어로 비연결형 통신 방식입니다. 데이터로 메시지를 사용하며 메시지는 요청(Request)와 응답(Response) 2가지 타입으로 구분됩니다. HTTP는 신뢰성있는 통신을 보장하기 위해 TCP를 사용합니다.
+  <br>
+  &nbsp;&nbsp;HTTP는 stateless한데, 이는 두 사용자간 Req-Res 통신이 이루어진 후, TCP 연결이 끊어진 뒤 이후에는 상대방의 상태를 알 수 없다는 특징을 나타냅니다.
+</details>
+
+<br>
+
+### Cookie
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;HTTP는 stateless하기 때문에 서버는 사용자의 정보를 알 수 없는 것이 기본 사양이
+</details>
+
+<br>
