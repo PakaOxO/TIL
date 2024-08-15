@@ -88,7 +88,13 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;GET은 주로 자원의 조회를 위해, POST는 추가, 수정, 삭제를 위해 활용됩니다. 그렇기 때문에 GET은 멱등성GET은 캐싱이 가능한 반면 POST는 캐싱이 불가능합니다.
+  &nbsp;&nbsp;RESTful하다는 것은 REST 원리를 따르는 시스템을 의미합니다. Rest API 개발 원칙에는 다음과 같은 규칙이 있습니다.
+  <br>
+  &nbsp;&nbsp;첫째로, URI를 통해 자원을 명확하게 식별할 수 있어야 합니다. URI는 자원의 주소 및 종류, 내용을 유추할 수 있는 내용을 담고 있어야 합니다.
+  <br>
+  &nbsp;&nbsp;둘째로, 행위는 명시적으로 활용되어야 합니다. 자원에 대한 행위는 적절한 REST API Method를 통해 처리되어야 함을 의미합니다.
+  <br>
+  &nbsp;셋째로, 자기 서술적(Self-descriptive)이어야 합니다. 자원의 메타 데이터만을 통해 어떤 종류의 데이터인지, 데이터 처리를 위해 어떤 어플리케이션을 활용해야 하는지 유추할 수 있어야합니다.
 </details>
 
 <br>
@@ -97,16 +103,10 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;'GET'은 필요한 데이터의 요청을 위해 활용됩니다.
+  &nbsp;&nbsp;GET은 주로 자원의 조회를 위해, POST는 추가, 수정, 삭제를 위해 활용됩니다. 그렇기 때문에 메소드 실행 전후로 결과가 바뀌지 않는 GET은 멱등성을 가집니다.
   <br>
-  &nbsp;&nbsp;'POST'는 데이터의 추가 및 수정, 삭제를 위해 활용됩니다.
-  <br>
-  &nbsp;&nbsp;'PUT'은 이미 존재하는 자원을 수정하기 위해 활용됩니다.
-  <br>
-  &nbsp;&nbsp;'DELETE'는 존재하는 자원을 삭제하기 위해 활용됩니다.
+  &nbsp;&nbsp;GET은 캐싱이 가능한 반면 POST는 캐싱이 불가능합니다. 또, GET은 URI에 타겟 자원을 명시하기 때문에 메시지의 Header에 담기는 반면, POST는 메시지의 body에 담기므로 상대적으로 자원이 직접 노출되지 않은 POST가 안전합니다.
 </details>
-
-<br>
 
 ---
 ### 
