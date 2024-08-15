@@ -6,7 +6,7 @@
 - [[AWS]]
 - [[Computer Structure & OS/Computer structure & OS]]
 - [[Git]]
-- [[Network]]
+- [[Network/Network]]
 - [[Web]]
 - [[Javascript]]
 - [[Javascript]]
