@@ -67,6 +67,23 @@
 
 <br>
 
+### HTTP Method
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;'GET'은 필요한 데이터의 조회
+  <br>
+  &nbsp;&nbsp;'POST'는 데이터의 추가
+  <br>
+  &nbsp;&nbsp;'PUT'은 이미 존재하는 자원이 있다면 해당 자원을 전체 갱신, 없다면 생성
+  <br>
+  &nbsp;&nbsp;'PATCH'는 존재하는 자원에 대해 일부분만 수정
+  <br>
+  &nbsp;&nbsp;'DELETE'는 요청 자원을 삭제
+</details>
+
+<br>
+
 ### REST API
 
 <details>
@@ -106,6 +123,26 @@
   &nbsp;&nbsp;GET은 주로 자원의 조회를 위해, POST는 추가, 수정, 삭제를 위해 활용됩니다. 그렇기 때문에 메소드 실행 전후로 결과가 바뀌지 않는 GET은 멱등성을 가집니다.
   <br>
   &nbsp;&nbsp;GET은 캐싱이 가능한 반면 POST는 캐싱이 불가능합니다. 또, GET은 URI에 타겟 자원을 명시하기 때문에 메시지의 Header에 담기는 반면, POST는 메시지의 body에 담기므로 상대적으로 자원이 직접 노출되지 않은 POST가 안전합니다.
+</details>
+
+<br>
+
+### 멱등성
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;멱등성이란 동일한 메소드가 여러 번 실행되더라도 항상 같은 응답을 받을 경우, 멱등성을 가진다고 말합니다. REST API에서 GET, PUT, DELETE은 멱등성인 반면 POST는 매 요청마다 새로운 데이터가 추가되기 때문에 멱등성을 가지지 않습니다.
+</details>
+
+<br>
+
+### HTTPS
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;HTTPS는 HTTP가 가진 보안적 문제를 해결하기 위해 등장한 프로토콜입니다. HTTP는 메시지 내용이 Text로 이루어져 있기 때문에 메시지가 노출되거나 탈취되었을 때 정보가 유출될 수 있는 보안 문제가 있습니다.
+  <br>
+  &nbsp;&nbsp;
 </details>
 
 ---
