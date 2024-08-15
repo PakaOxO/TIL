@@ -27,7 +27,7 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;HTTP는 HyperText Transfer Protocol의 약어로 비연결형 통신 방식입니다. 데이터로 메시지를 사용하며 메시지는 요청(Request)와 응답(Response) 2가지 타입으로 구분됩니다. HTTP는 신뢰성있는 통신을 보장하기 위해 TCP를 사용합니다.
+  &nbsp;&nbsp;HTTP는 HyperText Transfer Protocol의 약어로 Connectionless한 통신 방식입니다. Client-Server간 메시지를 통해 데이터를 교환하며, 메시지는 요청(Request)와 응답(Response) 2가지 타입으로 구분됩니다. HTTP는 신뢰성있는 통신을 보장하기 위해 TCP를 사용합니다.
   <br>
   &nbsp;&nbsp;HTTP는 Stateless한데, 이는 두 사용자간 Req-Res 통신이 이루어진 후, TCP 연결이 끊어진 뒤 이후에는 상대방의 상태를 알 수 없다는 특징을 나타냅니다.
 </details>
@@ -142,7 +142,11 @@
   <summary>펼쳐보기</summary>
   &nbsp;&nbsp;HTTPS는 HTTP가 가진 보안적 문제를 해결하기 위해 등장한 프로토콜입니다. HTTP는 메시지 내용이 Text로 이루어져 있기 때문에 메시지가 노출되거나 탈취되었을 때 정보가 유출될 수 있는 보안 문제가 있습니다.
   <br>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;HTTPS는 SSL/TLS를 통해 메시지를 암호화합니다. 이는 전송-응용계층 사이에서 진행되며 모든 Req-Res 메시지는 전송계층에서 메시지의 body에 담긴 내용을 암호화해 네트워크 계층으로 보냅니다.
+  <br>
+  &nbsp;&nbsp;HTTPS의 통신과정은 간략하게 설명하면 다음과 같습니다. 먼저 TCP 연결을 체결하는 과정 중에 클라이언트는 서버로부터 서버의 공개키를 받습니다. 클라이언트는 자신의 대칭키를 서버의 공개키로 암호화해 서버에 전달하고, 서버는 개인키로 클라이언트의 대칭키를 얻습니다. 이후 통신에는 이 대칭키를 통해 메시지를 암호화합니다.
+  <br>
+  &nbsp;&nbsp;이처럼 HTTPS는 HTTP에 비해 암호화를 위한 추가적인 작업을 요하므로 서버의 부하가 발생할 수 있고, 연결이 종료된 이후 다시 재연결에서는 ㅈ
 </details>
 
 ---
