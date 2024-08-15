@@ -168,10 +168,30 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;CORS는 교차 리소스 공유(Cross-origin Resource Sharing)로 HTTP Header를 통해 한 출처에서 실행되는 어플리케이션이 서로 다른 출처의 목표 자원에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 시스템입니다. 이때 출처(origin)는 도메인, 포트, 프로토콜의 조합으로 결ㄷ
+  &nbsp;&nbsp;CORS는 교차 리소스 공유(Cross-origin Resource Sharing)로 HTTP Header를 통해 한 출처에서 실행되는 어플리케이션이 서로 다른 출처의 목표 자원에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 시스템입니다. 이때 출처(origin)는 도메인, 포트, 프로토콜의 조합으로 결정됩니다.
 </details>
 
 <br>
 
 ---
-### 
+### TCP vs UDP
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;
+</details>
+
+<br>
+
+### TCP features
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;TCP는 RDT(Reliable Data Transfer)를 위한 오류제어(Error Control)를 지원합니다.
+  <br>
+  &nbsp;&nbsp;TCP는 네트워크 상활을 고려해 위한 혼잡제어(Congestion Control)를 지원합니다.
+  <br>
+  &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Congestion Control)를 지원합니다.
+</details>
+
+<br>
