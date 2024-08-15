@@ -43,6 +43,15 @@
 
 <br>
 
+### Cookie vs Session
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;
+</details>
+
+<br>
+
 ### DNS
 
 <details>
