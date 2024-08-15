@@ -241,3 +241,13 @@
 </details>
 
 <br>
+
+### 브라우저에 www.google.com을 입력하고 이루어지는 과정
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;
+</details>
+
+<br>
+<br>
