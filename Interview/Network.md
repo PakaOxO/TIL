@@ -42,3 +42,15 @@
 </details>
 
 <br>
+
+### DNS
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;DNS는 Domain Name System의 약어로 IP를 사람이 이해하기 쉬운 이름으로 변경해주는 시스템입니다. 사용자의 입장에서는 서비스의 IP가 변경되었더라도, 동일한 도메인을 사용한다면 이를 인지할 수 없습니다.
+</details>
+
+<br>
+
+---
+### 
