@@ -47,7 +47,13 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;Cookie와 Session은 모두 HTTP의 Connectionless, Stateless 특성으로 인해 서비스를 이용 중인 사용자를 식별하지 못하는 문제를 해결하기 위해 활용되지만 다음과 같은 차이점이 있습니다.
+  <br>
+  &nbsp;&nbsp;먼저 Cookie는 사용자 컴퓨터의 드라이브, Session은 서버에 저장됩니다. Cookie는 사용자 컴퓨터에 저장되는 만큼 Session에 비해 보안에 취약할 수 있습니다.
+  <br>
+  &nbsp;&nbsp;Cookie는 서버에서 생성되었을 때 만료기간을 지정받으며, 만료될 경우 사용이 불가능합니다. Session은 브라우저의 종료 시에 소멸하지만, 별도로 만료기간을 가질 수 있습니다.
+  <br>
+  &nbsp;&nbsp;세션은 쿠키에 비해 서버의 자원을 많이 활용하는 만큼 속도 측면에서 불리할 수 있습니다.
 </details>
 
 <br>
@@ -57,6 +63,15 @@
 <details>
   <summary>펼쳐보기</summary>
   &nbsp;&nbsp;DNS는 Domain Name System의 약어로 IP를 사람이 이해하기 쉬운 이름으로 변경해주는 시스템입니다. 사용자의 입장에서는 서비스의 IP가 변경되었더라도, 동일한 도메인을 사용한다면 이를 인지할 수 없습니다.
+</details>
+
+<br>
+
+### RESTful, REST API
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;REST는 HTTP URI를 통해 자원을 명시하고 Method로 자원을 처리하도록 설계된 아키텍처입니다. REST API는 
 </details>
 
 <br>
