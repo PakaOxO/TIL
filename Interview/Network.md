@@ -155,7 +155,11 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;HTTP은 기본적으로 Req-Res의 한 사이클이 종료되면 연결을 끊습니다.
+  &nbsp;&nbsp;HTTP V1.0에는 새롭게 'POST' 메소드가 추가되었습니다.HTTP Header가 도입되었으며, Header를 통해 프로토콜 방식을 유연하고 확장 가능하게 메타 데이터의 전송이 가능해졌습니다.
+  <br>
+  &nbsp;&nbsp;Host Header가 추가되어 동일한 IP를 가리키는 도메인을 구분할 수 있게 되었습니다. Host는 동일 IP더라도 Port를 통해 고유한 값을 가집니다. 이는 Proxy 서버를 통해 메시지를 라우팅할 때 중요하게 활용됩니다. 이전의 HTTP 프로토콜은 Req-Res의 한 사이클이 종료되면 연결이 종료되었지만, HTTP V1.1부터는 이전의 연결을 재활용할 수 있는 'Connection: Keep-alive'를 통한 Persistent Connection이 추가되었습니다. 또한 'PUT', 'PATCH', 'DELETE' 등 새로운 HTTP 메소드가 추가되었습니다.
+  <br>
+  &nsbp;&nbsp;HTTP V2.0는 Multiplexing을 지원합니다. 기존의 HTTP 통신은 순차적으로 통신을 진행해 한번에 한번의 요청과 응답을 받을 수 있었지만 V2.0부터는 요청을 보내고 응답을 비동기적으로 수신할 수 있어 단일 연결을 통해 여러 요청을 처리할 수 있게 되었습니다.
 </details>
 
 <br>
