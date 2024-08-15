@@ -67,6 +67,15 @@
 
 <br>
 
+### DHCP
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;DHCP(Dynamic Host Configuration Protocol)는 제한된 IP 개수의 문제를 해결하기 위한 방안으로 모든 사용자는 자신이 접속한 위치에 따라 다른 네트워크(서브넷)에 속하게 되는데 접속 시에 각 네트워크 내부의 IP 풀을 통해 동적으로 적절한 IP를 배정받게 된다면 IP 주소를 통해 사용자의 네트워크를 특정할 수 있으며, 고유한 IP를 갖는 것 또한 가능해집니다.
+</details>
+
+<br>
+
 ### HTTP Method
 
 <details>
@@ -192,6 +201,24 @@
   &nbsp;&nbsp;TCP는 네트워크 상활을 고려해 위한 혼잡제어(Congestion Control)를 지원합니다.
   <br>
   &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Congestion Control)를 지원합니다.
+</details>
+
+<br>
+
+### TCP 3-way handshake
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;
+</details>
+
+<br>
+
+### TCP 4-way handshake
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;
 </details>
 
 <br>
