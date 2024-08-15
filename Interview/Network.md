@@ -164,5 +164,14 @@
 
 <br>
 
+### CORS
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;CORS는 교차 리소스 공유(Cross-origin Resource Sharing)로 HTTP Header를 통해 한 출처에서 실행되는 어플리케이션이 서로 다른 출처의 목표 자원에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 시스템입니다. 이때 출처(origin)는 도메인, 포트, 프로토콜의 조합으로 결ㄷ
+</details>
+
+<br>
+
 ---
 ### 
