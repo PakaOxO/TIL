@@ -67,11 +67,20 @@
 
 <br>
 
-### RESTful, REST API
+### REST API
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;REST는 HTTP URI를 통해 자원을 명시하고 Method로 자원을 처리하도록 설계된 아키텍처입니다. REST API는 
+  &nbsp;&nbsp;REST는 HTTP URI를 통해 자원을 명시하고 Method로 자원을 처리하도록 설계된 아키텍처입니다. 이러한 REST 아키텍처를 기반으로 만들어진 API가 REST API입니다. REST의 구성요소로는 자원(Resource), 행위(Verb), 표현(Representations)이 있습니다.
+</details>
+
+<br>
+
+### RESTful
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;RESTful하다는 것은 REST 원리를 따르는 시스템을 의미합니다.
 </details>
 
 <br>
