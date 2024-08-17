@@ -182,11 +182,11 @@
    <br> <br>
   2. 신뢰성 측면에서 TCP는 오류제어, 흐름제어, 혼잡제어 등 신뢰성을 보장하지만 UDP는 Checksum 필드를 통한 최소한의 신뢰성만을 보장합니다.
    <br> <br>
-  3. 속도 측면에서 TCP는 UDP에 비해 상대적으로 느립니다.
+  3. 속도 측면에서 연결 및 신뢰성을 보장하기 위해 추가적인 작업이 있는 TCP가 UDP에 비해 상대적으로 느립니다.
    <br> <br>
-  4. 연결 과정 측면에서 TCP는 3-way, 4-way handshake
-  
-  
+  4. 연결 과정 측면에서 TCP는 3-way, 4-way handshake로 연결을 위한 상호 합의가 필요합니다.
+   <br> <br>
+  5. TCP는 1:1 상호 연결을 지원하는 유니캐스트지만 UDP는 N:M 또는 1:N을 지원하는 멀티캐스트, 혹은 브로드 캐스트입니다.
 </details>
 
 <br>
@@ -195,11 +195,11 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;TCP는 RDT(Reliable Data Transfer)를 위한 오류제어(Error Control)를 지원합니다.
+  &nbsp;&nbsp;TCP는 RDT(Reliable Data Transfer)를 위한 오류제어(Error Control)를 지원합니다. 오류제어는 '재전송'을 기반으로 이루어지며, 송신 측이 모든 데이터를 수신 측이 받을 수 있도록 보장합니다. 재전송 방식에 따라 'stop-and-wait', 'go-back-N', 'selective-repeat' 등이 있습니다.
+  <br> <br>
+  &nbsp;&nbsp;TCP는 네트워크 상활을 고려해 위한 혼잡제어(Congestion Control)를 지원합니다. 네트워크의 혼잡 상황에 따라 송신 측에서 네트워크에 보내는 데이터의 양을 조절하는 방식입니다. 대표적인 방식으로 'slow-start'가 있습니다.
   <br>
-  &nbsp;&nbsp;TCP는 네트워크 상활을 고려해 위한 혼잡제어(Congestion Control)를 지원합니다.
-  <br>
-  &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Congestion Control)를 지원합니다.
+  &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Congestion Control)를 지원합니다. 슬라이딩 윈도우를 활용해 흐름제어를 하는데, 수신 측으로 받은 ACK 개수에 따라 윈도우의 ㅇ
 </details>
 
 <br>
