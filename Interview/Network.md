@@ -205,6 +205,16 @@
 
 <br>
 
+
+### Packet loss
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;TCP에서는 Segment를 Packet에 담을 때 부여한 'sequence number'를 활용해 Packet 유실을 확인합니다. 중간에 Packet이 유실되면 Packet들을 재조립하면서 'Sequence number'가 비게 되고 이를 통해 유실 여부를 판단할 수 있습니다.
+</details>
+
+<br>
+
 ### TCP 3-way handshake
 
 <details>
