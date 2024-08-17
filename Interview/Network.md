@@ -265,7 +265,7 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;NAT(Network Address Translation)는 IPv4가 가진 제한된 IP의 개수 문제를 극복하기 위해 도입된 시스템입니다.
+  &nbsp;&nbsp;NAT(Network Address Translation)는 IPv4가 가진 제한된 IP의 개수 문제를 극복하기 위해 도입된 시스템입니다. NAT를 통해 하나의 공인 IP를 여러 기기가 사용할 수 있으며, NAT는 네트워크 통신 과정에서 사설 IP를 공인 IP로, 공인 IP를 사설 IP로 변환해줍니다. 이때 사설
 </details>
 
 <br>
