@@ -232,6 +232,8 @@
 3. Server의 모든 데이터 전송이 완료되면 Client에 FIN 패킷을 보냅니다.
 <br><br>
 4. Client는 Server의 FIN에 대한 응답으로 ACK 패킷을 보냅니다.
+<br><br>
+&nbsp;&nbsp;마지막에 Client가 ACK 패킷을 보낸 뒤에도 Client는 바로 세션을 종료시키지 않는데, 이는 서버의 FIN 패킷 이전에 서버에서 전송된 데이터 패킷이 네트워크 지연이나 패킷 유실로 재전송이 발생했을 경우 생긴 잉여 패킷을 대비하기 위함입니다.
 </details>
 
 <br>
