@@ -299,7 +299,11 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;JWT(JSON Web Token)는 Claim 기반의 웹 토큰입니다. 일반적으로 OAuth로 발급되는 토큰은 random string으로 토큰 자체는 별다를 의미를 갖는 데이터를 담고 있지 않지만 Claim은 토큰 내부에 사용
+  &nbsp;&nbsp;JWT(JSON Web Token)는 Claim 기반의 웹 토큰입니다. 일반적으로 OAuth로 발급되는 토큰은 random string으로 토큰 자체는 별다를 의미를 갖는 데이터를 담고 있지 않지만 Claim은 토큰 내부에 사용자에 대한 프로퍼티 및 값을 가지고 있는 방식입니다.
+  <br><br>
+  &nbsp;&nbsp;JWT는 크게 Header, Payload, Signature로 구성되어 있으며 각각은 문자열 내부에서 '.(dot)'로 구분됩니다. 먼저 Header는 토큰의 타입과 암호화 방식에 대한 정보를 담고 있습니다. Payload는 토큰에서 담고자 하는 사용자 정보를 담는 공간으로 JWT는 Payload가 key-value쌍의 JSON의 형태로 담깁니다. 마지막으로 Signature에는 토큰을 인코딩하거나 유효성을 검증하기 위해 사용되는 고유 암호화 코드가 담깁니다. 이를 통해 Header와 Payload를 인코딩합니다.
+  <br><br>
+  &nbsp;&nbsp;JWT의 문제점으로는 payload의 크기가 커질 수록 Header에 담기는 토큰의 용량이 증가하기 때문에 증가한 오버헤드로 네트워크 대역폭의 낭비를 유발할 수 있다는 점이 있습니다. 또한 한번 발행된 토큰은 수정이 불가능하기 때문에 Expire time과 Refresh Token으로 주기적으로 토큰을 갱신할 필요가 있습니다. 또한 JWT는 보안 취약점을 가지고 있습니다. Claim을 별도로 암호화하지 않고 단순히 Base64로 인코딩하기 때문에 탈취되었을 경우 보안 문제가 발생할 수 있습니다. 때문에 Claim 내부에는 중요한 개인 정보가 담기지 않도록 주의하고, 별도로 암호화를 거치는 JWE(JSON Web Encryption)이라는 상위 스펙을 사용하는 방법도 있습니다.
 </details>
 
 <br>
