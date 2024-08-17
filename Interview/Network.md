@@ -199,7 +199,7 @@
   <br> <br>
   &nbsp;&nbsp;TCP는 네트워크 상활을 고려해 위한 혼잡제어(Congestion Control)를 지원합니다. 네트워크의 혼잡 상황에 따라 송신 측에서 네트워크에 보내는 데이터의 양을 조절하는 방식입니다. 대표적인 방식으로 'slow-start'가 있습니다.
   <br>
-  &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Congestion Control)를 지원합니다. 슬라이딩 윈도우를 활용해 흐름제어를 하는데, 수신 측으로 받은 ACK 개수에 따라 윈도우의 ㅇ
+  &nbsp;&nbsp;TCP는 수신자의 데이터 처리 속도를 고려해 위한 흐름제어(Flow Control)를 지원합니다. 슬라이딩 윈도우를 활용해 흐름제어를 하는데, 수신 측으로 받은 ACK 개수에 따라 윈도우의 위치를 이동하는 방식으로 수신 측의 버퍼 오버플로우를 방지합니다.
 </details>
 
 <br>
@@ -208,7 +208,13 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;연결형 프로토콜인 TCP 연결을 수립하기 위해서는 3-way handshake 기법을 사용합니다. 3-way인 이유는 유실 등으로 인해 서버의 ACK 패킷이 클라이언트에 전달이 완료되었는지에 대한 확인이 필요하기 때문입니다.
+   <br> <br>
+   1. Client는 Server와 통신하기 위해 연결을 요청하는 SYN 패킷을 보냅니다.
+   <br> <br>
+   2. Server는 통신이 가능하면 SYN 패킷에 대한 응답으로 ACK 패킷을 보냅니다.
+   <br> <br>
+   3. Client는 서버의 ACK에 대한 응답으로 ACK 패킷을 보냅니다.
 </details>
 
 <br>
@@ -217,7 +223,15 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;TCP 연결 해제의 경우에는 4-way handshake를 사용합니다. 3-way에서 한 단계가 더 추가된 이유는 TCP 연결이 끊어지기 전에 Server가 Client에 보낼 데이터가 남아있을 경우를 대비하기 위해서입니다.
+<br><br>
+1. Client는 Server에 FIN 패킷으로 통신을 종료한다는 신호를 보냅니다.
+<br><br>
+2. Server는 Client에 FIN에 대한 응답으로 ACK 패킷을 보냅니다.
+<br><br>
+3. Server의 모든 데이터 전송이 완료되면 Client에 FIN 패킷을 보냅니다.
+<br><br>
+4. Client는 Server의 FIN에 대한 응답으로 ACK 패킷을 보냅니다.
 </details>
 
 <br>
