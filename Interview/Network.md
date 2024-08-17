@@ -244,7 +244,8 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;IPv4는 독립적인 32bit 값을 사용하는 주소 체계입니다. '.(dot)'를 기준으로 4bit씩 끊어 '000.000.000.000'의 형태로 0~255인 4개의 10진수로 표현됩니다. 계층적 주소체계를 사용해 Routing을 위한 'Forwarding table'의 크기를 줄입니다. IP Prefix를 활용해 Subnet을 표현합니다.
+  <br><br>
 </details>
 
 <br>
