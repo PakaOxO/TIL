@@ -155,7 +155,7 @@
 
 <details>
   <summary>펼쳐보기</summary>
-  &nbsp;&nbsp;HTTP V1.0에는 새롭게 'POST' 메소드가 추가되었습니다.HTTP Header가 도입되었으며, Header를 통해 프로토콜 방식을 유연하고 확장 가능하게 메타 데이터의 전송이 가능해졌습니다.
+  &nbsp;&nbsp;HTTP V1.0에는 새롭게 'POST' 메소드가 추가되었습니다. HTTP Header가 도입되었으며, Header를 통해 프로토콜 방식을 유연하고 확장 가능하게 메타 데이터의 전송이 가능해졌습니다.
   <br> <br>
   &nbsp;&nbsp;Host Header가 추가되어 동일한 IP를 가리키는 도메인을 구분할 수 있게 되었습니다. Host는 동일 IP더라도 Port를 통해 고유한 값을 가집니다. 이는 Proxy 서버를 통해 메시지를 라우팅할 때 중요하게 활용됩니다. 이전의 HTTP 프로토콜은 Req-Res의 한 사이클이 종료되면 연결이 종료되었지만, HTTP V1.1부터는 이전의 연결을 재활용할 수 있는 'Connection: Keep-alive'를 통한 Persistent Connection이 추가되었습니다. 또한 'PUT', 'PATCH', 'DELETE' 등 새로운 HTTP 메소드가 추가되었습니다.
   <br> <br>
@@ -287,8 +287,19 @@
   <br><br>
   2. DNS를 통해 해당 도메인을 IP 주소로 변환합니다. 먼저 브라우저 캐시, OS 캐시를 확인하고 정보가 없다면 로컬 DNS를, 그래도 없다면 계층적 DNS 조회를 통해 IP 주소를 받아옵니다.
    <br><br>
-  3. 브라우저는 반환된 IP 주소로 3-way handshake TCP 연결을 시도합니다. 보안 프로토콜인 경우 추가적으로 SSL/TLS handshake
+  3. 브라우저는 반환된 IP 주소로 3-way handshake TCP 연결을 시도합니다. 보안 프로토콜인 경우 추가적으로 SSL/TLS handshake 과정을 통해 보안 연결을 설정합니다. 이 과정에서 인증서 검증 및 세션키를 가지게 됩니다.
+   <br><br>
+  4. 연결이 완료되면 브라우저는 서버에 GET 요청으로 자원을 요청합니다. 서버는 요청에 대한 응답으로 HTML 문서를 반환합니다. 
+   <br><br>
+  5. 브라우저는 응답 상태를 분석하고, 컨텐츠를 수신합니다. 정상적인 응답이 반환되었다면 렌더링 엔진을 통해 웹 페이지를 렌더링합니다. 이 과정에서 CSS, Script, Image 등의 추가적인 리소스 요청이 발생할 수 있습니다.
 </details>
 
 <br>
+### JWT
+
+<details>
+  <summary>펼쳐보기</summary>
+  &nbsp;&nbsp;JWT(JSON Web Token)는 Claim 기반의 웹 토큰입니다. 일반적으로 OAuth로 발급되는 토큰은 random string으로 토큰 자체는 별다를 의미를 갖는 데이터를 담고 있지 않지만 Claim은 토큰 내부에 사용
+</details>
+
 <br>
