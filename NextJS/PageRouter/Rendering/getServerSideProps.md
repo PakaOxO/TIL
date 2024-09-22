@@ -38,7 +38,7 @@ export default function Page({
 
 ### When should I use `serverSideProps`?
 
-1. 사용자 정보 등 개인화된 데이터를 포함한 페이지를 렌더링할 떄 사용할 수 있습니다.
+1. 사용자 정보 등 개인화된 데이터를 포함한 페이지를 렌더링할 때 사용할 수 있습니다.
 2. `authorization header` 나 지리 정보 등 요청 시간에만 알 수 있는 데이터가 포함된 페이지를 렌더링할 때 사용할 수 있습니다.
 3. 만약 사용자 요청에 의존하지 않는 페이지를 렌더링한다면 [getStaticProps](./getStaticProps)를 사용하는 편이 좋습니다.
 

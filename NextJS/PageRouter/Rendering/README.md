@@ -4,6 +4,6 @@
 <br>
 
 ### Contents
-- [getServerSideProps](./getServerSideProps..md)
+- [getServerSideProps](./getServerSideProps.md)
 - [getStaticProps](./getStaticProps.md)
 - [getStaticPaths](./getStaticPaths.md)
