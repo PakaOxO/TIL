@@ -61,7 +61,7 @@ export default function Page({
 
 <br>
 
-### Edege Cases
+### Edge Cases
 
 **Caching with Server-Side Rendering(SSR)**
 
