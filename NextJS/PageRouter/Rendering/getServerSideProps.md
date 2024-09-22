@@ -57,9 +57,38 @@ export default function Page({
 
 <br>
 
+`getServerSideProps` 함수의 자세한 사용법은 [공식문서](https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props)를 통해 확인할 수 있습니다.
+
+<br>
+
+### Edege Cases
+
+**Caching with Server-Side Rendering(SSR)**
+
+&nbsp;&nbsp;`getServerSideProps`는 내부에 `cache-control` 헤더를 통해 응답을 캐싱할 수 있습니다. 다만 Next 공식문서에서는 이 방법 대신 `ISR`을 적용한  [getStaticProps](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props)사용을 권장하고 있습니다.
+
+```tsx
+// This value is considered fresh for ten seconds (s-maxage=10).
+// If a request is repeated within the next 10 seconds, the previously
+// cached value will still be fresh. If the request is repeated before 59 seconds,
+// the cached value will be stale but still render (stale-while-revalidate=59).
+//
+// In the background, a revalidation request will be made to populate the cache
+// with a fresh value. If you refresh the page, you will see the new value.
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+ 
+  return {
+    props: {},
+  }
+}
+```
 
 <br>
 
 **References**
 - [Next.js 공식문서, serverSideProps](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props)
-- [Next.js 공식문서, serverSideProps]
+- [Next.js 공식문서, serverSideProps 사용법](https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props)
