@@ -46,7 +46,20 @@ export default function Page({
 
 ### `getServerSideProps` 동작
 
+&nsbp;&nbsp;`getServerSideProps`는...
 
+1. 서버에서 호출되어 실행됩니다.
+2. 오직 `page` 컴포넌트에서만 사용될 수 있습니다.
+3. 호출의 결과로 `json`을 반환합니다.
+4. 사용자가 페이지에 접근하면 `getServerSideProps`는 사용자 요청 시에 내부에 작성된 패칭 함수를 실행하고 반환된 데이터는 `props`로 컴포넌트에 전달되어 초기 페이지를 렌더링하기 위해 사용됩니다.
+5.  만약 사용자가 `next/link` 혹은 `next/router`를 통해 페이지에 접근했다면 Next.js는 서버에 요청을 보내 서버에서 `getServerSideProps`를 실행하고 서버는 `json`을 반환합니다.
+6. `getServerSideProps`는 서버에서 실행되는 함수이므로 불필요하게 `api routes`를 통해 데이터를 패칭할 필요는 없으며, 대신 CMS, db, 3rd party API를 호출해 데이터를 가져오는 편이 좋습니다.
+
+<br>
+
+
+<br>
 
 **References**
 - [Next.js 공식문서, serverSideProps](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props)
+- [Next.js 공식문서, serverSideProps]
