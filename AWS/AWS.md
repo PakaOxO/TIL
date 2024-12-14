@@ -1,4 +1,0 @@
-
-### Contents
-- [[Tutorial]]
-- [[Issue Handling]]

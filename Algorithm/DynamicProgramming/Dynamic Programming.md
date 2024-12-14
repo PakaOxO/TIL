@@ -1,2 +1,0 @@
-### Contents
-- [[DP(Dynamic Programming)]]
