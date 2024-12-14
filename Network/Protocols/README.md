@@ -1,3 +1,0 @@
-
-### Contents
-- [HTTPS](./HTTPS.md)

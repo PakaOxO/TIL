@@ -1,3 +1,0 @@
-
-### Contents
-- [[tsconfig.json module]]
